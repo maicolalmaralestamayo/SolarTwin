@@ -921,6 +921,17 @@ const applySiteConfig = () => {
     }
   })
 
+  // Aplicar usernames a la sección de contacto
+  const contactWaText = document.querySelector('small[data-i18n="contact.waText"]')
+  if (contactWaText && config.usernames && config.usernames.whatsapp) {
+    contactWaText.textContent = config.usernames.whatsapp
+  }
+
+  const contactTgText = document.querySelector('small[data-i18n="contact.tgText"]')
+  if (contactTgText && config.usernames && config.usernames.telegram) {
+    contactTgText.textContent = config.usernames.telegram
+  }
+
   // Aplicar enlaces de canales dedicados
   // Canal de WhatsApp
   const allWaChannelLinks = document.querySelectorAll('a[href*="whatsapp.com/channel"]')
