@@ -943,7 +943,7 @@ const applySiteConfig = () => {
   // Aplicar años de experiencia al badge-exp
   const expBadgeSpan = document.querySelector('.badge-exp span')
   if (expBadgeSpan && config.experienceYears) {
-    expBadgeSpan.textContent = `${config.experienceYears}`
+    expBadgeSpan.textContent = `+${config.experienceYears}`
   }
 
   // Aplicar cantidad de especialistas al estadístico de hero
