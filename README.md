@@ -9,6 +9,7 @@ Es un sitio **100 % estático**: HTML, CSS, JavaScript, imágenes y fuentes loca
 ```
 index.html
 style.css
+config.js
 main.js
 favicon.svg
 fonts/
@@ -22,7 +23,7 @@ El resto de archivos del repositorio (README, capturas, etc.) no hace falta subi
 1. Copia los archivos a la carpeta pública de tu Apache (por ejemplo `/var/www/html`):
 
    ```bash
-   sudo cp -r index.html style.css main.js favicon.svg fonts img /var/www/html/
+   sudo cp -r index.html style.css config.js main.js favicon.svg fonts img /var/www/html/
    ```
 
 2. Da permisos de lectura al servidor web:
@@ -50,6 +51,7 @@ No hace falta `.htaccess` ni activar módulos adicionales: Apache sirve `index.h
 - Textos en español: directamente en `index.html` y en el diccionario `es` de `main.js`.
 - Textos en inglés: diccionario `en` de `main.js`.
 - Colores y estilos: `style.css`.
+- Precio de cada panel para la calculadora: `config.js` (ver más abajo).
 - Fotos: reemplaza los archivos de `img/` manteniendo los nombres, o cambia la ruta en `index.html`.
 - El selector de idioma funciona igual que el de tema: un botón redondo en la cabecera abre un menú con Español e English. Añadir un idioma nuevo implica crear su diccionario en `main.js` y un botón con `data-lang-set` en ese menú.
 
@@ -63,7 +65,7 @@ El menú principal enlaza a las secciones con estos nombres visibles:
 | Operaciones | Área de operaciones | `#operaciones` |
 | Pago | Formas de pago | `#pago` |
 
-La sección **Solar y planeta** (`#planeta`) va después de Operaciones y antes de Pago, pero no aparece en el menú. Incluye las ventajas ambientales y la tabla de ahorro. La sección **Formas de pago** (`#pago`) va después de Planeta y antes de Contacto: indica que el pago es en efectivo y que se aceptan dólar (USD), euro (EUR) y moneda nacional (CUP). El botón flotante de volver arriba aparece al pasar unos 600 px de scroll y se oculta al llegar al pie de página, donde queda el enlace de texto.
+La sección **Solar y planeta** (`#planeta`) va después de Operaciones y antes de Pago, pero no aparece en el menú. Incluye las ventajas ambientales, la calculadora de ahorro y la tabla de referencia. La sección **Formas de pago** (`#pago`) va después de Planeta y antes de Contacto: indica que el pago es en efectivo y siempre después de completado el trabajo (sin pago por adelantado), que se aceptan dólar (USD), euro (EUR) y moneda nacional (CUP), que la tasa de referencia del CUP es elToque, y añade la calculadora de paneles. El botón flotante de volver arriba aparece al pasar unos 600 px de scroll y se oculta al llegar al pie de página, donde queda el enlace de texto.
 
 ## Aportes del cliente y de la empresa
 
@@ -80,7 +82,21 @@ La tabla de `#planeta` usa la tarifa residencial cubana del **Acuerdo 9810/2024*
 | 400 kWh | 881 CUP | ≈ 705 CUP |
 | 500 kWh | 1 531 CUP | ≈ 1 225 CUP |
 
-Si cambia la tarifa, actualiza los valores de la tabla en `index.html` y el texto `planet.savingsText` / `planet.savingsNote` en los diccionarios `es` y `en`. Los ahorros se estiman de forma conservadora como el 80 % de la factura: con la tarifa por tramos, cubrir el 80 % del consumo con solar suele ahorrar más. El resultado real depende del tamaño del sistema, la radiación, el consumo nocturno y los hábitos de cada cliente.
+La **calculadora de ahorro** de `#planeta` pide el consumo mensual en kWh y aplica la misma tarifa por tramos para obtener la factura actual. Después muestra los kWh y el dinero que se pueden ahorrar en una semana, un mes y un año, estimados de forma conservadora como el 80 % del consumo y de la factura. Los tramos están en la constante `TARIFF_TIERS` de `main.js`; si cambia la tarifa, actualízala allí además de la tabla y los textos `planet.savingsText` / `planet.savingsNote` de los diccionarios `es` y `en`. El resultado real depende del tamaño del sistema, la radiación, el consumo nocturno y los hábitos de cada cliente.
+
+## Calculadora de paneles
+
+El sitio es estático, así que no usa un archivo `.env`: el precio base por panel vive en `config.js`.
+
+```js
+window.SOLARTWIN_CONFIG = {
+  panelPriceUsd: 180,
+}
+```
+
+Cambia `panelPriceUsd` cuando varíe el precio de los paneles. La calculadora de `#pago` lo lee al cargar la página, muestra el precio por panel en USD (la moneda base) y multiplica por la cantidad entera que escriba el cliente. Incluye el aviso de que el cálculo es aproximado y que el precio final depende del precio de los insumos en el mercado y de las condiciones del montaje.
+
+El **pago** se realiza en efectivo y después de completado el trabajo; no se pide pago por adelantado. Para el CUP se toma como referencia la tasa de [elToque](https://eltoque.com/).
 
 ## Fotos y licencias
 

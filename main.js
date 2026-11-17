@@ -101,7 +101,7 @@ const translations = {
     'team.title':
       '<span class="brand-word">SolarTwin</span>: un grupo de amigos, <span class="grad-text">un mismo sueño</span>',
     'team.p1':
-      'Twin viene de gemelos: dos de los fundadores son hermanos gemelos y empezaron resolviendo cosas con las manos. Hoy el proyecto es un grupo de amigos que instala energía solar.',
+      'Somos un grupo de amigos que empezó resolviendo cosas con las manos. Con los años nos convertimos en una familia que instala energía solar.',
     'team.p2':
       'El equipo lo forman más de 10 especialistas en ingeniería eléctrica y metalurgia, en su mayoría jóvenes. Esa mezcla nos permite cuidar tanto la parte eléctrica como la estructura y el montaje, sin depender de terceros.',
     'team.point1': 'Especialistas en ingeniería eléctrica y metalurgia',
@@ -144,7 +144,16 @@ const translations = {
     'planet.thSavings': 'Ahorro estimado',
     'planet.savingsNote':
       'Estimado de forma conservadora como el 80 % de la factura del Acuerdo 9810/2024, vigente desde marzo de 2024. Con la tarifa por tramos, cubrir el 80 % del consumo con solar suele ahorrar todavía más; el resultado real depende del tamaño del sistema, la radiación, el consumo nocturno y tus hábitos.',
-    'planet.cta': 'Calcular mi ahorro',
+    'planet.calcLabel': 'Consumo mensual (kWh)',
+    'planet.calcPlaceholder': 'Ej.: 250',
+    'planet.calcButton': 'Calcular ahorro',
+    'planet.calcError': 'Escribe un consumo entre 1 y 20 000 kWh.',
+    'planet.calcBillLabel': 'Factura mensual actual:',
+    'planet.calcWeek': 'En una semana',
+    'planet.calcMonth': 'En un mes',
+    'planet.calcYear': 'En un año',
+    'planet.calcResultsNote':
+      'Estimación conservadora: 80 % de tu consumo y de tu factura actual.',
     'planet.source': 'Fuente: tarifa residencial vigente (Acuerdo 9810/2024).',
 
     'pay.eyebrow': 'Formas de pago',
@@ -154,12 +163,28 @@ const translations = {
     'pay.methodKicker': 'Forma de pago',
     'pay.methodTitle': 'En efectivo',
     'pay.methodText':
-      'El pago del montaje se realiza en efectivo, directamente con el equipo.',
+      'El pago del montaje se realiza en efectivo, directamente con el equipo, y siempre después de completado el trabajo.',
+    'pay.noAdvance':
+      'No se realiza pago por adelantado: pagas cuando el trabajo está terminado.',
     'pay.currenciesKicker': 'Monedas de pago',
     'pay.currenciesTitle': 'Tres monedas disponibles',
     'pay.usd': 'Dólar',
     'pay.eur': 'Euro',
     'pay.cup': 'Moneda Nacional',
+    'pay.cupRate':
+      'Si el pago es en moneda nacional (CUP), la tasa de referencia es la de <a href="https://eltoque.com/" target="_blank" rel="noopener">elToque</a>.',
+    'pay.calcKicker': 'Calculadora de paneles',
+    'pay.calcTitle': '¿Cuánto cuestan tus paneles?',
+    'pay.calcText':
+      'Indica cuántos paneles necesitas. El precio base es por panel y se expresa en USD, la moneda base.',
+    'pay.calcPriceLabel': 'Precio por panel:',
+    'pay.calcCountLabel': 'Cantidad de paneles',
+    'pay.calcPlaceholder': 'Ej.: 6',
+    'pay.calcButton': 'Calcular',
+    'pay.calcError': 'Escribe una cantidad entera entre 1 y 500 paneles.',
+    'pay.calcResultLabel': 'Costo estimado',
+    'pay.calcDisclaimer':
+      'Cálculo aproximado. El precio final depende del precio de los insumos en el mercado y de las condiciones del montaje.',
 
     'contact.eyebrow': 'Hablemos',
     'contact.title': 'Tu precio empieza con <span class="grad-text">un mensaje</span>',
@@ -290,7 +315,7 @@ const translations = {
     'team.title':
       '<span class="brand-word">SolarTwin</span>: a group of friends, <span class="grad-text">one shared dream</span>',
     'team.p1':
-      'Twin comes from twins: two of the founders are twin brothers who started out solving things with their hands. Today the project is a group of friends installing solar energy.',
+      "We're a group of friends who started out solving things with our hands. Over the years we've become a family that installs solar energy.",
     'team.p2':
       'The team is made up of more than 10 electrical engineering and metalworking specialists, most of them young. That mix lets us take care of both the electrical side and the structure and installation, without depending on third parties.',
     'team.point1': 'Electrical engineering and metalworking specialists',
@@ -333,7 +358,16 @@ const translations = {
     'planet.thSavings': 'Estimated saving',
     'planet.savingsNote':
       'Conservative estimate at 80 % of the bill under Decree 9810/2024, in force since March 2024. Because the tariff is tiered, covering 80 % of usage with solar usually saves even more; actual results depend on system size, sunlight, night-time use and your habits.',
-    'planet.cta': 'Work out my saving',
+    'planet.calcLabel': 'Monthly usage (kWh)',
+    'planet.calcPlaceholder': 'e.g. 250',
+    'planet.calcButton': 'Calculate savings',
+    'planet.calcError': 'Enter usage between 1 and 20,000 kWh.',
+    'planet.calcBillLabel': 'Current monthly bill:',
+    'planet.calcWeek': 'In a week',
+    'planet.calcMonth': 'In a month',
+    'planet.calcYear': 'In a year',
+    'planet.calcResultsNote':
+      'Conservative estimate: 80 % of your usage and of your current bill.',
     'planet.source': 'Source: current residential tariff (Decree 9810/2024).',
 
     'pay.eyebrow': 'Payment options',
@@ -342,12 +376,28 @@ const translations = {
       'We accept cash payments, and you can pay in whichever currency is easiest for you.',
     'pay.methodKicker': 'Payment method',
     'pay.methodTitle': 'In cash',
-    'pay.methodText': 'The installation is paid in cash, directly to the team.',
+    'pay.methodText':
+      'The installation is paid in cash, directly to the team, and always after the work is finished.',
+    'pay.noAdvance': 'No advance payment: you pay once the work is done.',
     'pay.currenciesKicker': 'Payment currencies',
     'pay.currenciesTitle': 'Three currencies available',
     'pay.usd': 'US Dollar',
     'pay.eur': 'Euro',
     'pay.cup': 'Cuban Peso',
+    'pay.cupRate':
+      'If you pay in Cuban pesos (CUP), the reference exchange rate is <a href="https://eltoque.com/" target="_blank" rel="noopener">elToque</a>.',
+    'pay.calcKicker': 'Panel calculator',
+    'pay.calcTitle': 'What will your panels cost?',
+    'pay.calcText':
+      'Enter how many panels you need. The base price is per panel and shown in USD, the base currency.',
+    'pay.calcPriceLabel': 'Price per panel:',
+    'pay.calcCountLabel': 'Number of panels',
+    'pay.calcPlaceholder': 'e.g. 6',
+    'pay.calcButton': 'Calculate',
+    'pay.calcError': 'Enter a whole number between 1 and 500 panels.',
+    'pay.calcResultLabel': 'Estimated cost',
+    'pay.calcDisclaimer':
+      'Approximate calculation. The final price depends on market prices for materials and on installation conditions.',
 
     'contact.eyebrow': "Let's talk",
     'contact.title': 'Your price starts with <span class="grad-text">a message</span>',
@@ -514,6 +564,11 @@ const applyLanguage = (next, persist = true) => {
     if (value !== undefined) el.setAttribute('alt', value)
   })
 
+  document.querySelectorAll('[data-i18n-placeholder]').forEach((el) => {
+    const value = dict[el.dataset.i18nPlaceholder]
+    if (value !== undefined) el.setAttribute('placeholder', value)
+  })
+
   const description = document.querySelector('meta[name="description"]')
   if (description) description.setAttribute('content', dict['meta.description'])
   document.title = dict['meta.title']
@@ -537,6 +592,136 @@ document.querySelectorAll('[data-lang-set]').forEach((btn) => {
     langTrigger?.focus()
   })
 })
+
+/* ---------- Calculadora de ahorro y de paneles ---------- */
+
+const formatNumber = (value, decimals = 0) => {
+  const rounded = decimals ? Math.round(value * 100) / 100 : Math.round(value)
+  const [int, dec] = rounded.toFixed(decimals).split('.')
+  const grouped = int.replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0')
+  return dec && dec !== '00' ? `${grouped},${dec}` : grouped
+}
+
+/* Tarifa residencial cubana (Acuerdo 9810/2024), en CUP por kWh. */
+const TARIFF_TIERS = [
+  { upTo: 100, price: 0.33 },
+  { upTo: 150, price: 1.07 },
+  { upTo: 200, price: 1.43 },
+  { upTo: 250, price: 2.46 },
+  { upTo: 300, price: 3.0 },
+  { upTo: 350, price: 4.0 },
+  { upTo: 400, price: 5.0 },
+  { upTo: 450, price: 6.0 },
+  { upTo: 500, price: 7.0 },
+  { upTo: 600, price: 11.5 },
+  { upTo: 700, price: 11.81 },
+  { upTo: 1000, price: 12.31 },
+  { upTo: 1800, price: 13.5 },
+  { upTo: 2600, price: 14.75 },
+  { upTo: 3400, price: 16.13 },
+  { upTo: 4200, price: 17.44 },
+  { upTo: 5000, price: 18.75 },
+  { upTo: Infinity, price: 25.0 },
+]
+
+const monthlyBill = (kwh) => {
+  let total = 0
+  let previous = 0
+
+  for (const { upTo, price } of TARIFF_TIERS) {
+    const band = Math.min(kwh, upTo) - previous
+    if (band <= 0) break
+    total += band * price
+    previous = upTo
+  }
+
+  return total
+}
+
+const SAVINGS_SHARE = 0.8
+
+const savingsForm = document.querySelector('#savings-form')
+const savingsResults = document.querySelector('#savings-results')
+
+if (savingsForm && savingsResults) {
+  const kwhInput = savingsForm.querySelector('#kwh-input')
+  const errorEl = savingsForm.querySelector('#calc-error')
+  const billEl = savingsResults.querySelector('#calc-bill')
+  const weekKwhEl = savingsResults.querySelector('#calc-week-kwh')
+  const weekCupEl = savingsResults.querySelector('#calc-week-cup')
+  const monthKwhEl = savingsResults.querySelector('#calc-month-kwh')
+  const monthCupEl = savingsResults.querySelector('#calc-month-cup')
+  const yearKwhEl = savingsResults.querySelector('#calc-year-kwh')
+  const yearCupEl = savingsResults.querySelector('#calc-year-cup')
+
+  const fill = (kwhEl, cupEl, kwh, cup) => {
+    kwhEl.textContent = `${formatNumber(kwh)} kWh`
+    cupEl.textContent = `${formatNumber(cup, 2)} CUP`
+  }
+
+  savingsForm.addEventListener('submit', (event) => {
+    event.preventDefault()
+
+    const kwh = Number(kwhInput.value)
+    const valid = Number.isFinite(kwh) && kwh >= 1 && kwh <= 20000
+
+    errorEl.hidden = valid
+    savingsResults.hidden = !valid
+    if (!valid) return
+
+    const bill = monthlyBill(kwh)
+    const savedMonth = kwh * SAVINGS_SHARE
+    const savedCupMonth = bill * SAVINGS_SHARE
+
+    billEl.textContent = `${formatNumber(bill, 2)} CUP`
+    fill(weekKwhEl, weekCupEl, (savedMonth * 7) / 30, (savedCupMonth * 7) / 30)
+    fill(monthKwhEl, monthCupEl, savedMonth, savedCupMonth)
+    fill(yearKwhEl, yearCupEl, savedMonth * 12, savedCupMonth * 12)
+  })
+
+  kwhInput.addEventListener('input', () => {
+    errorEl.hidden = true
+    savingsResults.hidden = true
+  })
+}
+
+const config = window.SOLARTWIN_CONFIG ?? {}
+const configuredPanelPrice = Number(config.panelPriceUsd)
+const PANEL_PRICE_USD =
+  Number.isFinite(configuredPanelPrice) && configuredPanelPrice > 0
+    ? configuredPanelPrice
+    : 180
+
+const panelPriceEl = document.querySelector('#panel-price')
+if (panelPriceEl) panelPriceEl.textContent = `${formatNumber(PANEL_PRICE_USD, 2)} USD`
+
+const panelForm = document.querySelector('#panel-form')
+const panelResult = document.querySelector('#panel-result')
+
+if (panelForm && panelResult) {
+  const countInput = panelForm.querySelector('#panel-count')
+  const errorEl = panelForm.querySelector('#panel-error')
+  const totalEl = panelResult.querySelector('#panel-total')
+  const detailEl = panelResult.querySelector('#panel-detail')
+
+  panelForm.addEventListener('submit', (event) => {
+    event.preventDefault()
+
+    const count = Number(countInput.value)
+    const valid =
+      Number.isInteger(count) && count >= 1 && count <= 500
+
+    errorEl.hidden = valid
+    if (!valid) return
+
+    totalEl.textContent = `${formatNumber(count * PANEL_PRICE_USD, 2)} USD`
+    detailEl.textContent = `${count} × ${formatNumber(PANEL_PRICE_USD, 2)} USD`
+  })
+
+  countInput.addEventListener('input', () => {
+    errorEl.hidden = true
+  })
+}
 
 /* ---------- Header y menú ---------- */
 

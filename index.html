@@ -26,6 +26,7 @@
       })()
     </script>
     <link rel="stylesheet" href="./style.css" />
+    <script defer src="./config.js"></script>
     <script defer src="./main.js"></script>
   </head>
   <body>
@@ -497,9 +498,8 @@
               <span class="grad-text">un mismo sueño</span>
             </h2>
             <p data-reveal data-i18n="team.p1">
-              Twin viene de gemelos: dos de los fundadores son hermanos gemelos y empezaron
-              resolviendo cosas con las manos. Hoy el proyecto es un grupo de amigos que instala
-              energía solar.
+              Somos un grupo de amigos que empezó resolviendo cosas con las manos. Con los años nos
+              convertimos en una familia que instala energía solar.
             </p>
             <p data-reveal data-i18n="team.p2">
               El equipo lo forman más de 10 especialistas en ingeniería eléctrica y metalurgia, en
@@ -727,19 +727,54 @@
                 kWh y 25 CUP/kWh en el tramo máximo. Con solar, esos kWh caros dejan de entrar en
                 tu factura.
               </p>
-              <a class="btn btn-primary" href="#contacto" data-i18n="planet.cta">
-                Calcular mi ahorro
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path
-                    d="M5 12h13M13 6.5 18.5 12 13 17.5"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.8"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+              <form class="savings-form" id="savings-form" novalidate>
+                <label for="kwh-input" data-i18n="planet.calcLabel">Consumo mensual (kWh)</label>
+                <div class="savings-input-row">
+                  <input
+                    id="kwh-input"
+                    name="kwh"
+                    type="number"
+                    inputmode="numeric"
+                    min="1"
+                    max="20000"
+                    step="any"
+                    placeholder="Ej.: 250"
+                    data-i18n-placeholder="planet.calcPlaceholder"
+                    required
                   />
-                </svg>
-              </a>
+                  <button class="btn btn-primary" type="submit" data-i18n="planet.calcButton">
+                    Calcular ahorro
+                  </button>
+                </div>
+                <p class="calc-error" id="calc-error" hidden data-i18n="planet.calcError">
+                  Escribe un consumo entre 1 y 20 000 kWh.
+                </p>
+              </form>
+
+              <div class="savings-results" id="savings-results" hidden aria-live="polite">
+                <p class="savings-bill">
+                  <span data-i18n="planet.calcBillLabel">Factura mensual actual:</span>
+                  <strong id="calc-bill">—</strong>
+                </p>
+                <ul class="savings-results-list">
+                  <li>
+                    <span data-i18n="planet.calcWeek">En una semana</span>
+                    <strong><span id="calc-week-kwh">—</span> · <span id="calc-week-cup">—</span></strong>
+                  </li>
+                  <li>
+                    <span data-i18n="planet.calcMonth">En un mes</span>
+                    <strong><span id="calc-month-kwh">—</span> · <span id="calc-month-cup">—</span></strong>
+                  </li>
+                  <li>
+                    <span data-i18n="planet.calcYear">En un año</span>
+                    <strong><span id="calc-year-kwh">—</span> · <span id="calc-year-cup">—</span></strong>
+                  </li>
+                </ul>
+                <p class="savings-results-note" data-i18n="planet.calcResultsNote">
+                  Estimación conservadora: 80 % de tu consumo y de tu factura actual.
+                </p>
+              </div>
+
               <p class="savings-source" data-i18n="planet.source">
                 Fuente: tarifa residencial vigente (Acuerdo 9810/2024).
               </p>
@@ -800,7 +835,11 @@
               <p class="pay-kicker" data-i18n="pay.methodKicker">Forma de pago</p>
               <h3 data-i18n="pay.methodTitle">En efectivo</h3>
               <p data-i18n="pay.methodText">
-                El pago del montaje se realiza en efectivo, directamente con el equipo.
+                El pago del montaje se realiza en efectivo, directamente con el equipo, y siempre
+                después de completado el trabajo.
+              </p>
+              <p class="pay-note" data-i18n="pay.noAdvance">
+                No se realiza pago por adelantado: pagas cuando el trabajo está terminado.
               </p>
             </article>
 
@@ -828,7 +867,60 @@
                   <span data-i18n="pay.cup">Moneda Nacional</span>
                 </li>
               </ul>
+              <p class="pay-rate" data-i18n="pay.cupRate" data-i18n-html>
+                Si el pago es en moneda nacional (CUP), la tasa de referencia es la de
+                <a href="https://eltoque.com/" target="_blank" rel="noopener">elToque</a>.
+              </p>
             </article>
+          </div>
+
+          <div class="panel-calc" data-reveal>
+            <div class="panel-calc-copy">
+              <p class="pay-kicker" data-i18n="pay.calcKicker">Calculadora de paneles</p>
+              <h3 data-i18n="pay.calcTitle">¿Cuánto cuestan tus paneles?</h3>
+              <p class="panel-calc-text" data-i18n="pay.calcText">
+                Indica cuántos paneles necesitas. El precio base es por panel y se expresa en USD,
+                la moneda base.
+              </p>
+              <p class="panel-price">
+                <span data-i18n="pay.calcPriceLabel">Precio por panel:</span>
+                <strong id="panel-price">—</strong>
+              </p>
+              <form class="panel-form" id="panel-form" novalidate>
+                <label for="panel-count" data-i18n="pay.calcCountLabel">Cantidad de paneles</label>
+                <div class="panel-input-row">
+                  <input
+                    id="panel-count"
+                    name="panels"
+                    type="number"
+                    inputmode="numeric"
+                    min="1"
+                    max="500"
+                    step="1"
+                    placeholder="Ej.: 6"
+                    data-i18n-placeholder="pay.calcPlaceholder"
+                    required
+                  />
+                  <button class="btn btn-primary" type="submit" data-i18n="pay.calcButton">
+                    Calcular
+                  </button>
+                </div>
+                <p class="calc-error" id="panel-error" hidden data-i18n="pay.calcError">
+                  Escribe una cantidad entera entre 1 y 500 paneles.
+                </p>
+              </form>
+            </div>
+
+            <div class="panel-result" id="panel-result" aria-live="polite">
+              <span class="panel-result-label" data-i18n="pay.calcResultLabel">Costo estimado</span>
+              <strong class="grad-text" id="panel-total">—</strong>
+              <span class="panel-result-detail" id="panel-detail">—</span>
+            </div>
+
+            <p class="calc-disclaimer" data-i18n="pay.calcDisclaimer">
+              Cálculo aproximado. El precio final depende del precio de los insumos en el mercado y
+              de las condiciones del montaje.
+            </p>
           </div>
         </div>
       </section>
