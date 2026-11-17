@@ -175,7 +175,7 @@ const translations = {
     'planet.thBill': 'Factura actual',
     'planet.thSavings': 'Ahorro estimado',
     'planet.savingsNote':
-      'Estimado de forma conservadora como el 80 % de la factura del Acuerdo 9810/2024, vigente desde marzo de 2024. Con la tarifa por tramos, cubrir el 80 % del consumo con solar suele ahorrar todavía más; el resultado real depende del tamaño del sistema, la radiación, el consumo nocturno y tus hábitos.',
+      'Estimado de forma conservadora como el 80% de la factura del Acuerdo 9810/2024, vigente desde marzo de 2024. Con la tarifa por tramos, cubrir el 80% del consumo con solar suele ahorrar todavía más; el resultado real depende del tamaño del sistema, la radiación, el consumo nocturno y tus hábitos.',
     'planet.calcLabel': 'Consumo mensual (kWh)',
     'planet.calcPlaceholder': 'Ej.: 250',
     'planet.calcButton': 'Calcular ahorro',
@@ -185,7 +185,7 @@ const translations = {
     'planet.calcMonth': 'En un mes',
     'planet.calcYear': 'En un año',
     'planet.calcResultsNote':
-      'Estimación conservadora: 80 % de tu consumo y de tu factura actual.',
+      'Estimación conservadora: 80% de tu consumo y de tu factura actual.',
     'planet.source': 'Fuente: tarifa residencial vigente (Acuerdo 9810/2024).',
 
     'pay.eyebrow': 'Formas de pago',
@@ -413,7 +413,7 @@ const translations = {
     'planet.thBill': 'Current bill',
     'planet.thSavings': 'Estimated saving',
     'planet.savingsNote':
-      'Conservative estimate at 80 % of the bill under Decree 9810/2024, in force since March 2024. Because the tariff is tiered, covering 80 % of usage with solar usually saves even more; actual results depend on system size, sunlight, night-time use and your habits.',
+      'Conservative estimate at 80% of the bill under Decree 9810/2024, in force since March 2024. Because the tariff is tiered, covering 80% of usage with solar usually saves even more; actual results depend on system size, sunlight, night-time use and your habits.',
     'planet.calcLabel': 'Monthly usage (kWh)',
     'planet.calcPlaceholder': 'e.g. 250',
     'planet.calcButton': 'Calculate savings',
@@ -423,7 +423,7 @@ const translations = {
     'planet.calcMonth': 'In a month',
     'planet.calcYear': 'In a year',
     'planet.calcResultsNote':
-      'Conservative estimate: 80 % of your usage and of your current bill.',
+      'Conservative estimate: 80% of your usage and of your current bill.',
     'planet.source': 'Source: current residential tariff (Decree 9810/2024).',
 
     'pay.eyebrow': 'Payment options',

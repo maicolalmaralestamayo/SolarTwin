@@ -2262,6 +2262,8 @@ p {
   .savings-table td {
     padding-left: 0.3rem;
     padding-right: 0.3rem;
+    text-align: center;
+    width: 50%;
   }
 
   .to-top {

@@ -613,7 +613,7 @@
 
               <a
                 class="btn btn-primary ops-cta"
-                href="https://wa.me/5350781823?text=Hola%20SolarTwin%2C%20quiero%20saber%20si%20llegan%20a%20mi%20municipio."
+                href="https://wa.me/5350781823?text=Hola%20SolarTwin%2C%20quiero%20saber%20si%20llegan%20a%20mi%20municipio"
                 target="_blank"
                 rel="noopener"
               >
@@ -755,7 +755,7 @@
                   </li>
                 </ul>
                 <p class="savings-results-note" data-i18n="planet.calcResultsNote">
-                  Estimación conservadora: 80 % de tu consumo y de tu factura actual.
+                  Estimación conservadora: 80% de tu consumo y de tu factura actual.
                 </p>
               </div>
 
@@ -780,8 +780,8 @@
                 </tbody>
               </table>
               <p class="savings-note" data-i18n="planet.savingsNote">
-                Estimado de forma conservadora como el 80 % de la factura del Acuerdo 9810/2024,
-                vigente desde marzo de 2024. Con la tarifa por tramos, cubrir el 80 % del consumo
+                Estimado de forma conservadora como el 80% de la factura del Acuerdo 9810/2024,
+                vigente desde marzo de 2024. Con la tarifa por tramos, cubrir el 80% del consumo
                 con solar suele ahorrar todavía más; el resultado real depende del tamaño del
                 sistema, la radiación, el consumo nocturno y tus hábitos.
               </p>
@@ -875,6 +875,7 @@
                     inputmode="numeric"
                     min="1"
                     max="500"
+                    value="1"
                     step="1"
                     placeholder="Ej.: 6"
                     data-i18n-placeholder="pay.calcPlaceholder"
@@ -1022,39 +1023,6 @@
       </section>
     </main>
 
-    <footer class="site-footer">
-      <div class="wrap footer-inner">
-        <div class="footer-brand">
-          <span class="brand-name"><span class="solar">Solar</span><span class="twin">Twin</span></span>
-          <p data-i18n="footer.about">
-            Energía solar para Santiago de Cuba. Un grupo de amigos que hace las cosas bien.
-          </p>
-        </div>
-        <div class="footer-links">
-          <a href="https://wa.me/5350781823" target="_blank" rel="noopener" data-i18n="footer.waChat">WhatsApp</a>
-          <a href="https://t.me/TwinTechnologyStartup" target="_blank" rel="noopener" data-i18n="footer.tgChat">Telegram</a>
-          <a
-            href="https://whatsapp.com/channel/0029VbEJEn0DeON1xsuwb83M"
-            target="_blank"
-            rel="noopener"
-            data-i18n="footer.waChannel"
-            >Canal de WhatsApp</a
-          >
-          <a href="https://t.me/SolarTwin" target="_blank" rel="noopener" data-i18n="footer.tgChannel">Canal de Telegram</a>
-          <a href="tel:+5350781823">+53 5078 1823</a>
-          <a href="mailto:twin.technology.startup@gmail.com">twin.technology.startup@gmail.com</a>
-        </div>
-      </div>
-      
-      <div class="wrap footer-bottom">
-        <span>
-          © <span id="year">2026</span>
-          <span class="brand-word"><span class="solar">Solar</span><span class="twin">Twin</span></span>
-          · Palma Soriano, Santiago de Cuba
-        </span>
-        <a href="#inicio" data-i18n="footer.top">Volver arriba ↑</a>
-      </div>
-    </footer>
 
     <button
       class="to-top"
@@ -1077,3 +1045,39 @@
     </button>
   </body>
 </html>
+    <footer class="site-footer">
+      <div class="wrap footer-inner">
+        <div class="footer-brand">
+          <span class="brand-name"><span class="solar">Solar</span><span class="twin">Twin</span></span>
+          <p data-i18n="footer.about">
+            Energía solar para Santiago de Cuba. Un grupo de amigos que hace las cosas bien.
+          </p>
+        </div>
+        <div class="footer-links">
+          <a href="https://wa.me/5350781823" target="_blank" rel="noopener" data-i18n="footer.waChat">WhatsApp</a>
+          <a href="https://t.me/TwinTechnologyStartup" target="_blank" rel="noopener" data-i18n="footer.tgChat">Telegram</a>
+          <a href="https://whatsapp.com/channel/0029VbEJEn0DeON1xsuwb83M" target="_blank" rel="noopener" data-i18n="footer.waChannel">Canal de WhatsApp</a>
+          <a href="https://t.me/SolarTwin" target="_blank" rel="noopener" data-i18n="footer.tgChannel">Canal de Telegram</a>
+          <a href="tel:+5350781823">+53 5078 1823</a>
+          <a href="mailto:twin.technology.startup@gmail.com">twin.technology.startup@gmail.com</a>
+        </div>
+      </div>
+
+      <div class="wrap footer-bottom">
+        <p style="font-size:0.875rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+          <span id="footer-year" style="min-width:4ch;">2026</span>
+          <span class="brand-word"><span class="solar">Solar</span><span class="twin">Twin</span></span>
+          <span>Todos los derechos reservados.</span>
+          <a href="#inicio" data-i18n="footer.top">Volver arriba ↑</a>
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const yearEl = document.getElementById('footer-year');
+        if (yearEl) {
+          yearEl.textContent = new Date().getFullYear();
+        }
+      });
+    </script>
