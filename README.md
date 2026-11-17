@@ -75,7 +75,7 @@ Dentro de **Cómo trabajamos** (`#proceso`), el panel “Tú aportas / Nosotros 
 
 La tabla de `#planeta` usa la tarifa residencial cubana del **Acuerdo 9810/2024**, vigente desde el 1 de marzo de 2024, con tramos progresivos. Las facturas de ejemplo se calculan sumando cada tramo:
 
-| Consumo | Factura | Ahorro estimado (80 % de la factura) |
+| Consumo | Factura | Ahorro estimado (80% de la factura) |
 | --- | --- | --- |
 | 150 kWh | 87 CUP | ≈ 70 CUP |
 | 250 kWh | 281 CUP | ≈ 225 CUP |

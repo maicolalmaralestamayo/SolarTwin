@@ -1128,7 +1128,8 @@ p {
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  text-align: left;
+  text-align: center;
+  width: 50%;
   color: var(--muted-2);
 }
 
@@ -1136,6 +1137,8 @@ p {
   padding: 0.7rem 0.6rem;
   border-bottom: 1px solid var(--line);
   font-variant-numeric: tabular-nums;
+  text-align: center;
+  width: 50%;
 }
 
 .savings-table tbody tr:last-child td {
