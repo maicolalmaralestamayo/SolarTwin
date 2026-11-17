@@ -946,6 +946,24 @@ const applySiteConfig = () => {
     expBadgeSpan.textContent = `+${config.experienceYears}`
   }
 
+  // Aplicar años de experiencia al estadístico hero (data-i18n)
+  const expStatValue = document.querySelector('[data-i18n="hero.statExpValue"]')
+  if (expStatValue && config.experienceYears) {
+    expStatValue.textContent = `+${config.experienceYears} años`
+  }
+
+  // Reemplazar SolarTwin por businessName en todo el sitio
+  const businessNameFull = `${config.businessName[0]} ${config.businessName[1] || ''}`.trim()
+  const allElements = document.querySelectorAll('*')
+  allElements.forEach((el) => {
+    if (el.nodeType === Node.TEXT_NODE) {
+      const parent = el.parentElement
+      if (parent && !parent.querySelector('[data-i18n]')) {
+        el.textContent = el.textContent.replace(/SolarTwin/gi, businessNameFull)
+      }
+    }
+  })
+
   // Aplicar cantidad de especialistas al estadístico de hero
   const specValue = document.querySelector('[data-i18n="hero.statSpecialistsValue"]')
   if (specValue && config.specialistsCount) {
