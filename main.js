@@ -875,44 +875,42 @@ applyLanguage(lang, false)
 const config = window.SOLARTWIN_CONFIG ?? {}
 
 const applySiteConfig = () => {
-  // Aplicar número de teléfono al enlace de WhatsApp
-  const waLink = document.querySelector('a[href*="wa.me"]')
-  if (waLink && config.phoneNumbers && config.phoneNumbers[0]) {
-    waLink.href = `tel:${config.phoneNumbers[0].replace(/\s+/g, '')}`
-    waLink.textContent = config.phoneNumbers[0]
+  // Aplicar número de teléfono al enlace tel:
+  const phoneLink = document.querySelector('a[href^="tel:"]')
+  if (phoneLink && config.phoneNumbers && config.phoneNumbers[0]) {
+    phoneLink.href = `tel:${config.phoneNumbers[0].replace(/\s+/g, '')}`
+    phoneLink.textContent = config.phoneNumbers[0]
   }
 
-  // Aplicar usuario de WhatsApp al enlace de Telegram
+  // Aplicar enlace de WhatsApp (wa.me)
+  const waLink = document.querySelector('a[href*="wa.me"]')
+  if (waLink && config.channelLinks && config.channelLinks.whatsapp) {
+    waLink.href = config.channelLinks.whatsapp
+    waLink.textContent = t('footer.waChat')
+  }
+
+  // Aplicar enlace de Telegram (t.me)
   const tgLink = document.querySelector('a[href*="t.me"]:not([href*="channel"])')
   if (tgLink && config.usernames && config.usernames.telegram) {
     tgLink.href = `https://t.me/${config.usernames.telegram.replace(/^@/, '')}`
     tgLink.textContent = config.usernames.telegram
   }
 
-  // Aplicar enlaces de canales
+  // Aplicar enlace de canal de WhatsApp
   const waChannelLink = document.querySelector('a[href*="whatsapp.com/channel"]')
   if (waChannelLink && config.channelLinks && config.channelLinks.whatsapp) {
     waChannelLink.href = config.channelLinks.whatsapp
   }
 
-  const tgChannelLink = document.querySelector('a[href*="t.me"]:not([href*="channel"]):nth-of-type(2), a[href*="t.me"][href*="SolarTwin"]')
-  // También buscamos por el texto actual para encontrar el channel link
+  // Aplicar enlace de canal de Telegram
   const tgChannelLinks = document.querySelectorAll('a[href*="t.me"]')
   tgChannelLinks.forEach((link) => {
-    if (link.href.includes('channel') || link.textContent.includes('SolarTwin')) {
+    if (link.href.includes('channel') || (link.textContent && link.textContent.includes('SolarTwin'))) {
       if (config.channelLinks && config.channelLinks.telegram) {
         link.href = config.channelLinks.telegram
       }
     }
   })
-
-  // Actualizar texto de los enlaces si es necesario
-  if (waLink && config.phoneNumbers && config.phoneNumbers[0]) {
-    waLink.textContent = config.phoneNumbers[0]
-  }
-  if (tgLink && config.usernames && config.usernames.telegram) {
-    tgLink.textContent = config.usernames.telegram
-  }
 }
 
 applySiteConfig()
