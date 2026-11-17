@@ -1,36 +1,53 @@
-# Blank website
+# SolarTwin
 
-A clean HTML, CSS and JavaScript starting point with Vite's live reload.
-No framework, accounts, database or external services are needed.
+Landing page de SolarTwin: paneles solares en la provincia de Santiago de Cuba, con base en Palma Soriano.
 
-## Run locally
+Es un sitio **100 % estático**: HTML, CSS, JavaScript, imágenes y fuentes locales. No necesita compilación, Node, PHP ni base de datos.
 
-```sh
-bun install
-bun run dev
+## Archivos que van al servidor
+
+```
+index.html
+style.css
+main.js
+favicon.svg
+fonts/
+img/
 ```
 
-Open the URL printed by Vite. The server binds to `0.0.0.0` so it also works
-in a Freebuff Cloud preview.
+El resto de archivos del repositorio (README, capturas, etc.) no hace falta subirlos.
 
-## Make it yours
+## Guía rápida para Apache
 
-- `index.html` — page content, title and description.
-- `src/style.css` — styles, colors and typography.
-- `src/main.js` — browser behavior and the stylesheet import.
-- `public/` — create this folder for images and other static files.
+1. Copia los archivos a la carpeta pública de tu Apache (por ejemplo `/var/www/html`):
 
-Replace the greeting with your website. Add a framework only if your project
-needs one.
+   ```bash
+   sudo cp -r index.html style.css main.js favicon.svg fonts img /var/www/html/
+   ```
 
-## Build and publish
+2. Da permisos de lectura al servidor web:
 
-```sh
-bun run build
-bun run preview
-```
+   ```bash
+   sudo chown -R www-data:www-data /var/www/html
+   sudo find /var/www/html -type d -exec chmod 755 {} \;
+   sudo find /var/www/html -type f -exec chmod 644 {} \;
+   ```
 
-The build produces `dist/`. When the user asks to publish on Freebuff Sites,
-use `sites_deploy` with `deploy.json`. Its tiny `worker/index.js` serves the
-built assets through the platform's `ASSETS` binding. No integrations or
-secrets are required. Other static hosts can serve `dist/` directly.
+3. Reinicia Apache:
+
+   ```bash
+   sudo systemctl restart apache2
+   ```
+
+4. Abre `http://tu-dominio-o-ip/` en el navegador.
+
+Si lo pones en una subcarpeta (`/var/www/html/solartwin`), abre `http://tu-dominio/solartwin/`: todas las rutas son relativas y funcionan igual.
+
+No hace falta `.htaccess` ni activar módulos adicionales: Apache sirve `index.html` por defecto.
+
+## Editar contenido
+
+- Textos en español: directamente en `index.html` y en el diccionario `es` de `main.js`.
+- Textos en inglés: diccionario `en` de `main.js`.
+- Colores y estilos: `style.css`.
+- Fotos: reemplaza los archivos de `img/` manteniendo los nombres, o cambia la ruta en `index.html`.
