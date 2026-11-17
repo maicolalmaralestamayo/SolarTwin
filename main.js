@@ -874,42 +874,73 @@ applyLanguage(lang, false)
 /* ---------- Aplicar configuración del sitio desde config.js ---------- */
 
 const applySiteConfig = () => {
+  const config = window.SOLARTWIN_CONFIG ?? {}
+
   // Aplicar número de teléfono al enlace tel:
   const phoneLink = document.querySelector('a[href^="tel:"]')
-  if (phoneLink && window.SOLARTWIN_CONFIG && window.SOLARTWIN_CONFIG.phoneNumbers && window.SOLARTWIN_CONFIG.phoneNumbers[0]) {
-    phoneLink.href = `tel:${window.SOLARTWIN_CONFIG.phoneNumbers[0].replace(/\s+/g, '')}`
-    phoneLink.textContent = window.SOLARTWIN_CONFIG.phoneNumbers[0]
+  if (phoneLink && config.phoneNumbers && config.phoneNumbers[0]) {
+    phoneLink.href = `tel:${config.phoneNumbers[0].replace(/\s+/g, '')}`
+    phoneLink.textContent = config.phoneNumbers[0]
   }
 
   // Aplicar enlace de WhatsApp (wa.me)
   const waLink = document.querySelector('a[href*="wa.me"]')
-  if (waLink && window.SOLARTWIN_CONFIG && window.SOLARTWIN_CONFIG.channelLinks && window.SOLARTWIN_CONFIG.channelLinks.whatsapp) {
-    waLink.href = window.SOLARTWIN_CONFIG.channelLinks.whatsapp
+  if (waLink && config.channelLinks && config.channelLinks.whatsapp) {
+    waLink.href = config.channelLinks.whatsapp
     waLink.textContent = t('footer.waChat')
   }
 
   // Aplicar enlace de Telegram (t.me)
   const tgLink = document.querySelector('a[href*="t.me"]:not([href*="channel"])')
-  if (tgLink && window.SOLARTWIN_CONFIG && window.SOLARTWIN_CONFIG.usernames && window.SOLARTWIN_CONFIG.usernames.telegram) {
-    tgLink.href = `https://t.me/${window.SOLARTWIN_CONFIG.usernames.telegram.replace(/^@/, '')}`
-    tgLink.textContent = window.SOLARTWIN_CONFIG.usernames.telegram
+  if (tgLink && config.usernames && config.usernames.telegram) {
+    tgLink.href = `https://t.me/${config.usernames.telegram.replace(/^@/, '')}`
+    tgLink.textContent = config.usernames.telegram
   }
 
   // Aplicar enlace de canal de WhatsApp (usar config dedicado)
   const waChannelLink = document.querySelector('a[href*="whatsapp.com/channel"]')
-  if (waChannelLink && window.SOLARTWIN_CONFIG && window.SOLARTWIN_CONFIG.channelLinkWhatsApp) {
-    waChannelLink.href = window.SOLARTWIN_CONFIG.channelLinkWhatsApp
+  if (waChannelLink && config.channelLinkWhatsApp) {
+    waChannelLink.href = config.channelLinkWhatsApp
   }
 
   // Aplicar enlace de canal de Telegram (usar config dedicado)
   const tgChannelLinks = document.querySelectorAll('a[href*="t.me"]')
   tgChannelLinks.forEach((link) => {
     if (link.textContent && link.textContent.includes('SolarTwin')) {
-      if (window.SOLARTWIN_CONFIG && window.SOLARTWIN_CONFIG.channelLinkTelegram) {
-        link.href = window.SOLARTWIN_CONFIG.channelLinkTelegram
+      if (config.channelLinkTelegram) {
+        link.href = config.channelLinkTelegram
       }
     }
   })
+
+  // Aplicar nombre del negocio al brand-name
+  const brandName = document.querySelector('.brand-name')
+  if (brandName && config.businessName && config.businessName[0]) {
+    brandName.innerHTML = `<span class="solar">${config.businessName[0]}</span><span class="twin">${config.businessName[1] || ''}</span>`
+  }
+
+  // Aplicar años de experiencia al estadístico de hero
+  const expValue = document.querySelector('[data-i18n="hero.statExpValue"]')
+  if (expValue && config.experienceYears) {
+    expValue.textContent = `${config.experienceYears}+ años`
+  }
+
+  // Aplicar cantidad de especialistas al estadístico de hero
+  const specValue = document.querySelector('[data-i18n="hero.statSpecialistsValue"]')
+  if (specValue && config.specialistsCount) {
+    specValue.textContent = `${config.specialistsCount}+ especialistas`
+  }
+
+  // Aplicar colores principales a las variables CSS
+  const root = document.documentElement
+  if (root && config.colors) {
+    if (config.colors.primary) {
+      root.style.setProperty('--orange', config.colors.primary)
+    }
+    if (config.colors.accent) {
+      root.style.setProperty('--purple', config.colors.accent)
+    }
+  }
 }
 
 applySiteConfig()
