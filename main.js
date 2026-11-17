@@ -872,42 +872,41 @@ if (navToggle && nav) {
 applyLanguage(lang, false)
 
 /* ---------- Aplicar configuración del sitio desde config.js ---------- */
-const config = window.SOLARTWIN_CONFIG ?? {}
 
 const applySiteConfig = () => {
   // Aplicar número de teléfono al enlace tel:
   const phoneLink = document.querySelector('a[href^="tel:"]')
-  if (phoneLink && config.phoneNumbers && config.phoneNumbers[0]) {
-    phoneLink.href = `tel:${config.phoneNumbers[0].replace(/\s+/g, '')}`
-    phoneLink.textContent = config.phoneNumbers[0]
+  if (phoneLink && window.SOLARTWIN_CONFIG && window.SOLARTWIN_CONFIG.phoneNumbers && window.SOLARTWIN_CONFIG.phoneNumbers[0]) {
+    phoneLink.href = `tel:${window.SOLARTWIN_CONFIG.phoneNumbers[0].replace(/\s+/g, '')}`
+    phoneLink.textContent = window.SOLARTWIN_CONFIG.phoneNumbers[0]
   }
 
   // Aplicar enlace de WhatsApp (wa.me)
   const waLink = document.querySelector('a[href*="wa.me"]')
-  if (waLink && config.channelLinks && config.channelLinks.whatsapp) {
-    waLink.href = config.channelLinks.whatsapp
+  if (waLink && window.SOLARTWIN_CONFIG && window.SOLARTWIN_CONFIG.channelLinks && window.SOLARTWIN_CONFIG.channelLinks.whatsapp) {
+    waLink.href = window.SOLARTWIN_CONFIG.channelLinks.whatsapp
     waLink.textContent = t('footer.waChat')
   }
 
   // Aplicar enlace de Telegram (t.me)
   const tgLink = document.querySelector('a[href*="t.me"]:not([href*="channel"])')
-  if (tgLink && config.usernames && config.usernames.telegram) {
-    tgLink.href = `https://t.me/${config.usernames.telegram.replace(/^@/, '')}`
-    tgLink.textContent = config.usernames.telegram
+  if (tgLink && window.SOLARTWIN_CONFIG && window.SOLARTWIN_CONFIG.usernames && window.SOLARTWIN_CONFIG.usernames.telegram) {
+    tgLink.href = `https://t.me/${window.SOLARTWIN_CONFIG.usernames.telegram.replace(/^@/, '')}`
+    tgLink.textContent = window.SOLARTWIN_CONFIG.usernames.telegram
   }
 
   // Aplicar enlace de canal de WhatsApp (usar config dedicado)
   const waChannelLink = document.querySelector('a[href*="whatsapp.com/channel"]')
-  if (waChannelLink && config.channelLinkWhatsApp) {
-    waChannelLink.href = config.channelLinkWhatsApp
+  if (waChannelLink && window.SOLARTWIN_CONFIG && window.SOLARTWIN_CONFIG.channelLinkWhatsApp) {
+    waChannelLink.href = window.SOLARTWIN_CONFIG.channelLinkWhatsApp
   }
 
   // Aplicar enlace de canal de Telegram (usar config dedicado)
   const tgChannelLinks = document.querySelectorAll('a[href*="t.me"]')
   tgChannelLinks.forEach((link) => {
     if (link.textContent && link.textContent.includes('SolarTwin')) {
-      if (config.channelLinkTelegram) {
-        link.href = config.channelLinkTelegram
+      if (window.SOLARTWIN_CONFIG && window.SOLARTWIN_CONFIG.channelLinkTelegram) {
+        link.href = window.SOLARTWIN_CONFIG.channelLinkTelegram
       }
     }
   })
