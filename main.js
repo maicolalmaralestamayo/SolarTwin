@@ -23,6 +23,7 @@ const translations = {
     'nav.process': 'Ustedes',
     'nav.team': 'Equipo',
     'nav.ops': 'Operaciones',
+    'nav.payment': 'Pago',
     'nav.contact': 'Contáctanos',
 
     'hero.eyebrow': 'Santiago de Cuba · Todos los municipios',
@@ -38,7 +39,8 @@ const translations = {
     'hero.statCoverageValue': '9 municipios',
     'hero.statSpecialistsLabel': 'Equipo',
     'hero.statSpecialistsValue': '+10 especialistas',
-    'hero.alt': 'Vista aérea de paneles solares instalados sobre césped',
+    'hero.alt':
+      'Paneles solares instalados sobre los techos de hormigón de un barrio de Santiago de Cuba',
     'hero.photoTag': 'Energía limpia, todos los días',
     'hero.float1Title': 'El equipo',
     'hero.float1Text': 'Amigos, no solo socios',
@@ -86,7 +88,14 @@ const translations = {
     'process.s4Text':
       'Elegimos el día, hacemos el trabajo y te explicamos cómo usar el sistema.',
     'process.caption': 'Montaje en Palma Soriano y toda la provincia',
-    'process.alt': 'Paneles solares alineados en un campo verde bajo el cielo',
+    'process.alt': 'Técnico instalando paneles solares sobre un techo de placas de hormigón',
+    'process.splitYouKicker': 'Tú aportas',
+    'process.splitYouTitle': 'Los paneles y los cables solares',
+    'process.splitYouText':
+      'El cliente (tú) provee los paneles y los cables solares que se van a instalar.',
+    'process.splitWeKicker': 'Nosotros aportamos',
+    'process.splitWeTitle': 'La mano de obra del montaje',
+    'process.splitWeText': 'SolarTwin pone la mano de obra para el montaje de las bases.',
 
     'team.eyebrow': 'Nuestro equipo',
     'team.title':
@@ -99,7 +108,7 @@ const translations = {
     'team.point2': 'Equipo joven, con energía y ganas de hacer bien las cosas',
     'team.point3': 'Más de 5 años de experiencia resolviendo instalaciones',
     'team.badgeLabel': 'años de<br />experiencia',
-    'team.alt': 'Campo de paneles solares apuntando al cielo azul',
+    'team.alt': 'Paneles solares montados sobre la azotea de hormigón de un edificio',
 
     'ops.eyebrow': 'Área de operaciones',
     'ops.title': 'Estamos donde <span class="grad-text">tú estás</span>',
@@ -108,7 +117,6 @@ const translations = {
     'ops.cta': 'Consultar mi municipio',
     'ops.mapActive': 'Santiago de Cuba — área de operación',
     'ops.mapBase': 'Palma Soriano — base del equipo',
-    'ops.mapCredit': 'Mapa: geoBoundaries (ODbL)',
     'ops.headStrong': 'Provincia de Santiago de Cuba',
     'ops.headSmall': '9 municipios · base en Palma Soriano',
     'ops.municipalities': 'Los 9 municipios que cubrimos',
@@ -139,6 +147,20 @@ const translations = {
     'planet.cta': 'Calcular mi ahorro',
     'planet.source': 'Fuente: tarifa residencial vigente (Acuerdo 9810/2024).',
 
+    'pay.eyebrow': 'Formas de pago',
+    'pay.title': 'Paga <span class="grad-text">como prefieras</span>',
+    'pay.subtitle':
+      'Aceptamos pago en efectivo y puedes hacerlo en la moneda que te resulte más cómoda.',
+    'pay.methodKicker': 'Forma de pago',
+    'pay.methodTitle': 'En efectivo',
+    'pay.methodText':
+      'El pago del montaje se realiza en efectivo, directamente con el equipo.',
+    'pay.currenciesKicker': 'Monedas de pago',
+    'pay.currenciesTitle': 'Tres monedas disponibles',
+    'pay.usd': 'Dólar',
+    'pay.eur': 'Euro',
+    'pay.cup': 'Moneda Nacional',
+
     'contact.eyebrow': 'Hablemos',
     'contact.title': 'Tu precio empieza con <span class="grad-text">un mensaje</span>',
     'contact.subtitle':
@@ -162,6 +184,7 @@ const translations = {
     'footer.tgChat': 'Telegram',
     'footer.waChannel': 'Canal de WhatsApp',
     'footer.tgChannel': 'Canal de Telegram',
+    'footer.photos': 'Fotos:',
     'footer.top': 'Volver arriba ↑',
   },
 
@@ -189,6 +212,7 @@ const translations = {
     'nav.process': 'For you',
     'nav.team': 'Team',
     'nav.ops': 'Operations',
+    'nav.payment': 'Payment',
     'nav.contact': 'Contact us',
 
     'hero.eyebrow': 'Santiago de Cuba · Every municipality',
@@ -204,7 +228,8 @@ const translations = {
     'hero.statCoverageValue': '9 municipalities',
     'hero.statSpecialistsLabel': 'Team',
     'hero.statSpecialistsValue': '+10 specialists',
-    'hero.alt': 'Aerial view of solar panels installed on grass',
+    'hero.alt':
+      'Solar panels installed on the concrete rooftops of a Santiago de Cuba neighbourhood',
     'hero.photoTag': 'Clean energy, every day',
     'hero.float1Title': 'The team',
     'hero.float1Text': 'Friends, not just partners',
@@ -252,7 +277,14 @@ const translations = {
     'process.s4Text':
       'We pick the day, do the work and show you how to use the system.',
     'process.caption': 'Installations in Palma Soriano and across the province',
-    'process.alt': 'Rows of solar panels in a green field under the sky',
+    'process.alt': 'Technician installing solar panels on a concrete slab roof',
+    'process.splitYouKicker': 'You provide',
+    'process.splitYouTitle': 'The panels and solar cables',
+    'process.splitYouText':
+      'The client (you) provides the panels and solar cables that are going to be installed.',
+    'process.splitWeKicker': 'We provide',
+    'process.splitWeTitle': 'The labour for the installation',
+    'process.splitWeText': 'SolarTwin provides the labour to mount the bases.',
 
     'team.eyebrow': 'Our team',
     'team.title':
@@ -265,7 +297,7 @@ const translations = {
     'team.point2': 'A young team with energy and the will to do things right',
     'team.point3': 'Over 5 years of experience delivering installations',
     'team.badgeLabel': 'years of<br />experience',
-    'team.alt': 'Solar panel field pointing at the blue sky',
+    'team.alt': 'Solar panels mounted on the concrete roof of a building',
 
     'ops.eyebrow': 'Service area',
     'ops.title': "We're right <span class=\"grad-text\">where you are</span>",
@@ -274,7 +306,6 @@ const translations = {
     'ops.cta': 'Check my municipality',
     'ops.mapActive': 'Santiago de Cuba — service area',
     'ops.mapBase': 'Palma Soriano — team base',
-    'ops.mapCredit': 'Map: geoBoundaries (ODbL)',
     'ops.headStrong': 'Santiago de Cuba province',
     'ops.headSmall': '9 municipalities · based in Palma Soriano',
     'ops.municipalities': 'All 9 municipalities we cover',
@@ -305,6 +336,19 @@ const translations = {
     'planet.cta': 'Work out my saving',
     'planet.source': 'Source: current residential tariff (Decree 9810/2024).',
 
+    'pay.eyebrow': 'Payment options',
+    'pay.title': 'Pay <span class="grad-text">however you prefer</span>',
+    'pay.subtitle':
+      'We accept cash payments, and you can pay in whichever currency is easiest for you.',
+    'pay.methodKicker': 'Payment method',
+    'pay.methodTitle': 'In cash',
+    'pay.methodText': 'The installation is paid in cash, directly to the team.',
+    'pay.currenciesKicker': 'Payment currencies',
+    'pay.currenciesTitle': 'Three currencies available',
+    'pay.usd': 'US Dollar',
+    'pay.eur': 'Euro',
+    'pay.cup': 'Cuban Peso',
+
     'contact.eyebrow': "Let's talk",
     'contact.title': 'Your price starts with <span class="grad-text">a message</span>',
     'contact.subtitle':
@@ -328,6 +372,7 @@ const translations = {
     'footer.tgChat': 'Telegram',
     'footer.waChannel': 'WhatsApp channel',
     'footer.tgChannel': 'Telegram channel',
+    'footer.photos': 'Photos:',
     'footer.top': 'Back to top ↑',
   },
 }
@@ -337,9 +382,13 @@ const root = document.documentElement
 const THEME_KEY = 'solartwin-theme'
 const LANG_KEY = 'solartwin-lang'
 const themeMedia = window.matchMedia('(prefers-color-scheme: light)')
-const themePicker = document.querySelector('.theme-picker')
-const themeTrigger = document.querySelector('.theme-trigger')
-const themeMenu = document.querySelector('.theme-menu')
+const themePicker = document.querySelector('.theme-picker:not(.lang-picker)')
+const themeTrigger = themePicker?.querySelector('.theme-trigger') ?? null
+const themeMenu = themePicker?.querySelector('.theme-menu') ?? null
+const langPicker = document.querySelector('.lang-picker')
+const langTrigger = langPicker?.querySelector('.lang-trigger') ?? null
+const langMenu = langPicker?.querySelector('.lang-menu') ?? null
+const LANG_NAMES = { es: 'Español', en: 'English' }
 
 const readStored = (key, fallback) => {
   try {
@@ -408,18 +457,32 @@ if (themePicker && themeTrigger && themeMenu) {
   themeTrigger.addEventListener('click', (event) => {
     event.stopPropagation()
     const open = themeMenu.hidden
+    closeLangMenu()
     themeMenu.hidden = !open
     themeTrigger.setAttribute('aria-expanded', String(open))
   })
+}
 
-  document.addEventListener('click', (event) => {
-    if (!themePicker.contains(event.target)) closeThemeMenu()
-  })
-
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') closeThemeMenu()
+if (langPicker && langTrigger && langMenu) {
+  langTrigger.addEventListener('click', (event) => {
+    event.stopPropagation()
+    const open = langMenu.hidden
+    closeThemeMenu()
+    langMenu.hidden = !open
+    langTrigger.setAttribute('aria-expanded', String(open))
   })
 }
+
+document.addEventListener('click', (event) => {
+  if (!themePicker?.contains(event.target)) closeThemeMenu()
+  if (!langPicker?.contains(event.target)) closeLangMenu()
+})
+
+document.addEventListener('keydown', (event) => {
+  if (event.key !== 'Escape') return
+  closeThemeMenu()
+  closeLangMenu()
+})
 
 /* ---------- Español e inglés ---------- */
 
@@ -456,16 +519,23 @@ const applyLanguage = (next, persist = true) => {
   document.title = dict['meta.title']
 
   document.querySelectorAll('[data-lang-set]').forEach((btn) => {
-    btn.setAttribute('aria-pressed', String(btn.dataset.langSet === lang))
+    const active = btn.dataset.langSet === lang
+    btn.setAttribute('aria-pressed', String(active))
+    btn.setAttribute('aria-checked', String(active))
   })
 
   updateMenuLabel()
   updateThemeLabel()
+  updateLangLabel()
   if (persist) store(LANG_KEY, lang)
 }
 
 document.querySelectorAll('[data-lang-set]').forEach((btn) => {
-  btn.addEventListener('click', () => applyLanguage(btn.dataset.langSet))
+  btn.addEventListener('click', () => {
+    applyLanguage(btn.dataset.langSet)
+    closeLangMenu()
+    langTrigger?.focus()
+  })
 })
 
 /* ---------- Header y menú ---------- */
@@ -489,6 +559,19 @@ function closeThemeMenu() {
   if (!themeMenu || !themeTrigger) return
   themeMenu.hidden = true
   themeTrigger.setAttribute('aria-expanded', 'false')
+}
+
+function closeLangMenu() {
+  if (!langMenu || !langTrigger) return
+  langMenu.hidden = true
+  langTrigger.setAttribute('aria-expanded', 'false')
+}
+
+function updateLangLabel() {
+  if (!langTrigger) return
+  langTrigger.setAttribute('aria-label', `${t('a11y.lang')}: ${LANG_NAMES[lang]}`)
+  const current = langTrigger.querySelector('.lang-current')
+  if (current) current.textContent = lang.toUpperCase()
 }
 
 const toTop = document.querySelector('.to-top')
