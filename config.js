@@ -19,11 +19,14 @@ window.SOLARTWIN_CONFIG = {
     whatsapp: '@TwinTechnologyStartup',
     telegram: '@TwinTechnologyStartup'
   },
-  // Enlaces a canales
+  // Enlaces a canales principales
   channelLinks: {
     whatsapp: 'https://wa.me/5350781823',
     telegram: 'https://t.me/TwinTechnologyStartup'
   },
+  // Enlaces a canales de transmisión
+  channelLinkWhatsApp: 'https://whatsapp.com/channel/0029VbEJEn0DeON1xsuwb83M',
+  channelLinkTelegram: 'https://t.me/SolarTwin',
   // Monedas de pago por nombre (los símbolos se omiten)
   paymentCurrencies: [
     {

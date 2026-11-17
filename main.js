@@ -896,18 +896,18 @@ const applySiteConfig = () => {
     tgLink.textContent = config.usernames.telegram
   }
 
-  // Aplicar enlace de canal de WhatsApp
+  // Aplicar enlace de canal de WhatsApp (usar config dedicado)
   const waChannelLink = document.querySelector('a[href*="whatsapp.com/channel"]')
-  if (waChannelLink && config.channelLinks && config.channelLinks.whatsapp) {
-    waChannelLink.href = config.channelLinks.whatsapp
+  if (waChannelLink && config.channelLinkWhatsApp) {
+    waChannelLink.href = config.channelLinkWhatsApp
   }
 
-  // Aplicar enlace de canal de Telegram
+  // Aplicar enlace de canal de Telegram (usar config dedicado)
   const tgChannelLinks = document.querySelectorAll('a[href*="t.me"]')
   tgChannelLinks.forEach((link) => {
-    if (link.href.includes('channel') || (link.textContent && link.textContent.includes('SolarTwin'))) {
-      if (config.channelLinks && config.channelLinks.telegram) {
-        link.href = config.channelLinks.telegram
+    if (link.textContent && link.textContent.includes('SolarTwin')) {
+      if (config.channelLinkTelegram) {
+        link.href = config.channelLinkTelegram
       }
     }
   })
