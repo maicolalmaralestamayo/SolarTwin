@@ -13,15 +13,16 @@ const translations = {
     'a11y.lang': 'Idioma',
     'a11y.map':
       'Mapa de Cuba con la provincia de Santiago de Cuba resaltada y Palma Soriano marcada',
+    'a11y.toTop': 'Volver al inicio',
 
     'theme.auto': 'Automático',
     'theme.light': 'Claro',
     'theme.dark': 'Oscuro',
 
-    'nav.advantages': 'Ventajas',
-    'nav.process': 'Cómo trabajamos',
+    'nav.advantages': 'Nosotros',
+    'nav.process': 'Ustedes',
     'nav.team': 'Equipo',
-    'nav.ops': 'Área de operaciones',
+    'nav.ops': 'Operaciones',
     'nav.contact': 'Contáctanos',
 
     'hero.eyebrow': 'Santiago de Cuba · Todos los municipios',
@@ -59,7 +60,7 @@ const translations = {
       'Cada montaje queda respaldado por escrito. Si algo no funciona como debe, volvemos y lo resolvemos.',
     'why.card2Title': 'Calidad',
     'why.card2Text':
-      'Materiales resistentes y un acabado cuidado, pensado para durar muchos años bajo el sol y la lluvia.',
+      'Utilizamos los mejores materiales: resistentes y con un acabado cuidado, pensados para durar muchos años bajo el sol y la lluvia.',
     'why.card3Title': 'Seguridad',
     'why.card3Text':
       'Instalamos siguiendo normas eléctricas y de altura. Tu familia, tus equipos y tu techo siempre protegidos.',
@@ -80,7 +81,7 @@ const translations = {
       'Vamos al lugar, medimos y revisamos dónde irán los paneles y la instalación.',
     'process.s3Title': 'Adquirimos los recursos y fijamos el precio',
     'process.s3Text':
-      'Compramos los materiales y te damos un precio cerrado, con los mejores precios del mercado.',
+      'Compramos solo los recursos necesarios, con los mejores materiales, y te damos un precio cerrado con los mejores precios del mercado.',
     'process.s4Title': 'Concretamos la fecha y montamos',
     'process.s4Text':
       'Elegimos el día, hacemos el trabajo y te explicamos cómo usar el sistema.',
@@ -111,6 +112,32 @@ const translations = {
     'ops.headStrong': 'Provincia de Santiago de Cuba',
     'ops.headSmall': '9 municipios · base en Palma Soriano',
     'ops.municipalities': 'Los 9 municipios que cubrimos',
+
+    'planet.eyebrow': 'Solar y planeta',
+    'planet.title':
+      'Buena para el planeta, <span class="grad-text">mejor para tu bolsillo</span>',
+    'planet.subtitle':
+      'Instalamos con los mejores materiales y la menor cantidad de recursos posible: menos desperdicio, más años de servicio y menos combustible fósil.',
+    'planet.b1Title': 'Menos emisiones',
+    'planet.b1Text':
+      'Cada kWh solar sustituye electricidad generada en su mayoría con petróleo y gas. Menos humo, menos CO₂ y menos dependencia de combustibles importados.',
+    'planet.b2Title': 'Menos presión sobre la red',
+    'planet.b2Text':
+      'Generar cerca de donde se consume reduce pérdidas y alivia la demanda del sistema eléctrico, sobre todo en los horarios de mayor consumo.',
+    'planet.b3Title': 'Energía local y duradera',
+    'planet.b3Text':
+      'El sol es un recurso gratuito y local. Un panel bien instalado trabaja más de 25 años con mantenimiento mínimo.',
+    'planet.savingsKicker': 'Cuánto puedes ahorrar',
+    'planet.savingsTitle': 'La tarifa sube por tramos. Tu factura puede bajar.',
+    'planet.savingsText':
+      'La tarifa residencial cubana es escalonada: los primeros 100 kWh cuestan 0,33 CUP/kWh, pero cada tramo siguiente es más caro, hasta 11,50 CUP/kWh entre 501 y 600 kWh y 25 CUP/kWh en el tramo máximo. Con solar, esos kWh caros dejan de entrar en tu factura.',
+    'planet.thConsumption': 'Consumo',
+    'planet.thBill': 'Factura actual',
+    'planet.thSavings': 'Ahorro estimado',
+    'planet.savingsNote':
+      'Estimado de forma conservadora como el 80 % de la factura del Acuerdo 9810/2024, vigente desde marzo de 2024. Con la tarifa por tramos, cubrir el 80 % del consumo con solar suele ahorrar todavía más; el resultado real depende del tamaño del sistema, la radiación, el consumo nocturno y tus hábitos.',
+    'planet.cta': 'Calcular mi ahorro',
+    'planet.source': 'Fuente: tarifa residencial vigente (Acuerdo 9810/2024).',
 
     'contact.eyebrow': 'Hablemos',
     'contact.title': 'Tu precio empieza con <span class="grad-text">un mensaje</span>',
@@ -152,15 +179,16 @@ const translations = {
     'a11y.lang': 'Language',
     'a11y.map':
       'Map of Cuba with Santiago de Cuba province highlighted and Palma Soriano marked',
+    'a11y.toTop': 'Back to top',
 
     'theme.auto': 'Automatic',
     'theme.light': 'Light',
     'theme.dark': 'Dark',
 
-    'nav.advantages': 'Why us',
-    'nav.process': 'How we work',
+    'nav.advantages': 'About us',
+    'nav.process': 'For you',
     'nav.team': 'Team',
-    'nav.ops': 'Service area',
+    'nav.ops': 'Operations',
     'nav.contact': 'Contact us',
 
     'hero.eyebrow': 'Santiago de Cuba · Every municipality',
@@ -198,7 +226,7 @@ const translations = {
       "Every installation is backed in writing. If something isn't working as it should, we come back and fix it.",
     'why.card2Title': 'Quality',
     'why.card2Text':
-      'Durable materials and careful finishing, built to last for years under sun and rain.',
+      'We use the best materials: durable and carefully finished, built to last for years under sun and rain.',
     'why.card3Title': 'Safety',
     'why.card3Text':
       'We install to electrical and working-at-height standards. Your family, your equipment and your roof stay protected.',
@@ -219,7 +247,7 @@ const translations = {
       'We come to the site, take measurements and plan where the panels and wiring will go.',
     'process.s3Title': 'We source the materials and set the price',
     'process.s3Text':
-      'We buy the materials and give you a fixed price, with the best prices on the market.',
+      'We buy only the resources we need, using the best materials, and give you a fixed price with the best prices on the market.',
     'process.s4Title': 'We set the date and install',
     'process.s4Text':
       'We pick the day, do the work and show you how to use the system.',
@@ -250,6 +278,32 @@ const translations = {
     'ops.headStrong': 'Santiago de Cuba province',
     'ops.headSmall': '9 municipalities · based in Palma Soriano',
     'ops.municipalities': 'All 9 municipalities we cover',
+
+    'planet.eyebrow': 'Solar & planet',
+    'planet.title':
+      'Good for the planet, <span class="grad-text">better for your pocket</span>',
+    'planet.subtitle':
+      'We install with the best materials and the fewest resources possible: less waste, more years of service and less fossil fuel.',
+    'planet.b1Title': 'Fewer emissions',
+    'planet.b1Text':
+      'Every solar kWh replaces electricity mostly generated from oil and gas. Less smoke, less CO₂ and less dependence on imported fuel.',
+    'planet.b2Title': 'Less strain on the grid',
+    'planet.b2Text':
+      'Generating close to where it is used cuts losses and eases demand on the power system, especially at peak times.',
+    'planet.b3Title': 'Local, long-lasting energy',
+    'planet.b3Text':
+      'Sunlight is free and local. A well-installed panel works for over 25 years with minimal maintenance.',
+    'planet.savingsKicker': 'How much you can save',
+    'planet.savingsTitle': 'Tariffs rise in steps. Your bill can fall.',
+    'planet.savingsText':
+      "Cuba's residential tariff is tiered: the first 100 kWh cost 0.33 CUP/kWh, then each tier gets more expensive, up to 11.50 CUP/kWh for 501–600 kWh and 25 CUP/kWh at the top. With solar, those expensive kWh stop showing up on your bill.",
+    'planet.thConsumption': 'Usage',
+    'planet.thBill': 'Current bill',
+    'planet.thSavings': 'Estimated saving',
+    'planet.savingsNote':
+      'Conservative estimate at 80 % of the bill under Decree 9810/2024, in force since March 2024. Because the tariff is tiered, covering 80 % of usage with solar usually saves even more; actual results depend on system size, sunlight, night-time use and your habits.',
+    'planet.cta': 'Work out my saving',
+    'planet.source': 'Source: current residential tariff (Decree 9810/2024).',
 
     'contact.eyebrow': "Let's talk",
     'contact.title': 'Your price starts with <span class="grad-text">a message</span>',
@@ -437,11 +491,28 @@ function closeThemeMenu() {
   themeTrigger.setAttribute('aria-expanded', 'false')
 }
 
+const toTop = document.querySelector('.to-top')
+const siteFooter = document.querySelector('.site-footer')
+
 const onScroll = () => {
   header?.classList.toggle('is-scrolled', window.scrollY > 8)
+
+  if (!toTop) return
+  const footerNear = siteFooter
+    ? window.scrollY + window.innerHeight >= siteFooter.offsetTop + 40
+    : false
+  toTop.classList.toggle('is-visible', window.scrollY > 600 && !footerNear)
 }
 onScroll()
 window.addEventListener('scroll', onScroll, { passive: true })
+window.addEventListener('resize', onScroll)
+
+if (toTop) {
+  toTop.addEventListener('click', () => {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' })
+  })
+}
 
 if (navToggle && nav) {
   const closeNav = () => {
