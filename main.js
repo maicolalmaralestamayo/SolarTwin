@@ -876,36 +876,63 @@ applyLanguage(lang, false)
 const applySiteConfig = () => {
   const config = window.SOLARTWIN_CONFIG ?? {}
 
-  // Aplicar número de teléfono al enlace tel:
-  const phoneLink = document.querySelector('a[href^="tel:"]')
-  if (phoneLink && config.phoneNumbers && config.phoneNumbers[0]) {
-    phoneLink.href = `tel:${config.phoneNumbers[0].replace(/\s+/g, '')}`
-    phoneLink.textContent = config.phoneNumbers[0]
+  // Aplicar nombre del negocio TODOS los .brand-name en el sitio
+  const allBrandNames = document.querySelectorAll('.brand-name')
+  allBrandNames.forEach((brandName) => {
+    if (config.businessName && config.businessName[0]) {
+      brandName.innerHTML = `<span class="solar">${config.businessName[0]}</span><span class="twin">${config.businessName[1] || ''}</span>`
+    }
+  })
+
+  // Aplicar color de énfasis (accent) a las variables CSS
+  const root = document.documentElement
+  if (root && config.colors && config.colors.accent) {
+    root.style.setProperty('--purple', config.colors.accent)
   }
 
-  // Aplicar enlace de WhatsApp (wa.me)
-  const waLink = document.querySelector('a[href*="wa.me"]')
-  if (waLink && config.channelLinks && config.channelLinks.whatsapp) {
-    waLink.href = config.channelLinks.whatsapp
-    waLink.textContent = t('footer.waChat')
+  // Aplicar color primario a las variables CSS (ya se hace abajo)
+  if (root && config.colors && config.colors.primary) {
+    root.style.setProperty('--orange', config.colors.primary)
   }
 
-  // Aplicar enlace de Telegram (t.me)
-  const tgLink = document.querySelector('a[href*="t.me"]:not([href*="channel"])')
-  if (tgLink && config.usernames && config.usernames.telegram) {
-    tgLink.href = `https://t.me/${config.usernames.telegram.replace(/^@/, '')}`
-    tgLink.textContent = config.usernames.telegram
-  }
+  // Aplicar número de teléfono A TODOS los enlaces tel:
+  const allPhoneLinks = document.querySelectorAll('a[href^="tel:"]')
+  allPhoneLinks.forEach((phoneLink) => {
+    if (config.phoneNumbers && config.phoneNumbers[0]) {
+      phoneLink.href = `tel:${config.phoneNumbers[0].replace(/\s+/g, '')}`
+      phoneLink.textContent = config.phoneNumbers[0]
+    }
+  })
 
-  // Aplicar enlace de canal de WhatsApp (usar config dedicado)
-  const waChannelLink = document.querySelector('a[href*="whatsapp.com/channel"]')
-  if (waChannelLink && config.channelLinkWhatsApp) {
-    waChannelLink.href = config.channelLinkWhatsApp
-  }
+  // Aplicar enlace de WhatsApp (wa.me) A TODOS los links wa.me
+  const allWaLinks = document.querySelectorAll('a[href*="wa.me"]')
+  allWaLinks.forEach((waLink) => {
+    if (config.channelLinks && config.channelLinks.whatsapp) {
+      waLink.href = config.channelLinks.whatsapp
+    }
+  })
 
-  // Aplicar enlace de canal de Telegram (usar config dedicado)
-  const tgChannelLinks = document.querySelectorAll('a[href*="t.me"]')
-  tgChannelLinks.forEach((link) => {
+  // Aplicar enlace de Telegram (t.me) A TODOS los links t.me (no canales)
+  const allTgLinks = document.querySelectorAll('a[href*="t.me"]:not([href*="channel"])')
+  allTgLinks.forEach((tgLink) => {
+    if (config.usernames && config.usernames.telegram) {
+      tgLink.href = `https://t.me/${config.usernames.telegram.replace(/^@/, '')}`
+      tgLink.textContent = config.usernames.telegram
+    }
+  })
+
+  // Aplicar enlaces de canales dedicados
+  // Canal de WhatsApp
+  const allWaChannelLinks = document.querySelectorAll('a[href*="whatsapp.com/channel"]')
+  allWaChannelLinks.forEach((link) => {
+    if (config.channelLinkWhatsApp) {
+      link.href = config.channelLinkWhatsApp
+    }
+  })
+
+  // Canal de Telegram
+  const allTgChannelLinks = document.querySelectorAll('a[href*="t.me"]')
+  allTgChannelLinks.forEach((link) => {
     if (link.textContent && link.textContent.includes('SolarTwin')) {
       if (config.channelLinkTelegram) {
         link.href = config.channelLinkTelegram
@@ -913,16 +940,10 @@ const applySiteConfig = () => {
     }
   })
 
-  // Aplicar nombre del negocio al brand-name
-  const brandName = document.querySelector('.brand-name')
-  if (brandName && config.businessName && config.businessName[0]) {
-    brandName.innerHTML = `<span class="solar">${config.businessName[0]}</span><span class="twin">${config.businessName[1] || ''}</span>`
-  }
-
-  // Aplicar años de experiencia al estadístico de hero
-  const expValue = document.querySelector('[data-i18n="hero.statExpValue"]')
-  if (expValue && config.experienceYears) {
-    expValue.textContent = `${config.experienceYears}+ años`
+  // Aplicar años de experiencia al badge-exp
+  const expBadgeSpan = document.querySelector('.badge-exp span')
+  if (expBadgeSpan && config.experienceYears) {
+    expBadgeSpan.textContent = `${config.experienceYears}`
   }
 
   // Aplicar cantidad de especialistas al estadístico de hero
@@ -931,16 +952,14 @@ const applySiteConfig = () => {
     specValue.textContent = `${config.specialistsCount}+ especialistas`
   }
 
-  // Aplicar colores principales a las variables CSS
-  const root = document.documentElement
-  if (root && config.colors) {
-    if (config.colors.primary) {
-      root.style.setProperty('--orange', config.colors.primary)
+  // Aplicar nombres de monedas dinámicos al .pay-coins
+  const payCoins = document.querySelectorAll('.pay-coins li')
+  payCoins.forEach((coinLi, index) => {
+    const coinNameSpan = coinLi.querySelector('span[data-i18n]')
+    if (coinNameSpan && config.paymentCurrencies && config.paymentCurrencies[index]) {
+      coinNameSpan.textContent = config.paymentCurrencies[index].name
     }
-    if (config.colors.accent) {
-      root.style.setProperty('--purple', config.colors.accent)
-    }
-  }
+  })
 }
 
 applySiteConfig()
