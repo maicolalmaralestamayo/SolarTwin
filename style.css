@@ -1122,10 +1122,16 @@ p {
   min-width: 0;
 }
 
+.savings-table-scroll {
+  overflow-x: auto;
+  padding-bottom: 0.2rem;
+}
+
 .savings-table {
   width: 100%;
+  min-width: 19rem;
   border-collapse: collapse;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
 }
 
 .savings-table th {
@@ -1137,7 +1143,7 @@ p {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   text-align: center;
-  width: 50%;
+  white-space: nowrap;
   color: var(--muted-2);
 }
 
@@ -1146,7 +1152,7 @@ p {
   border-bottom: 1px solid var(--line);
   font-variant-numeric: tabular-nums;
   text-align: center;
-  width: 50%;
+  white-space: nowrap;
 }
 
 .savings-table tbody tr:last-child td {
@@ -1157,7 +1163,8 @@ p {
   font-weight: 600;
 }
 
-.savings-table td:nth-child(2) {
+.savings-table td:nth-child(2),
+.savings-table td:nth-child(3) {
   color: var(--muted);
 }
 
@@ -1175,6 +1182,19 @@ p {
 }
 
 /* ---------- Proceso ---------- */
+
+.process-promises {
+  margin-top: clamp(2.6rem, 5vw, 3.6rem);
+}
+
+.process-promises-title {
+  margin-bottom: 1.1rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
 
 .process-grid {
   display: grid;

@@ -63,9 +63,9 @@ El menú principal enlaza a las secciones con estos nombres visibles:
 | Operaciones | Área de operaciones | `#operaciones` |
 | Ustedes | Cómo trabajamos | `#proceso` |
 | Pago | Formas de pago | `#pago` |
-| Nosotros | Ventajas | `#ventajas` |
 
-La sección de equipo ya no existe: de ella solo queda, como nota dentro de la portada, la explicación de que el equipo lo forman especialistas en ingeniería eléctrica y metalurgia. La sección **Formas de pago** (`#pago`) va justo después de **Ustedes**, y **Nosotros** (`#ventajas`) y **Solar y planeta** (`#planeta`) van después; Planeta no aparece en el menú e incluye las ventajas ambientales, la calculadora de ahorro y la tabla de referencia. **Formas de pago** indica que el pago es en efectivo y siempre después de completado el trabajo (sin pago por adelantado), que se aceptan dólar (USD), euro (EUR) y moneda nacional (CUP), que la tasa de referencia del CUP es elToque, y añade la calculadora de paneles. El botón flotante de volver arriba aparece al pasar unos 600 px de scroll y se oculta al llegar al pie de página.
+
+La sección de equipo ya no existe: de ella solo queda, como nota dentro de la portada, la explicación de que el equipo lo forman especialistas en ingeniería eléctrica y metalurgia. La antigua sección **Nosotros** también se eliminó y sus cuatro compromisos (garantía, calidad, seguridad y optimización) se integraron al final de **Ustedes** (`#proceso`), que es la única sección de proceso. La sección **Formas de pago** (`#pago`) va justo después de **Ustedes**, y después van **Solar y planeta** (`#planeta`), que no aparece en el menú e incluye las ventajas ambientales, la calculadora de ahorro y la tabla de referencia. **Formas de pago** indica que el pago es en efectivo y siempre después de completado el trabajo (sin pago por adelantado), que se aceptan dólar (USD), euro (EUR) y moneda nacional (CUP), que la tasa de referencia del CUP es elToque, y añade la calculadora de paneles. El botón flotante de volver arriba aparece al pasar unos 600 px de scroll y se oculta al llegar al pie de página.
 
 ## Aportes del cliente y de la empresa
 

@@ -19,7 +19,6 @@ const translations = {
     'theme.light': 'Claro',
     'theme.dark': 'Oscuro',
 
-    'nav.advantages': 'Nosotros',
     'nav.process': 'Ustedes',
     'nav.ops': 'Operaciones',
     'nav.payment': 'Pago',
@@ -68,22 +67,19 @@ const translations = {
     'marquee.prices': 'Mejores precios',
     'marquee.coverage': 'Santiago de Cuba',
 
-    'why.eyebrow': 'Por qué <span class="brand-word">SolarTwin</span>',
-    'why.title': 'Cuatro palabras que <span class="grad-text">nos definen</span>',
-    'why.subtitle':
-      'No solo montamos paneles: entregamos un trabajo del que podemos responder con nuestro nombre.',
-    'why.card1Title': 'Garantía',
-    'why.card1Text':
+    'process.promisesTitle': 'Cuatro compromisos que respaldan cada paso',
+    'process.promise1Title': 'Garantía',
+    'process.promise1Text':
       'Cada montaje queda respaldado por escrito. Si algo no funciona como debe, volvemos y lo resolvemos.',
-    'why.card2Title': 'Calidad',
-    'why.card2Text':
-      'Utilizamos los mejores materiales: resistentes y con un acabado cuidado, pensados para durar muchos años bajo el sol y la lluvia.',
-    'why.card3Title': 'Seguridad',
-    'why.card3Text':
-      'Instalamos siguiendo normas eléctricas y de altura. Tu familia, tus equipos y tu techo siempre protegidos.',
-    'why.card4Title': 'Optimización',
-    'why.card4Text':
-      'Estudiamos tu consumo y tu espacio para que aproveches cada rayo de sol y ahorres lo máximo posible.',
+    'process.promise2Title': 'Calidad',
+    'process.promise2Text':
+      'Materiales resistentes y acabados cuidados, pensados para durar años bajo el sol y la lluvia.',
+    'process.promise3Title': 'Seguridad',
+    'process.promise3Text':
+      'Instalamos siguiendo normas eléctricas y de altura, para proteger a tu familia, tus equipos y tu techo.',
+    'process.promise4Title': 'Optimización',
+    'process.promise4Text':
+      'Ajustamos la cantidad de paneles y su ubicación a tu consumo real, para que no pagues de más ni te quedes corto.',
 
     'process.eyebrow': 'Cómo trabajamos',
     'process.title':
@@ -160,11 +156,13 @@ const translations = {
     'planet.savingsTitle': 'La tarifa sube por tramos. Tu factura puede bajar.',
     'planet.savingsText':
       'La tarifa residencial cubana es escalonada: los primeros 100 kWh cuestan 0,33 CUP/kWh, pero cada tramo siguiente es más caro, hasta 11,50 CUP/kWh entre 501 y 600 kWh y 25 CUP/kWh en el tramo máximo. Con solar, esos kWh caros dejan de entrar en tu factura.',
-    'planet.thConsumption': 'Consumo',
-    'planet.thBill': 'Factura actual',
-    'planet.thSavings': 'Ahorro estimado',
+    'planet.thTier': 'Tramo (kWh)',
+    'planet.thKwh': 'kWh',
+    'planet.thPrice': 'CUP/kWh',
+    'planet.thSubtotal': 'Subtotal',
+    'planet.tierLast': 'Más de 5 000',
     'planet.savingsNote':
-      'Estimado de forma conservadora como el 80% de la factura del Acuerdo 9810/2024, vigente desde marzo de 2024. Con la tarifa por tramos, cubrir el 80% del consumo con solar suele ahorrar todavía más; el resultado real depende del tamaño del sistema, la radiación, el consumo nocturno y tus hábitos.',
+      'Cada fila es un tramo: su precio se aplica solo a los kWh que caen dentro de él y el subtotal es lo que cuestan esos kWh si consumes el tramo completo. Los tramos se suman: 250 kWh cuestan 33,00 + 53,50 + 71,50 + 123,00 = 281,00 CUP al mes. El último tramo no tiene tope, por eso no lleva subtotal.',
     'planet.calcLabel': 'Consumo mensual (kWh)',
     'planet.calcPlaceholder': 'Ej.: 250',
     'planet.calcButton': 'Calcular ahorro',
@@ -193,7 +191,7 @@ const translations = {
     'pay.eur': 'Euro',
     'pay.cup': 'Moneda Nacional',
     'pay.cupRate':
-      'Si el pago es en moneda nacional (CUP), la tasa de referencia es la de <a href="https://eltoque.com/" target="_blank" rel="noopener">elToque</a>.',
+      'Los precios de nuestros servicios están expresados en USD. Si el pago se va a realizar en otra moneda, la tasa de cambio de referencia es la de <a href="https://eltoque.com/" target="_blank" rel="noopener">elToque</a>.',
     'pay.calcKicker': 'Calculadora de paneles',
     'pay.calcTitle': '¿Cuánto cuestan tus paneles?',
     'pay.calcText':
@@ -258,7 +256,6 @@ const translations = {
     'theme.light': 'Light',
     'theme.dark': 'Dark',
 
-    'nav.advantages': 'About us',
     'nav.process': 'For you',
     'nav.ops': 'Operations',
     'nav.payment': 'Payment',
@@ -307,22 +304,19 @@ const translations = {
     'marquee.prices': 'Best prices',
     'marquee.coverage': 'Santiago de Cuba',
 
-    'why.eyebrow': 'Why <span class="brand-word">SolarTwin</span>',
-    'why.title': 'Four words that <span class="grad-text">define us</span>',
-    'why.subtitle':
-      "We don't just install panels: we deliver work we can stand behind with our own name.",
-    'why.card1Title': 'Warranty',
-    'why.card1Text':
+    'process.promisesTitle': 'Four commitments behind every step',
+    'process.promise1Title': 'Warranty',
+    'process.promise1Text':
       "Every installation is backed in writing. If something isn't working as it should, we come back and fix it.",
-    'why.card2Title': 'Quality',
-    'why.card2Text':
-      'We use the best materials: durable and carefully finished, built to last for years under sun and rain.',
-    'why.card3Title': 'Safety',
-    'why.card3Text':
-      'We install to electrical and working-at-height standards. Your family, your equipment and your roof stay protected.',
-    'why.card4Title': 'Optimization',
-    'why.card4Text':
-      'We study your consumption and your space so you use every ray of sun and save as much as possible.',
+    'process.promise2Title': 'Quality',
+    'process.promise2Text':
+      'Durable materials and careful finishes, built to last for years under sun and rain.',
+    'process.promise3Title': 'Safety',
+    'process.promise3Text':
+      'We install to electrical and working-at-height standards, keeping your family, your equipment and your roof protected.',
+    'process.promise4Title': 'Optimization',
+    'process.promise4Text':
+      'We match the number and position of the panels to your real consumption, so you never overpay or come up short.',
 
     'process.eyebrow': 'How we work',
     'process.title':
@@ -383,11 +377,13 @@ const translations = {
     'planet.savingsTitle': 'Tariffs rise in steps. Your bill can fall.',
     'planet.savingsText':
       "Cuba's residential tariff is tiered: the first 100 kWh cost 0.33 CUP/kWh, then each tier gets more expensive, up to 11.50 CUP/kWh for 501–600 kWh and 25 CUP/kWh at the top. With solar, those expensive kWh stop showing up on your bill.",
-    'planet.thConsumption': 'Usage',
-    'planet.thBill': 'Current bill',
-    'planet.thSavings': 'Estimated saving',
+    'planet.thTier': 'Tier (kWh)',
+    'planet.thKwh': 'kWh',
+    'planet.thPrice': 'CUP/kWh',
+    'planet.thSubtotal': 'Subtotal',
+    'planet.tierLast': 'Over 5,000',
     'planet.savingsNote':
-      'Conservative estimate at 80% of the bill under Decree 9810/2024, in force since March 2024. Because the tariff is tiered, covering 80% of usage with solar usually saves even more; actual results depend on system size, sunlight, night-time use and your habits.',
+      'Each row is a tier: its price applies only to the kWh that fall inside it, and the subtotal is what those kWh cost if you use the whole tier. Tiers add up: 250 kWh cost 33.00 + 53.50 + 71.50 + 123.00 = 281.00 CUP a month. The last tier has no upper limit, so it has no subtotal.',
     'planet.calcLabel': 'Monthly usage (kWh)',
     'planet.calcPlaceholder': 'e.g. 250',
     'planet.calcButton': 'Calculate savings',
@@ -415,7 +411,7 @@ const translations = {
     'pay.eur': 'Euro',
     'pay.cup': 'Cuban Peso',
     'pay.cupRate':
-      'If you pay in Cuban pesos (CUP), the reference exchange rate is <a href="https://eltoque.com/" target="_blank" rel="noopener">elToque</a>.',
+      'Our prices are quoted in USD. If you pay in another currency, the reference exchange rate is <a href="https://eltoque.com/" target="_blank" rel="noopener">elToque</a>.',
     'pay.calcKicker': 'Panel calculator',
     'pay.calcTitle': 'What will your panels cost?',
     'pay.calcText':
