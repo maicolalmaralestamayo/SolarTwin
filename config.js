@@ -2,10 +2,10 @@
 // Todos los valores aquí pueden editarse para personalizar el sitio sin tocar código.
 window.SOLARTWIN_CONFIG = {
   // Nombre del negocio (siempre 2 partes, ej: SolarTwin)
-  businessName: ['Solar', 'Twin'],
+  businessName: ['Solario', 'Twin'],
   // Colores de identidad
   colors: {
-    primary: '#ff7a00',
+    primary: '#27F557',
     accent: '#ff00a8'
   },
   // Años de experiencia
@@ -35,7 +35,7 @@ window.SOLARTWIN_CONFIG = {
       code: 'EUR'
     },
     {
-      name: 'CUP',
+      name: 'Moneda Nacional',
       code: 'CUP'
     }
   ]
