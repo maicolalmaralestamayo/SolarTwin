@@ -871,6 +871,50 @@ if (navToggle && nav) {
 
 applyLanguage(lang, false)
 
+/* ---------- Aplicar configuración del sitio desde config.js ---------- */
+const config = window.SOLARTWIN_CONFIG ?? {}
+
+const applySiteConfig = () => {
+  // Aplicar número de teléfono al enlace tel:
+  const phoneLink = document.querySelector('a[href^="tel:"]')
+  if (phoneLink && config.phoneNumbers && config.phoneNumbers[0]) {
+    phoneLink.href = `tel:${config.phoneNumbers[0].replace(/\s+/g, '')}`
+    phoneLink.textContent = config.phoneNumbers[0]
+  }
+
+  // Aplicar enlace de WhatsApp (wa.me)
+  const waLink = document.querySelector('a[href*="wa.me"]')
+  if (waLink && config.channelLinks && config.channelLinks.whatsapp) {
+    waLink.href = config.channelLinks.whatsapp
+    waLink.textContent = t('footer.waChat')
+  }
+
+  // Aplicar enlace de Telegram (t.me)
+  const tgLink = document.querySelector('a[href*="t.me"]:not([href*="channel"])')
+  if (tgLink && config.usernames && config.usernames.telegram) {
+    tgLink.href = `https://t.me/${config.usernames.telegram.replace(/^@/, '')}`
+    tgLink.textContent = config.usernames.telegram
+  }
+
+  // Aplicar enlace de canal de WhatsApp
+  const waChannelLink = document.querySelector('a[href*="whatsapp.com/channel"]')
+  if (waChannelLink && config.channelLinks && config.channelLinks.whatsapp) {
+    waChannelLink.href = config.channelLinks.whatsapp
+  }
+
+  // Aplicar enlace de canal de Telegram
+  const tgChannelLinks = document.querySelectorAll('a[href*="t.me"]')
+  tgChannelLinks.forEach((link) => {
+    if (link.href.includes('channel') || (link.textContent && link.textContent.includes('SolarTwin'))) {
+      if (config.channelLinks && config.channelLinks.telegram) {
+        link.href = config.channelLinks.telegram
+      }
+    }
+  })
+}
+
+applySiteConfig()
+
 /* ---------- Aparición suave de los bloques ---------- */
 
 const revealItems = document.querySelectorAll('[data-reveal]')
