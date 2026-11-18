@@ -33,7 +33,7 @@
   --menu-bg: rgba(10, 8, 14, 0.98);
   --footer-bg: rgba(10, 8, 14, 0.7);
   --alt-bg: rgba(255, 255, 255, 0.022);
-  --orange-soft: #ffd7b8;
+  --orange-soft: color-mix(in srgb, var(--orange) 55%, #ffffff);
   --map-fill: #2c2439;
   --map-stroke: #634d7a;
   --orange: #ff7a00;
@@ -67,7 +67,7 @@
   --menu-bg: rgba(253, 250, 246, 0.99);
   --footer-bg: rgba(255, 250, 244, 0.85);
   --alt-bg: rgba(28, 16, 36, 0.03);
-  --orange-soft: #a63d00;
+  --orange-soft: color-mix(in srgb, var(--orange) 70%, #000000);
   --map-fill: #eee6f1;
   --map-stroke: #d5c8dc;
   color-scheme: light;

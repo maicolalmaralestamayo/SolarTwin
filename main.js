@@ -492,6 +492,128 @@ const translations = {
 }
 
 
+/* ---------- Valores derivados de config.js ---------- */
+
+const siteConfig = window.SOLARTWIN_CONFIG ?? {}
+
+const onlyDigits = (value) => String(value ?? '').replace(/\D/g, '')
+
+const toNumber = (value) => {
+  if (value === null || value === undefined || value === '') return null
+  const num = Number(value)
+  return Number.isFinite(num) ? num : null
+}
+
+const siteValues = (() => {
+  const names = Array.isArray(siteConfig.businessName) ? siteConfig.businessName : []
+  const first = String(names[0] ?? '').trim()
+  const second = String(names[1] ?? '').trim()
+
+  const code = onlyDigits(siteConfig.phoneNumber?.code)
+  const number = onlyDigits(siteConfig.phoneNumber?.number)
+  const phoneDigits = `${code}${number}`
+
+  const waUsername = String(siteConfig.usernames?.whatsapp ?? '')
+    .trim()
+    .replace(/^@+/, '')
+  const tgUsername = String(siteConfig.usernames?.telegram ?? '')
+    .trim()
+    .replace(/^@+/, '')
+
+  return {
+    first,
+    second,
+    fullName: `${first}${second}`.trim(),
+    phoneDigits,
+    phoneDisplay: phoneDigits ? `+${[code, number].filter(Boolean).join(' ')}` : '',
+    waUsername,
+    tgUsername,
+    waHandle: waUsername ? `@${waUsername}` : '',
+    tgHandle: tgUsername ? `@${tgUsername}` : '',
+    waChat: phoneDigits ? `https://wa.me/${phoneDigits}` : '',
+    tgChat: tgUsername ? `https://t.me/${tgUsername}` : '',
+    waChannel: String(siteConfig.channelLinkWhatsApp ?? '').trim(),
+    tgChannel: String(siteConfig.channelLinkTelegram ?? '').trim(),
+    years: toNumber(siteConfig.experienceYears),
+    specialists: toNumber(siteConfig.specialistsCount),
+    currencies: Array.isArray(siteConfig.paymentCurrencies)
+      ? siteConfig.paymentCurrencies
+      : [],
+    primary: String(siteConfig.colors?.primary ?? '').trim(),
+    accent: String(siteConfig.colors?.accent ?? '').trim(),
+  }
+})()
+
+// Sustituye nombre, teléfono, años y especialistas dentro de cualquier texto.
+const applyConfigToText = (value) => {
+  let text = value
+
+  if (siteValues.fullName) {
+    text = text.replace(
+      /(<span class="solar">)[^<]*(<\/span><span class="twin">)[^<]*(<\/span>)/g,
+      (_match, open, middle, close) =>
+        `${open}${siteValues.first}${middle}${siteValues.second}${close}`
+    )
+    text = text.replace(/SolarTwin/g, siteValues.fullName)
+  }
+
+  if (siteValues.phoneDisplay) {
+    text = text.replace(/\+\d{1,3}(?:\s\d{2,4}){1,3}/g, siteValues.phoneDisplay)
+  }
+
+  if (siteValues.years !== null) {
+    text = text
+      .replace(/(\+\s*)\d+(\s*(?:años|years))/gi, (_m, sign, tail) => `${sign}${siteValues.years}${tail}`)
+      .replace(
+        /((?:más de|over|more than)\s+)\d+(\s*(?:años|years))/gi,
+        (_m, lead, tail) => `${lead}${siteValues.years}${tail}`
+      )
+  }
+
+  if (siteValues.specialists !== null) {
+    text = text
+      .replace(
+        /(\+\s*)\d+(\s*(?:especialistas|specialists))/gi,
+        (_m, sign, tail) => `${sign}${siteValues.specialists}${tail}`
+      )
+      .replace(
+        /((?:más de|over|more than)\s+)\d+(\s*(?:especialistas|specialists))/gi,
+        (_m, lead, tail) => `${lead}${siteValues.specialists}${tail}`
+      )
+  }
+
+  return text
+}
+
+// Vuelca los valores de config.js en los textos de los dos idiomas.
+const applyConfigToTranslations = () => {
+  Object.entries(translations).forEach(([code, dict]) => {
+    Object.keys(dict).forEach((key) => {
+      if (typeof dict[key] === 'string') dict[key] = applyConfigToText(dict[key])
+    })
+
+    if (siteValues.waHandle) dict['contact.waText'] = siteValues.waHandle
+    if (siteValues.tgHandle) dict['contact.tgText'] = siteValues.tgHandle
+    if (siteValues.phoneDisplay) dict['contact.callText'] = siteValues.phoneDisplay
+
+    const count = siteValues.currencies.length
+    if (count) {
+      dict['pay.currenciesTitle'] =
+        code === 'en'
+          ? `${count} ${count === 1 ? 'currency' : 'currencies'} available`
+          : `${count} ${count === 1 ? 'moneda disponible' : 'monedas disponibles'}`
+
+      ;['pay.usd', 'pay.eur', 'pay.cup'].forEach((key, index) => {
+        if (dict[key] !== undefined && siteValues.currencies[index]) {
+          dict[key] = siteValues.currencies[index].name
+        }
+      })
+    }
+  })
+}
+
+applyConfigToTranslations()
+
 const root = document.documentElement
 const THEME_KEY = 'solartwin-theme'
 const LANG_KEY = 'solartwin-lang'
@@ -874,92 +996,88 @@ applyLanguage(lang, false)
 /* ---------- Aplicar configuración del sitio desde config.js ---------- */
 
 const applySiteConfig = () => {
-  const config = window.SOLARTWIN_CONFIG ?? {}
+  const root = document.documentElement
 
-  // Aplicar nombre del negocio a todas las marcas del sitio
-  const brandFirst = (config.businessName && config.businessName[0]) || ''
-  const brandSecond = (config.businessName && config.businessName[1]) || ''
+  // Colores de identidad: primario y de énfasis
+  if (siteValues.primary) {
+    root.style.setProperty('--orange', siteValues.primary)
+  }
+  if (siteValues.accent) {
+    root.style.setProperty('--fuchsia', siteValues.accent)
+    root.style.setProperty('--purple', siteValues.accent)
+  }
+
+  // Nombre del negocio (businessName[0] + businessName[1])
   document.querySelectorAll('.brand-name, .brand-word').forEach((brand) => {
     const solar = brand.querySelector('.solar')
     const twin = brand.querySelector('.twin')
-    if (solar) solar.textContent = brandFirst
-    if (twin) twin.textContent = brandSecond
+    if (solar && siteValues.first) solar.textContent = siteValues.first
+    if (twin && siteValues.second) twin.textContent = siteValues.second
   })
 
-  // Aplicar color de énfasis (accent) a las variables CSS
-  const root = document.documentElement
-  if (root && config.colors && config.colors.accent) {
-    root.style.setProperty('--purple', config.colors.accent)
-  }
-
-  // Aplicar color primario a las variables CSS (ya se hace abajo)
-  if (root && config.colors && config.colors.primary) {
-    root.style.setProperty('--orange', config.colors.primary)
-  }
-
-  const phone = (config.phoneNumbers && config.phoneNumbers[0]) || ''
-  const phoneDigits = phone.replace(/\D/g, '')
-  const tgUser = (config.usernames && config.usernames.telegram) || ''
-  const tgHandle = tgUser.replace(/^@/, '')
-  const waUser = (config.usernames && config.usernames.whatsapp) || ''
+  const phone = siteValues.phoneDisplay
+  const phoneDigits = siteValues.phoneDigits
+  const tgUser = siteValues.tgHandle
+  const waUser = siteValues.waHandle
 
   // Enlaces: SOLO se cambia el href, nunca el HTML interno de las tarjetas
-  document.querySelectorAll('a.channel-call').forEach((link) => {
-    if (phoneDigits) link.href = `tel:+${phoneDigits}`
-  })
-
-  document.querySelectorAll('a.channel-wa').forEach((link) => {
-    if (config.channelLinks && config.channelLinks.whatsapp) {
-      link.href = config.channelLinks.whatsapp
-    }
-  })
-
-  document.querySelectorAll('a.channel-tg').forEach((link) => {
-    if (tgHandle) link.href = `https://t.me/${tgHandle}`
-  })
-
-  // Tarjetas de canales (pills convertidas en tarjetas)
-  document.querySelectorAll('a.channel-wa-channel').forEach((link) => {
-    if (config.channelLinkWhatsApp) link.href = config.channelLinkWhatsApp
-  })
-  document.querySelectorAll('a.channel-tg-channel').forEach((link) => {
-    if (config.channelLinkTelegram) link.href = config.channelLinkTelegram
-  })
-
-  // Resto de enlaces wa.me del sitio (hero, CTAs) conservando el mensaje
-  document.querySelectorAll('a[href*="wa.me"]:not(.channel-wa)').forEach((link) => {
-    if (!phoneDigits) return
-    try {
-      const url = new URL(link.href)
-      url.pathname = `/${phoneDigits}`
-      link.href = url.toString()
-    } catch (err) {
-      link.href = `https://wa.me/${phoneDigits}`
-    }
-  })
-
-  // Resto de enlaces t.me del sitio (no tarjetas) conservando parámetros
-  document.querySelectorAll('a[href*="t.me"]:not(.channel-tg):not(.channel-pill)').forEach((link) => {
-    if (!tgHandle) return
-    try {
-      const url = new URL(link.href)
-      url.pathname = `/${tgHandle}`
-      link.href = url.toString()
-    } catch (err) {
-      link.href = `https://t.me/${tgHandle}`
-    }
-  })
-
-  // Enlaces tel: que no son la tarjeta de llamada
-  document.querySelectorAll('a[href^="tel:"]:not(.channel-call)').forEach((link) => {
+  document.querySelectorAll('a[href^="tel:"]').forEach((link) => {
     if (!phoneDigits) return
     link.href = `tel:+${phoneDigits}`
-    if (/^[+\d\s()-]+$/.test(link.textContent.trim())) {
+    if (phone && /^[+\d\s()-]+$/.test(link.textContent.trim())) {
       link.textContent = phone
     }
   })
 
-  // Textos de las tarjetas (solo el subtítulo)
+  // Chat privado de WhatsApp: https://wa.me/ + código + número (conserva el mensaje)
+  document.querySelectorAll('a[href*="wa.me"]').forEach((link) => {
+    if (!phoneDigits) return
+    try {
+      const url = new URL(link.href)
+      url.pathname = `/${phoneDigits}`
+      if (siteValues.fullName) {
+        url.search = url.search.replace(/SolarTwin/gi, encodeURIComponent(siteValues.fullName))
+      }
+      link.href = url.toString()
+    } catch (err) {
+      link.href = siteValues.waChat
+    }
+  })
+
+  // Chat privado de Telegram: https://t.me/ + usuario
+  document.querySelectorAll('a[href*="t.me"]:not(.channel-tg-channel)').forEach((link) => {
+    if (!siteValues.tgUsername) return
+    try {
+      const url = new URL(link.href)
+      url.pathname = `/${siteValues.tgUsername}`
+      link.href = url.toString()
+    } catch (err) {
+      link.href = siteValues.tgChat
+    }
+  })
+
+  // Canales de difusión: enlaces directos de config.js
+  document.querySelectorAll('a.channel-wa-channel').forEach((link) => {
+    if (siteValues.waChannel) link.href = siteValues.waChannel
+  })
+  document.querySelectorAll('a.channel-tg-channel').forEach((link) => {
+    if (siteValues.tgChannel) link.href = siteValues.tgChannel
+  })
+
+  // Nombre del negocio dentro del enlace de correo (asunto y cuerpo)
+  if (siteValues.fullName) {
+    document.querySelectorAll('a[href^="mailto:"]').forEach((link) => {
+      const href = link.getAttribute('href') || ''
+      if (/SolarTwin/i.test(href)) {
+        link.setAttribute(
+          'href',
+          href.replace(/SolarTwin/gi, encodeURIComponent(siteValues.fullName))
+        )
+      }
+    })
+  }
+
+  // Textos de las tarjetas de contacto (solo el subtítulo)
   const contactWaText = document.querySelector('small[data-i18n="contact.waText"]')
   if (contactWaText && waUser) contactWaText.textContent = waUser
 
@@ -969,21 +1087,15 @@ const applySiteConfig = () => {
   const callText = document.querySelector('small[data-i18n="contact.callText"]')
   if (callText && phone) callText.textContent = phone
 
-  // Aplicar años de experiencia al badge-exp
-  const expBadgeSpan = document.querySelector('.badge-exp span')
-  if (expBadgeSpan && config.experienceYears) {
-    expBadgeSpan.textContent = `+${config.experienceYears}`
+  // Años de experiencia: insignia sobre la foto del equipo
+  if (siteValues.years !== null) {
+    document.querySelectorAll('.badge-exp span').forEach((el) => {
+      el.textContent = `+${siteValues.years}`
+    })
   }
 
-  // Aplicar años de experiencia al estadístico hero (data-i18n)
-  const expStatValue = document.querySelector('[data-i18n="hero.statExpValue"]')
-  if (expStatValue && config.experienceYears) {
-    expStatValue.textContent = `+${config.experienceYears} años`
-  }
-
-  // Reemplazar "SolarTwin" en los textos visibles por el nombre configurado
-  const businessNameFull = `${brandFirst} ${brandSecond}`.trim()
-  if (businessNameFull) {
+  // Reemplazar el nombre anterior en los textos visibles por el configurado
+  if (siteValues.fullName) {
     const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT)
     const textNodes = []
     while (walker.nextNode()) textNodes.push(walker.currentNode)
@@ -991,25 +1103,26 @@ const applySiteConfig = () => {
       const tag = node.parentElement ? node.parentElement.tagName : ''
       if (tag === 'SCRIPT' || tag === 'STYLE') return
       if (/SolarTwin/i.test(node.nodeValue)) {
-        node.nodeValue = node.nodeValue.replace(/SolarTwin/gi, businessNameFull)
+        node.nodeValue = node.nodeValue.replace(/SolarTwin/gi, siteValues.fullName)
       }
     })
   }
 
-  // Aplicar cantidad de especialistas al estadístico de hero
-  const specValue = document.querySelector('[data-i18n="hero.statSpecialistsValue"]')
-  if (specValue && config.specialistsCount) {
-    specValue.textContent = `${config.specialistsCount}+ especialistas`
+  // Monedas de pago: código y nombre desde paymentCurrencies
+  const payCoins = document.querySelector('.pay-coins')
+  if (payCoins && siteValues.currencies.length) {
+    payCoins.replaceChildren(
+      ...siteValues.currencies.map((currency) => {
+        const item = document.createElement('li')
+        const codeEl = document.createElement('strong')
+        codeEl.textContent = String(currency.code ?? '')
+        const nameEl = document.createElement('span')
+        nameEl.textContent = String(currency.name ?? '')
+        item.append(codeEl, nameEl)
+        return item
+      })
+    )
   }
-
-  // Aplicar nombres de monedas dinámicos al .pay-coins
-  const payCoins = document.querySelectorAll('.pay-coins li')
-  payCoins.forEach((coinLi, index) => {
-    const coinNameSpan = coinLi.querySelector('span[data-i18n]')
-    if (coinNameSpan && config.paymentCurrencies && config.paymentCurrencies[index]) {
-      coinNameSpan.textContent = config.paymentCurrencies[index].name
-    }
-  })
 }
 
 applySiteConfig()
