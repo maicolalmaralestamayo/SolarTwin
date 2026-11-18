@@ -87,12 +87,11 @@ El **pago** se realiza en efectivo y después de completado el trabajo; no se pi
 
 ## Fotos y licencias
 
-Las tres fotos muestran paneles montados sobre techos y azoteas de hormigón. Están recortadas en cuadrado y optimizadas en `img/`:
+Las dos fotos muestran paneles montados sobre techos y azoteas de hormigón. Están recortadas en cuadrado y optimizadas en `img/`:
 
 | Archivo | Autor | Licencia | Fuente |
 | --- | --- | --- | --- |
-| `techos-santiago.jpg` | Escla | CC BY-SA 4.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Solar_panels_in_Santiago_de_Cuba_2026-07.jpg) |
-| `montaje-techo.jpg` | Kristian Buus / 1010 Climate Action | CC BY 2.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Solar_panel_installation_at_Grange_farm.jpg) |
-| `techos-paneles.jpg` | Raysonho | CC0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:RooftopSolarPanelsMarkham3.jpg) |
+| `imagen-1.jpg` | Escla | CC BY-SA 4.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Solar_panels_in_Santiago_de_Cuba_2026-07.jpg) |
+| `imagen-2.jpg` | Raysonho | CC0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:RooftopSolarPanelsMarkham3.jpg) |
 
-Las atribuciones aparecen en el pie de página. Si sustituyes una foto, actualiza también ese crédito o elimina la línea si la nueva imagen no lo necesita. La foto de Santiago de Cuba es CC BY-SA 4.0: sus versiones recortadas conservan esa licencia.
+Si sustituyes una foto, actualiza también su crédito o elimina la línea si la nueva imagen no lo necesita. La foto de Santiago de Cuba es CC BY-SA 4.0: sus versiones recortadas conservan esa licencia.

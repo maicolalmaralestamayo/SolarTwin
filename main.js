@@ -100,7 +100,7 @@ const translations = {
       'Elegimos el día, hacemos el trabajo y te explicamos cómo usar el sistema.',
     'process.caption': 'Montaje en Palma Soriano y toda la provincia',
     'process.alt':
-      'Paneles solares sobre el techo de una casa de barrio en Santiago de Cuba, junto a tanques de agua',
+      'Paneles solares instalados sobre el techo de un edificio de varios pisos, bajo un cielo despejado',
     'config.businessNameLabel': 'Nombre del negocio',
     'config.businessNameFirst': 'Primera parte',
     'config.businessNameSecond': 'Segunda parte',
@@ -181,7 +181,7 @@ const translations = {
     'contact.callText': '+53 5078 1823',
     'contact.mailName': 'Correo',
     'contact.mailText': 'twin.technology.startup@gmail.com',
-    'contact.channelsLabel': 'Nuestros canales',
+    'contact.channelsLabel': 'Mira nuestros trabajos en nuestras plataformas sociales',
     'contact.waChannel': 'Canal de WhatsApp',
     'contact.tgChannel': 'Canal de Telegram',
     'config.footerBusinessLabel': 'Negocio',
@@ -301,7 +301,7 @@ const translations = {
       'We pick the day, do the work and show you how to use the system.',
     'process.caption': 'Installations in Palma Soriano and across the province',
     'process.alt':
-      'Solar panels on the roof of a neighbourhood house in Santiago de Cuba, next to water tanks',
+      'Solar panels installed on the roof of a multi-storey building under a clear sky',
     'process.splitYouKicker': 'You provide',
     'process.splitYouTitle': 'The panels and solar cables',
     'process.splitYouText':
@@ -365,7 +365,7 @@ const translations = {
     'contact.callText': '+53 5078 1823',
     'contact.mailName': 'Email',
     'contact.mailText': 'twin.technology.startup@gmail.com',
-    'contact.channelsLabel': 'Our channels',
+    'contact.channelsLabel': 'See our work on our social platforms',
     'contact.waChannel': 'WhatsApp channel',
     'contact.tgChannel': 'Telegram channel',
     'config.footerBusinessLabel': 'Business',
