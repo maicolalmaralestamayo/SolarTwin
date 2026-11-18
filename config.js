@@ -24,21 +24,18 @@ window.SOLARTWIN_CONFIG = {
     whatsapp: 'https://wa.me/5350781823',
     telegram: 'https://t.me/TwinTechnologyStartup'
   },
-  // Monedas de pago con nombre y símbolo
+  // Monedas de pago por nombre (los símbolos se omiten)
   paymentCurrencies: [
     {
       name: 'Dólar',
-      symbol: '$',
       code: 'USD'
     },
     {
       name: 'Euro',
-      symbol: '€',
       code: 'EUR'
     },
     {
       name: 'CUP',
-      symbol: 'CUP',
       code: 'CUP'
     }
   ]

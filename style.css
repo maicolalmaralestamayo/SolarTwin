@@ -1914,14 +1914,11 @@ p {
   font-size: 0.72rem;
   color: var(--muted);
   text-align: center;
-  width: 1.2em;
-}
-
-.pay-coins .currency-symbol {
-  font-size: 1.5rem;
-  font-family: 'Space Grotesk', sans-serif;
-  color: var(--orange);
-  margin-bottom: 0.2rem;
+  width: auto;
+  max-width: 8ch;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .pay-card .pay-note {
