@@ -21,7 +21,6 @@ const translations = {
 
     'nav.advantages': 'Nosotros',
     'nav.process': 'Ustedes',
-    'nav.team': 'Equipo',
     'nav.ops': 'Operaciones',
     'nav.payment': 'Pago',
     'nav.contact': 'Contáctanos',
@@ -233,9 +232,6 @@ const translations = {
     'contact.channelsLabel': 'Nuestros canales',
     'contact.waChannel': 'Canal de WhatsApp',
     'contact.tgChannel': 'Canal de Telegram',
-    'contact.mailNote':
-      'Al pulsar el correo se abre tu app de email con el mensaje ya escrito. Solo tienes que completarlo y enviarlo.',
-
     'config.footerBusinessLabel': 'Negocio',
     'config.footerYearsLabel': 'Años',
     'config.footerSpecialistsLabel': 'Especialistas',
@@ -274,7 +270,6 @@ const translations = {
 
     'nav.advantages': 'About us',
     'nav.process': 'For you',
-    'nav.team': 'Team',
     'nav.ops': 'Operations',
     'nav.payment': 'Payment',
     'nav.contact': 'Contact us',
@@ -469,9 +464,6 @@ const translations = {
     'contact.channelsLabel': 'Our channels',
     'contact.waChannel': 'WhatsApp channel',
     'contact.tgChannel': 'Telegram channel',
-    'contact.mailNote':
-      'Tapping the email opens your mail app with the message already written. You only need to complete it and send it.',
-
     'config.footerBusinessLabel': 'Business',
     'config.footerYearsLabel': 'Years',
     'config.footerSpecialistsLabel': 'Specialists',

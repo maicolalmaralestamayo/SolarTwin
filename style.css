@@ -1274,6 +1274,12 @@ p {
 
 /* ---------- Equipo ---------- */
 
+.hero-team {
+  margin-top: clamp(3rem, 6vw, 4.5rem);
+  padding-top: clamp(2.5rem, 5vw, 3.5rem);
+  border-top: 1px solid var(--line);
+}
+
 .team-grid {
   display: grid;
   grid-template-columns: 0.9fr 1.1fr;
@@ -1703,14 +1709,6 @@ p {
   font-weight: 700;
 }
 
-.mail-note {
-  margin: 1.4rem auto 0;
-  max-width: 54ch;
-  text-align: center;
-  font-size: 0.84rem;
-  color: var(--muted-2);
-}
-
 /* ---------- Footer ---------- */
 
 .site-footer {
@@ -1756,6 +1754,13 @@ p {
   padding: 1.15rem 0;
   font-size: 0.8rem;
   color: var(--muted-2);
+}
+
+.footer-year {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
 }
 
 .footer-links a {
@@ -1906,10 +1911,9 @@ p {
   color: var(--muted);
   text-align: center;
   width: auto;
-  max-width: 8ch;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  max-width: none;
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 
 .pay-card .pay-note {
