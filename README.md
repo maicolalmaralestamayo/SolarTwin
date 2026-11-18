@@ -48,13 +48,13 @@ No hace falta `.htaccess` ni activar módulos adicionales: Apache sirve `index.h
 
 ## Editar contenido
 
-- Textos en español: directamente en `index.html` y en el diccionario `es` de `main.js`.
-- Textos en inglés: diccionario `en` de `main.js`.
+- Textos: directamente en `index.html` y en el diccionario `es` de `main.js`.
+- El sitio tiene un solo idioma (español): no hay selector de idioma ni versiones traducidas.
 - Colores y estilos: `style.css`.
 - Precio de cada panel para la calculadora: `config.js` (ver más abajo).
 - Fotos: reemplaza los archivos de `img/` manteniendo los nombres, o cambia la ruta en `index.html`.
 - El tema oscuro se aplica por defecto; el menú de tema de la cabecera permite pasar a claro o automático (según el sistema) y la preferencia se guarda en el navegador.
-- El selector de idioma funciona igual que el de tema: un botón redondo en la cabecera abre un menú con Español e English. Añadir un idioma nuevo implica crear su diccionario en `main.js` y un botón con `data-lang-set` en ese menú.
+
 
 El menú principal enlaza a las secciones con estos nombres visibles:
 
@@ -69,7 +69,7 @@ La sección de equipo ya no existe: de ella solo queda, como nota dentro de la p
 
 ## Aportes del cliente y de la empresa
 
-Dentro de **Proceso** (`#proceso`), el panel “Tú aportas / Nosotros aportamos” deja claro el reparto: el cliente provee los paneles y los cables solares, y SolarTwin aporta la mano de obra para el montaje de las bases. Si cambia el reparto, actualiza el HTML y las claves `process.splitYou*` y `process.splitWe*` de los diccionarios `es` y `en`.
+Dentro de **Proceso** (`#proceso`), el panel “Tú aportas / Nosotros aportamos” deja claro el reparto: el cliente provee los paneles y los cables solares, y SolarTwin aporta la mano de obra para el montaje de las bases. Si cambia el reparto, actualiza el HTML y las claves `process.splitYou*` y `process.splitWe*` del diccionario `es`.
 
 ## Calculadora de paneles
 
@@ -92,6 +92,6 @@ Las dos fotos muestran paneles montados sobre techos y azoteas de hormigón. Est
 | Archivo | Autor | Licencia | Fuente |
 | --- | --- | --- | --- |
 | `imagen-1.jpg` | Escla | CC BY-SA 4.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Solar_panels_in_Santiago_de_Cuba_2026-07.jpg) |
-| `imagen-2.jpg` | Raysonho | CC0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:RooftopSolarPanelsMarkham3.jpg) |
+| `imagen-2.jpg` | UnifiedFunctionality | CC BY-SA 4.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Solar_panel_power_station_in_Cuba.jpg) |
 
 Si sustituyes una foto, actualiza también su crédito o elimina la línea si la nueva imagen no lo necesita. La foto de Santiago de Cuba es CC BY-SA 4.0: sus versiones recortadas conservan esa licencia.

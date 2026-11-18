@@ -281,7 +281,7 @@ p {
   font-weight: 500;
 }
 
-/* ---------- Ajustes de tema e idioma ---------- */
+/* ---------- Ajustes de tema ---------- */
 
 .header-tools {
   display: flex;
@@ -291,7 +291,7 @@ p {
   flex: none;
 }
 
-/* Selector de tema e idioma desplegables */
+/* Selector de tema desplegable */
 
 .theme-picker {
   position: relative;
@@ -387,34 +387,6 @@ p {
 
 .theme-menu button[aria-checked='true'] svg {
   color: var(--orange);
-}
-
-.lang-current {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-}
-
-.lang-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 22px;
-  height: 16px;
-  flex: none;
-  border-radius: 4px;
-  border: 1px solid var(--line-strong);
-  color: var(--muted);
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.58rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-}
-
-.theme-menu button[aria-checked='true'] .lang-badge {
-  color: var(--orange);
-  border-color: color-mix(in srgb, var(--orange) 55%, transparent);
 }
 
 .nav > a:not(.btn) {

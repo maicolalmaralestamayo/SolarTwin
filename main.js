@@ -10,7 +10,6 @@ const translations = {
     'a11y.menuOpen': 'Abrir menú',
     'a11y.menuClose': 'Cerrar menú',
     'a11y.theme': 'Tema',
-    'a11y.lang': 'Idioma',
     'a11y.map':
       'Mapa de Cuba con la provincia de Santiago de Cuba resaltada y Palma Soriano marcada',
     'a11y.toTop': 'Volver al inicio',
@@ -100,7 +99,7 @@ const translations = {
       'Elegimos el día, hacemos el trabajo y te explicamos cómo usar el sistema.',
     'process.caption': 'Montaje en Palma Soriano y toda la provincia',
     'process.alt':
-      'Paneles solares instalados sobre el techo de un edificio de varios pisos, bajo un cielo despejado',
+      'Panel solar instalado en el patio de una casa de campo cubana, con techo de zinc y montañas al fondo',
     'config.businessNameLabel': 'Nombre del negocio',
     'config.businessNameFirst': 'Primera parte',
     'config.businessNameSecond': 'Segunda parte',
@@ -200,189 +199,6 @@ const translations = {
     'footer.photos': 'Fotos:',
   },
 
-  en: {
-    'meta.title': 'SolarTwin · Panel installation',
-    'meta.description':
-      'SolarTwin installs solar panels in Santiago de Cuba and every municipality. A group of friends with over 5 years of experience, warranty and the best prices on the market.',
-
-    'a11y.skip': 'Skip to content',
-    'a11y.brandHome': 'SolarTwin, home',
-    'a11y.mainNav': 'Main navigation',
-    'a11y.menuOpen': 'Open menu',
-    'a11y.menuClose': 'Close menu',
-    'a11y.theme': 'Theme',
-    'a11y.lang': 'Language',
-    'a11y.map':
-      'Map of Cuba with Santiago de Cuba province highlighted and Palma Soriano marked',
-    'a11y.toTop': 'Back to top',
-
-    'theme.auto': 'Automatic',
-    'theme.light': 'Light',
-    'theme.dark': 'Dark',
-
-    'nav.process': 'Process',
-    'nav.ops': 'About us',
-    'nav.payment': 'Payment',
-    'nav.contact': 'Contact us',
-    'config.businessName': 'Business name',
-    'config.businessName2': 'Second part',
-    'config.colors': 'Brand colors',
-    'config.colorsPrimary': 'Primary color',
-    'config.colorsAccent': 'Accent color',
-    'config.experienceYears': 'Years of experience',
-    'config.specialistsCount': 'Specialists count',
-    'config.phoneNumbers': 'Phone numbers',
-    'config.usernameWhatsapp': 'WhatsApp username',
-    'config.usernameTelegram': 'Telegram username',
-    'config.channelWhatsapp': 'WhatsApp link',
-    'config.channelTelegram': 'Telegram link',
-    'config.paymentCurrencies': 'Payment currencies',
-    'config.paymentUsd': 'USD',
-    'config.paymentEur': 'EUR',
-    'config.paymentCup': 'CUP',
-
-    'hero.eyebrow': 'Santiago de Cuba · Every municipality',
-    'hero.title':
-      'The sun works for you.<br /><span class="grad-text">We connect it.</span>',
-    'hero.lead':
-      "We're <span class=\"brand-word\"><span class=\"solar\">Solar</span><span class=\"twin\">Twin</span></span>, a group of friends based in Palma Soriano. We install solar panels across Santiago de Cuba province, with warranty, safety and the best prices on the market.",
-    'hero.ctaWa': 'Get a price on WhatsApp',
-    'hero.ctaCall': 'Call +53 5078 1823',
-    'hero.statExpLabel': 'Experience',
-    'hero.statExpValue': '+5 years',
-    'hero.statCoverageLabel': 'Coverage',
-    'hero.statCoverageValue': '9 municipalities',
-    'hero.statSpecialistsLabel': 'Team',
-    'hero.statSpecialistsValue': '+10 specialists',
-    'hero.alt':
-      'Solar panels installed on the concrete rooftops of a Santiago de Cuba neighbourhood',
-    'hero.photoTag': 'Clean energy, every day',
-    'hero.float1Title': 'The team',
-    'hero.float1Text': 'Friends, not just partners',
-    'hero.float2Text': 'Our base of operations',
-
-    'marquee.guarantee': 'Warranty',
-    'marquee.quality': 'Quality',
-    'marquee.safety': 'Safety',
-    'marquee.optimization': 'Optimization',
-    'marquee.prices': 'Best prices',
-    'marquee.coverage': 'Santiago de Cuba',
-
-    'process.promisesTitle': 'Four commitments behind every step',
-    'process.promise1Title': 'Warranty',
-    'process.promise1Text':
-      "Every installation is backed in writing. If something isn't working as it should, we come back and fix it.",
-    'process.promise2Title': 'Quality',
-    'process.promise2Text':
-      'Durable materials and careful finishes, built to last for years under sun and rain.',
-    'process.promise3Title': 'Safety',
-    'process.promise3Text':
-      'We install to electrical and working-at-height standards, keeping your family, your equipment and your roof protected.',
-    'process.promise4Title': 'Optimization',
-    'process.promise4Text':
-      'We match the number and position of the panels to your real consumption, so you never overpay or come up short.',
-
-    'process.eyebrow': 'Process',
-    'process.title':
-      'From the first call to your <span class="grad-text">panels switched on</span>',
-    'process.subtitle':
-      'A clear process, no surprises, and one question: how do we reach you?',
-    'process.s1Title': 'You contact us',
-    'process.s1Text':
-      'Message us on WhatsApp or Telegram, or give us a call. Tell us what you need.',
-    'process.s2Title': 'We visit your space',
-    'process.s2Text':
-      'We come to the site, take measurements and plan where the panels and wiring will go.',
-    'process.s3Title': 'We source the materials and set the price',
-    'process.s3Text':
-      'We buy only the resources we need, using the best materials, and give you a fixed price with the best prices on the market.',
-    'process.s4Title': 'We set the date and install',
-    'process.s4Text':
-      'We pick the day, do the work and show you how to use the system.',
-    'process.caption': 'Installations in Palma Soriano and across the province',
-    'process.alt':
-      'Solar panels installed on the roof of a multi-storey building under a clear sky',
-    'process.splitYouKicker': 'You provide',
-    'process.splitYouTitle': 'The panels and solar cables',
-    'process.splitYouText':
-      'The client (you) provides the panels and solar cables that are going to be installed.',
-    'process.splitWeKicker': 'We provide',
-    'process.splitWeTitle': 'The labour for the installation',
-    'process.splitWeText': 'SolarTwin provides the labour to mount the bases.',
-
-    'team.note':
-      'The team is made up of electrical engineering and metalworking specialists, most of them young. That mix lets us take care of both the electrical side and the structure and installation, without depending on third parties.',
-
-    'ops.eyebrow': 'About us',
-    'ops.title': "We're right <span class=\"grad-text\">where you are</span>",
-    'ops.subtitle':
-      "We're a team from Palma Soriano working exclusively in Santiago de Cuba province, where we reach every municipality. Your visit never carries a distance surcharge.",
-    'ops.cta': 'Check my municipality',
-    'ops.mapActive': 'Santiago de Cuba — service area',
-    'ops.mapBase': 'Palma Soriano — team base',
-    'ops.headStrong': 'Santiago de Cuba province',
-    'ops.headSmall': '9 municipalities · based in Palma Soriano',
-    'ops.municipalities': 'All 9 municipalities we cover',
-
-    'pay.eyebrow': 'Payment options',
-    'pay.title': 'Pay <span class="grad-text">however you prefer</span>',
-    'pay.subtitle':
-      'We accept cash payments, and you can pay in whichever currency is easiest for you.',
-    'pay.methodKicker': 'Payment method',
-    'pay.methodTitle': 'In cash',
-    'pay.methodText':
-      'The installation is paid in cash, directly to the team, and always after the work is finished.',
-    'pay.noAdvance': 'No advance payment: you pay once the work is done.',
-    'pay.currenciesKicker': 'Payment currencies',
-    'pay.currenciesTitle': 'Three currencies available',
-    'pay.usd': 'US Dollar',
-    'pay.eur': 'Euro',
-    'pay.cup': 'Cuban Peso',
-    'pay.cupRate':
-      'Our prices are quoted in USD. If you pay in another currency, the reference exchange rate is <a href="https://eltoque.com/" target="_blank" rel="noopener">elToque</a>.',
-    'pay.calcKicker': 'Panel calculator',
-    'pay.calcTitle': 'What will your panels cost?',
-    'pay.calcText':
-      'Enter how many panels you need. The base price is per panel and shown in USD, the base currency.',
-    'pay.calcPriceLabel': 'Price per panel:',
-    'pay.calcCountLabel': 'Number of panels',
-    'pay.calcPlaceholder': 'e.g. 6',
-    'pay.calcButton': 'Calculate',
-    'pay.calcError': 'Enter a whole number between 1 and 500 panels.',
-    'pay.calcResultLabel': 'Estimated cost',
-    'pay.calcDisclaimer':
-      'Approximate calculation. The final price depends on market prices for materials and on installation conditions.',
-
-    'contact.eyebrow': "Let's talk",
-    'contact.title': 'Your price starts with <span class="grad-text">a message</span>',
-    'contact.subtitle':
-      "Write to us on whichever channel you prefer. We'll reply as soon as we can, with no obligation.",
-    'contact.waName': 'WhatsApp',
-    'contact.waText': '@TwinTechnologyStartup',
-    'contact.tgName': 'Telegram',
-    'contact.tgText': '@TwinTechnologyStartup',
-    'contact.callName': 'Phone call',
-    'contact.callText': '+53 5078 1823',
-    'contact.mailName': 'Email',
-    'contact.mailText': 'twin.technology.startup@gmail.com',
-    'contact.channelsLabel': 'See our work on our social platforms',
-    'contact.waChannel': 'WhatsApp channel',
-    'contact.tgChannel': 'Telegram channel',
-    'config.footerBusinessLabel': 'Business',
-    'config.footerYearsLabel': 'Years',
-    'config.footerSpecialistsLabel': 'Specialists',
-    'config.footerPhonesLabel': 'Phones',
-    'config.footerUsernameLabel': 'Usernames',
-    'config.footerChannelsLabel': 'Channels',
-    'config.footerPaymentCurrenciesLabel': 'Currencies',
-
-    'footer.about': 'Solar power for Santiago de Cuba. A group of friends who do things right.',
-    'footer.waChat': 'WhatsApp',
-    'footer.tgChat': 'Telegram',
-    'footer.waChannel': 'WhatsApp channel',
-    'footer.tgChannel': 'Telegram channel',
-    'footer.photos': 'Photos:',
-  },
 }
 
 
@@ -480,46 +296,39 @@ const applyConfigToText = (value) => {
   return text
 }
 
-// Vuelca los valores de config.js en los textos de los dos idiomas.
-const applyConfigToTranslations = () => {
-  Object.entries(translations).forEach(([code, dict]) => {
-    Object.keys(dict).forEach((key) => {
-      if (typeof dict[key] === 'string') dict[key] = applyConfigToText(dict[key])
-    })
+// Vuelca los valores de config.js en los textos del sitio.
+const applyConfigToTexts = () => {
+  const dict = translations.es
 
-    if (siteValues.waHandle) dict['contact.waText'] = siteValues.waHandle
-    if (siteValues.tgHandle) dict['contact.tgText'] = siteValues.tgHandle
-    if (siteValues.phoneDisplay) dict['contact.callText'] = siteValues.phoneDisplay
-
-    const count = siteValues.currencies.length
-    if (count) {
-      dict['pay.currenciesTitle'] =
-        code === 'en'
-          ? `${count} ${count === 1 ? 'currency' : 'currencies'} available`
-          : `${count} ${count === 1 ? 'moneda disponible' : 'monedas disponibles'}`
-
-      ;['pay.usd', 'pay.eur', 'pay.cup'].forEach((key, index) => {
-        if (dict[key] !== undefined && siteValues.currencies[index]) {
-          dict[key] = siteValues.currencies[index].name
-        }
-      })
-    }
+  Object.keys(dict).forEach((key) => {
+    if (typeof dict[key] === 'string') dict[key] = applyConfigToText(dict[key])
   })
+
+  if (siteValues.waHandle) dict['contact.waText'] = siteValues.waHandle
+  if (siteValues.tgHandle) dict['contact.tgText'] = siteValues.tgHandle
+  if (siteValues.phoneDisplay) dict['contact.callText'] = siteValues.phoneDisplay
+
+  const count = siteValues.currencies.length
+  if (count) {
+    dict['pay.currenciesTitle'] =
+      `${count} ${count === 1 ? 'moneda disponible' : 'monedas disponibles'}`
+
+    ;['pay.usd', 'pay.eur', 'pay.cup'].forEach((key, index) => {
+      if (dict[key] !== undefined && siteValues.currencies[index]) {
+        dict[key] = siteValues.currencies[index].name
+      }
+    })
+  }
 }
 
-applyConfigToTranslations()
+applyConfigToTexts()
 
 const root = document.documentElement
 const THEME_KEY = 'solartwin-theme'
-const LANG_KEY = 'solartwin-lang'
 const themeMedia = window.matchMedia('(prefers-color-scheme: light)')
-const themePicker = document.querySelector('.theme-picker:not(.lang-picker)')
+const themePicker = document.querySelector('.theme-picker')
 const themeTrigger = themePicker?.querySelector('.theme-trigger') ?? null
 const themeMenu = themePicker?.querySelector('.theme-menu') ?? null
-const langPicker = document.querySelector('.lang-picker')
-const langTrigger = langPicker?.querySelector('.lang-trigger') ?? null
-const langMenu = langPicker?.querySelector('.lang-menu') ?? null
-const LANG_NAMES = { es: 'Español', en: 'English' }
 
 const readStored = (key, fallback) => {
   try {
@@ -540,9 +349,7 @@ const store = (key, value) => {
 let themeMode = readStored(THEME_KEY, 'dark')
 if (!['auto', 'light', 'dark'].includes(themeMode)) themeMode = 'dark'
 
-let lang = readStored(LANG_KEY, 'es') === 'en' ? 'en' : 'es'
-
-const t = (key) => translations[lang]?.[key] ?? translations.es[key] ?? ''
+const t = (key) => translations.es[key] ?? ''
 
 /* ---------- Tema claro, oscuro y automático ---------- */
 
@@ -588,40 +395,24 @@ if (themePicker && themeTrigger && themeMenu) {
   themeTrigger.addEventListener('click', (event) => {
     event.stopPropagation()
     const open = themeMenu.hidden
-    closeLangMenu()
     themeMenu.hidden = !open
     themeTrigger.setAttribute('aria-expanded', String(open))
   })
 }
 
-if (langPicker && langTrigger && langMenu) {
-  langTrigger.addEventListener('click', (event) => {
-    event.stopPropagation()
-    const open = langMenu.hidden
-    closeThemeMenu()
-    langMenu.hidden = !open
-    langTrigger.setAttribute('aria-expanded', String(open))
-  })
-}
-
 document.addEventListener('click', (event) => {
   if (!themePicker?.contains(event.target)) closeThemeMenu()
-  if (!langPicker?.contains(event.target)) closeLangMenu()
 })
 
 document.addEventListener('keydown', (event) => {
   if (event.key !== 'Escape') return
   closeThemeMenu()
-  closeLangMenu()
 })
 
-/* ---------- Español e inglés ---------- */
+/* ---------- Textos en español ---------- */
 
-const applyLanguage = (next, persist = true) => {
-  lang = translations[next] ? next : 'es'
-  const dict = translations[lang]
-
-  root.lang = lang
+const applyText = () => {
+  const dict = translations.es
 
   document.querySelectorAll('[data-i18n]').forEach((el) => {
     const value = dict[el.dataset.i18n]
@@ -654,25 +445,9 @@ const applyLanguage = (next, persist = true) => {
   if (description) description.setAttribute('content', dict['meta.description'])
   document.title = dict['meta.title']
 
-  document.querySelectorAll('[data-lang-set]').forEach((btn) => {
-    const active = btn.dataset.langSet === lang
-    btn.setAttribute('aria-pressed', String(active))
-    btn.setAttribute('aria-checked', String(active))
-  })
-
   updateMenuLabel()
   updateThemeLabel()
-  updateLangLabel()
-  if (persist) store(LANG_KEY, lang)
 }
-
-document.querySelectorAll('[data-lang-set]').forEach((btn) => {
-  btn.addEventListener('click', () => {
-    applyLanguage(btn.dataset.langSet)
-    closeLangMenu()
-    langTrigger?.focus()
-  })
-})
 
 /* ---------- Calculadora de ahorro y de paneles ---------- */
 
@@ -753,19 +528,6 @@ function closeThemeMenu() {
   themeTrigger.setAttribute('aria-expanded', 'false')
 }
 
-function closeLangMenu() {
-  if (!langMenu || !langTrigger) return
-  langMenu.hidden = true
-  langTrigger.setAttribute('aria-expanded', 'false')
-}
-
-function updateLangLabel() {
-  if (!langTrigger) return
-  langTrigger.setAttribute('aria-label', `${t('a11y.lang')}: ${LANG_NAMES[lang]}`)
-  const current = langTrigger.querySelector('.lang-current')
-  if (current) current.textContent = lang.toUpperCase()
-}
-
 const toTop = document.querySelector('.to-top')
 const siteFooter = document.querySelector('.site-footer')
 
@@ -812,7 +574,7 @@ if (navToggle && nav) {
   })
 }
 
-applyLanguage(lang, false)
+applyText()
 
 /* ---------- Aplicar configuración del sitio desde config.js ---------- */
 

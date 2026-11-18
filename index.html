@@ -11,7 +11,7 @@
     <meta name="theme-color" content="#08070a" />
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <script>
-      // Aplica el tema y el idioma guardados antes de pintar, para evitar parpadeos.
+      // Aplica el tema guardado antes de pintar, para evitar parpadeos.
       ;(function () {
         try {
           var mode = localStorage.getItem('solartwin-theme') || 'dark'
@@ -19,9 +19,6 @@
           document.documentElement.dataset.themeMode = mode
           document.documentElement.dataset.theme =
             mode === 'auto' ? (light ? 'light' : 'dark') : mode
-          if (localStorage.getItem('solartwin-lang') === 'en') {
-            document.documentElement.lang = 'en'
-          }
         } catch (e) {}
       })()
     </script>
@@ -133,34 +130,6 @@
             </div>
           </div>
 
-          <div class="theme-picker lang-picker">
-            <button
-              class="theme-trigger lang-trigger"
-              type="button"
-              aria-haspopup="true"
-              aria-expanded="false"
-              aria-label="Idioma: Español"
-            >
-              <span class="lang-current" aria-hidden="true">ES</span>
-            </button>
-
-            <div
-              class="theme-menu lang-menu"
-              role="menu"
-              aria-label="Idioma"
-              data-i18n-aria="a11y.lang"
-              hidden
-            >
-              <button type="button" role="menuitemradio" aria-checked="true" data-lang-set="es">
-                <span class="lang-badge" aria-hidden="true">ES</span>
-                <span>Español</span>
-              </button>
-              <button type="button" role="menuitemradio" aria-checked="false" data-lang-set="en">
-                <span class="lang-badge" aria-hidden="true">EN</span>
-                <span>English</span>
-              </button>
-            </div>
-          </div>
         </div>
 
         <button
@@ -480,7 +449,7 @@
             <figure class="process-media" data-reveal>
               <img
                 src="./img/imagen-2.jpg"
-                alt="Paneles solares instalados sobre el techo de un edificio de varios pisos, bajo un cielo despejado"
+                alt="Panel solar instalado en el patio de una casa de campo cubana, con techo de zinc y montañas al fondo"
                 data-i18n-alt="process.alt"
                 width="1000"
                 height="1000"
