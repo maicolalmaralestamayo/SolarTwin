@@ -1,33 +1,37 @@
-// Configuración empresarial del sitio SolarTwin.
-// Todos los valores aquí pueden editarse para personalizar el sitio sin tocar código.
+// Configuración empresarial
 window.SOLARTWIN_CONFIG = {
   // Nombre del negocio (siempre 2 partes, ej: SolarTwin)
-  businessName: ['Solario', 'Twinario'],
+  businessName: ['Solar', 'Twinario'],
+
   // Colores de identidad
   colors: {
     primary: '#2731F5',
-    accent: '#F5EB27'
+    accent: '#F59827'
   },
+
   // Años de experiencia
-  experienceYears: 5000,
+  experienceYears: 5,
+
   // Cantidad de especialistas
-  specialistsCount: 1000,
-  // Números de teléfono
-  phoneNumbers: ['+53 5078 5555'],
-  // Nombres de usuario en canales
+  specialistsCount: 10,
+  
+  // Número de teléfono
+  phoneNumber: {
+    code: '53',
+    number: '50781823'
+  },
+  
+  // Nombres de usuario
   usernames: {
-    whatsapp: '@TwinTechnologyStartup',
-    telegram: '@TwinTechnologyStartup'
+    whatsapp: 'TwinTechnologyStartup',
+    telegram: 'TwinTechnologyStartup'
   },
-  // Enlaces a canales principales
-  channelLinks: {
-    whatsapp: 'https://wa.me/5350781823',
-    telegram: 'https://t.me/TwinTechnologyStartup'
-  },
-  // Enlaces a canales de transmisión
+  
+  // Enlaces a canales
   channelLinkWhatsApp: 'https://whatsapp.com/channel/0029VbEJEn0DeON1xsuwb83M',
   channelLinkTelegram: 'https://t.me/SolarTwin',
-  // Monedas de pago por nombre (los símbolos se omiten)
+  
+  // Monedas de pago
   paymentCurrencies: [
     {
       name: 'Dólar',
@@ -43,4 +47,3 @@ window.SOLARTWIN_CONFIG = {
     }
   ]
 }
-
