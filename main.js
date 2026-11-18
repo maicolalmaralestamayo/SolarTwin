@@ -860,23 +860,32 @@ if (panelForm && panelResult) {
   const totalEl = panelResult.querySelector('#panel-total')
   const detailEl = panelResult.querySelector('#panel-detail')
 
+  const isValidCount = (count) => Number.isInteger(count) && count >= 1 && count <= 500
+
+  const renderTotal = (count) => {
+    totalEl.textContent = `${formatNumber(count * PANEL_PRICE_USD, 2)} USD`
+    detailEl.textContent = `${count} × ${formatNumber(PANEL_PRICE_USD, 2)} USD`
+  }
+
   panelForm.addEventListener('submit', (event) => {
     event.preventDefault()
 
     const count = Number(countInput.value)
-    const valid =
-      Number.isInteger(count) && count >= 1 && count <= 500
+    const valid = isValidCount(count)
 
     errorEl.hidden = valid
     if (!valid) return
 
-    totalEl.textContent = `${formatNumber(count * PANEL_PRICE_USD, 2)} USD`
-    detailEl.textContent = `${count} × ${formatNumber(PANEL_PRICE_USD, 2)} USD`
+    renderTotal(count)
   })
 
   countInput.addEventListener('input', () => {
     errorEl.hidden = true
   })
+
+  // La cantidad inicial (1) ya viene calculada al abrir la página
+  const initialCount = Number(countInput.value)
+  if (isValidCount(initialCount)) renderTotal(initialCount)
 }
 
 /* ---------- Header y menú ---------- */
