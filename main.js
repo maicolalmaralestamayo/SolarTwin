@@ -128,18 +128,8 @@ const translations = {
     'process.splitWeTitle': 'La mano de obra del montaje',
     'process.splitWeText': 'SolarTwin pone la mano de obra para el montaje de las bases.',
 
-    'team.eyebrow': 'Nuestro equipo',
-    'team.title':
-      '<span class="brand-word">SolarTwin</span>: un grupo de amigos, <span class="grad-text">un mismo sueño</span>',
-    'team.p1':
-      'Somos un grupo de amigos que empezó resolviendo cosas con las manos. Con los años nos convertimos en una familia que instala energía solar.',
-    'team.p2':
-      'El equipo lo forman más de 10 especialistas en ingeniería eléctrica y metalurgia, en su mayoría jóvenes. Esa mezcla nos permite cuidar tanto la parte eléctrica como la estructura y el montaje, sin depender de terceros.',
-    'team.point1': 'Especialistas en ingeniería eléctrica y metalurgia',
-    'team.point2': 'Equipo joven, con energía y ganas de hacer bien las cosas',
-    'team.point3': 'Más de 5 años de experiencia resolviendo instalaciones',
-    'team.badgeLabel': 'años de<br />experiencia',
-    'team.alt': 'Paneles solares montados sobre la azotea de hormigón de un edificio',
+    'team.note':
+      'El equipo lo forman especialistas en ingeniería eléctrica y metalurgia, en su mayoría jóvenes. Esa mezcla nos permite cuidar tanto la parte eléctrica como la estructura y el montaje, sin depender de terceros.',
 
     'ops.eyebrow': 'Área de operaciones',
     'ops.title': 'Estamos donde <span class="grad-text">tú estás</span>',
@@ -361,18 +351,8 @@ const translations = {
     'process.splitWeTitle': 'The labour for the installation',
     'process.splitWeText': 'SolarTwin provides the labour to mount the bases.',
 
-    'team.eyebrow': 'Our team',
-    'team.title':
-      '<span class="brand-word">SolarTwin</span>: a group of friends, <span class="grad-text">one shared dream</span>',
-    'team.p1':
-      "We're a group of friends who started out solving things with our hands. Over the years we've become a family that installs solar energy.",
-    'team.p2':
-      'The team is made up of more than 10 electrical engineering and metalworking specialists, most of them young. That mix lets us take care of both the electrical side and the structure and installation, without depending on third parties.',
-    'team.point1': 'Electrical engineering and metalworking specialists',
-    'team.point2': 'A young team with energy and the will to do things right',
-    'team.point3': 'Over 5 years of experience delivering installations',
-    'team.badgeLabel': 'years of<br />experience',
-    'team.alt': 'Solar panels mounted on the concrete roof of a building',
+    'team.note':
+      'The team is made up of electrical engineering and metalworking specialists, most of them young. That mix lets us take care of both the electrical side and the structure and installation, without depending on third parties.',
 
     'ops.eyebrow': 'Service area',
     'ops.title': "We're right <span class=\"grad-text\">where you are</span>",
@@ -632,8 +612,8 @@ const store = (key, value) => {
   }
 }
 
-let themeMode = readStored(THEME_KEY, 'auto')
-if (!['auto', 'light', 'dark'].includes(themeMode)) themeMode = 'auto'
+let themeMode = readStored(THEME_KEY, 'dark')
+if (!['auto', 'light', 'dark'].includes(themeMode)) themeMode = 'dark'
 
 let lang = readStored(LANG_KEY, 'es') === 'en' ? 'en' : 'es'
 
@@ -645,7 +625,7 @@ const resolveTheme = (mode) =>
   mode === 'auto' ? (themeMedia.matches ? 'light' : 'dark') : mode
 
 const applyTheme = (mode, persist = true) => {
-  themeMode = ['auto', 'light', 'dark'].includes(mode) ? mode : 'auto'
+  themeMode = ['auto', 'light', 'dark'].includes(mode) ? mode : 'dark'
   const resolved = resolveTheme(themeMode)
 
   root.dataset.theme = resolved
@@ -1076,13 +1056,6 @@ const applySiteConfig = () => {
 
   const callText = document.querySelector('small[data-i18n="contact.callText"]')
   if (callText && phone) callText.textContent = phone
-
-  // Años de experiencia: insignia sobre la foto del equipo
-  if (siteValues.years !== null) {
-    document.querySelectorAll('.badge-exp span').forEach((el) => {
-      el.textContent = `+${siteValues.years}`
-    })
-  }
 
   // Reemplazar el nombre anterior en los textos visibles por el configurado
   if (siteValues.fullName) {

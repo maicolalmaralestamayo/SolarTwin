@@ -53,6 +53,7 @@ No hace falta `.htaccess` ni activar módulos adicionales: Apache sirve `index.h
 - Colores y estilos: `style.css`.
 - Precio de cada panel para la calculadora: `config.js` (ver más abajo).
 - Fotos: reemplaza los archivos de `img/` manteniendo los nombres, o cambia la ruta en `index.html`.
+- El tema oscuro se aplica por defecto; el menú de tema de la cabecera permite pasar a claro o automático (según el sistema) y la preferencia se guarda en el navegador.
 - El selector de idioma funciona igual que el de tema: un botón redondo en la cabecera abre un menú con Español e English. Añadir un idioma nuevo implica crear su diccionario en `main.js` y un botón con `data-lang-set` en ese menú.
 
 El menú principal enlaza a las secciones con estos nombres visibles:
@@ -61,10 +62,10 @@ El menú principal enlaza a las secciones con estos nombres visibles:
 | --- | --- | --- |
 | Operaciones | Área de operaciones | `#operaciones` |
 | Ustedes | Cómo trabajamos | `#proceso` |
-| Nosotros | Ventajas | `#ventajas` |
 | Pago | Formas de pago | `#pago` |
+| Nosotros | Ventajas | `#ventajas` |
 
-La presentación del equipo (foto, insignia de años, textos y lista de especialistas) va integrada al final de la portada, dentro de la primera sección de la página, por lo que ya no existe una sección `#equipo` independiente. La sección **Formas de pago** (`#pago`) va justo después de **Nosotros**, antes de **Solar y planeta** (`#planeta`), que no aparece en el menú e incluye las ventajas ambientales, la calculadora de ahorro y la tabla de referencia. **Formas de pago** indica que el pago es en efectivo y siempre después de completado el trabajo (sin pago por adelantado), que se aceptan dólar (USD), euro (EUR) y moneda nacional (CUP), que la tasa de referencia del CUP es elToque, y añade la calculadora de paneles. El botón flotante de volver arriba aparece al pasar unos 600 px de scroll y se oculta al llegar al pie de página.
+La sección de equipo ya no existe: de ella solo queda, como nota dentro de la portada, la explicación de que el equipo lo forman especialistas en ingeniería eléctrica y metalurgia. La sección **Formas de pago** (`#pago`) va justo después de **Ustedes**, y **Nosotros** (`#ventajas`) y **Solar y planeta** (`#planeta`) van después; Planeta no aparece en el menú e incluye las ventajas ambientales, la calculadora de ahorro y la tabla de referencia. **Formas de pago** indica que el pago es en efectivo y siempre después de completado el trabajo (sin pago por adelantado), que se aceptan dólar (USD), euro (EUR) y moneda nacional (CUP), que la tasa de referencia del CUP es elToque, y añade la calculadora de paneles. El botón flotante de volver arriba aparece al pasar unos 600 px de scroll y se oculta al llegar al pie de página.
 
 ## Aportes del cliente y de la empresa
 

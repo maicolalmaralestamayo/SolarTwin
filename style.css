@@ -578,6 +578,13 @@ p {
   color: var(--text-soft);
 }
 
+.hero-note {
+  margin-top: 1rem;
+  max-width: 52ch;
+  font-size: 0.92rem;
+  color: var(--text-soft);
+}
+
 .hero-actions {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1273,12 +1280,6 @@ p {
 }
 
 /* ---------- Equipo ---------- */
-
-.hero-team {
-  margin-top: clamp(3rem, 6vw, 4.5rem);
-  padding-top: clamp(2.5rem, 5vw, 3.5rem);
-  border-top: 1px solid var(--line);
-}
 
 .team-grid {
   display: grid;
