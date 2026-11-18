@@ -1667,16 +1667,16 @@ p {
 }
 
 .channel-links {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 0.6rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  align-items: stretch;
+  gap: 0.9rem;
   max-width: 860px;
-  margin: 1.1rem auto 0;
+  margin: 1.6rem auto 0;
 }
 
 .channel-links-label {
+  grid-column: 1 / -1;
   width: 100%;
   margin: 0 0 0.1rem;
   text-align: center;
@@ -1687,139 +1687,8 @@ p {
   color: var(--muted-2);
 }
 
-.channel {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 1.15rem 1.25rem;
-  border-radius: 18px;
-  background: linear-gradient(180deg, var(--surface-2), var(--surface));
-  border: 1px solid var(--line);
-  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-}
-
-.channel:hover {
-  transform: translateY(-3px);
-  border-color: rgba(255, 122, 0, 0.5);
-  box-shadow: 0 20px 40px -26px rgba(255, 60, 90, 0.7);
-}
-
-.channel-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  flex: none;
-  border-radius: 12px;
-  border: 1px solid var(--line-strong);
-  background: var(--chip-bg);
-  color: var(--orange);
-}
-
-.channel-tg .channel-icon {
-  color: #6fc8ff;
-}
-
-.channel-call .channel-icon {
-  color: var(--fuchsia);
-}
-
-.channel-mail .channel-icon {
-  color: #ffd166;
-}
-
-.channel-icon svg {
-  width: 23px;
-  height: 23px;
-}
-
-.channel-body {
-  display: grid;
-  gap: 0.12rem;
-  min-width: 0;
-}
-
-.channel-body strong {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 1rem;
-  letter-spacing: -0.02em;
-}
-
-.channel-body small {
-  font-size: 0.82rem;
-  color: var(--muted);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.channel-mail .channel-body small {
-  font-size: 0.75rem;
-  white-space: normal;
-  overflow-wrap: anywhere;
-}
-
-.channel-arrow {
-  margin-left: auto;
-  color: var(--muted-2);
-  transition: transform 0.25s ease, color 0.25s ease;
-}
-
-.channel:hover .channel-arrow {
-  color: var(--orange);
-  transform: translateX(3px);
-}
-
 .channel-pill {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 1.15rem 1.25rem;
-  border-radius: 18px;
-  background: linear-gradient(180deg, var(--surface-2), var(--surface));
-  border: 1px solid var(--line);
-  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-}
-
-.channel-pill:hover {
-  transform: translateY(-3px);
-  border-color: rgba(255, 122, 0, 0.5);
-  box-shadow: 0 20px 40px -26px rgba(255, 60, 90, 0.7);
-}
-
-.channel-pill .channel-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  border: 1px solid var(--line-strong);
-  background: var(--chip-bg);
-  color: var(--orange);
-}
-
-.channel-pill .channel-icon.svg {
-  width: 23px;
-  height: 23px;
-}
-
-.channel-pill .channel-body {
-  display: grid;
-  gap: 0.12rem;
-  min-width: 0;
-}
-
-.channel-pill .channel-body strong {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 1rem;
-  letter-spacing: -0.02em;
-}
-
-.channel-pill .channel-body small {
-  font-size: 0.82rem;
-  color: var(--muted);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  width: 100%;
 }
 
 .pill-brand {
@@ -2431,7 +2300,7 @@ p {
 
   .channel-pill {
     width: 100%;
-    justify-content: center;
+    justify-content: flex-start;
   }
 
   .float-card {

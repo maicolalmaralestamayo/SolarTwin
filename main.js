@@ -876,12 +876,14 @@ applyLanguage(lang, false)
 const applySiteConfig = () => {
   const config = window.SOLARTWIN_CONFIG ?? {}
 
-  // Aplicar nombre del negocio TODOS los .brand-name en el sitio
-  const allBrandNames = document.querySelectorAll('.brand-name')
-  allBrandNames.forEach((brandName) => {
-    if (config.businessName && config.businessName[0]) {
-      brandName.innerHTML = `<span class="solar">${config.businessName[0]}</span><span class="twin">${config.businessName[1] || ''}</span>`
-    }
+  // Aplicar nombre del negocio a todas las marcas del sitio
+  const brandFirst = (config.businessName && config.businessName[0]) || ''
+  const brandSecond = (config.businessName && config.businessName[1]) || ''
+  document.querySelectorAll('.brand-name, .brand-word').forEach((brand) => {
+    const solar = brand.querySelector('.solar')
+    const twin = brand.querySelector('.twin')
+    if (solar) solar.textContent = brandFirst
+    if (twin) twin.textContent = brandSecond
   })
 
   // Aplicar color de énfasis (accent) a las variables CSS
@@ -895,73 +897,77 @@ const applySiteConfig = () => {
     root.style.setProperty('--orange', config.colors.primary)
   }
 
-  // Aplicar número de teléfono A TODOS los enlaces tel:
-  const allPhoneLinks = document.querySelectorAll('a[href^="tel:"]')
-  allPhoneLinks.forEach((phoneLink) => {
-    if (config.phoneNumbers && config.phoneNumbers[0]) {
-      phoneLink.href = `tel:${config.phoneNumbers[0].replace(/\s+/g, '')}`
-      phoneLink.textContent = config.phoneNumbers[0]
-    }
+  const phone = (config.phoneNumbers && config.phoneNumbers[0]) || ''
+  const phoneDigits = phone.replace(/\D/g, '')
+  const tgUser = (config.usernames && config.usernames.telegram) || ''
+  const tgHandle = tgUser.replace(/^@/, '')
+  const waUser = (config.usernames && config.usernames.whatsapp) || ''
+
+  // Enlaces: SOLO se cambia el href, nunca el HTML interno de las tarjetas
+  document.querySelectorAll('a.channel-call').forEach((link) => {
+    if (phoneDigits) link.href = `tel:+${phoneDigits}`
   })
 
-  // Aplicar enlace de WhatsApp (wa.me) A TODOS los links wa.me
-  const allWaLinks = document.querySelectorAll('a[href*="wa.me"]')
-  allWaLinks.forEach((waLink) => {
+  document.querySelectorAll('a.channel-wa').forEach((link) => {
     if (config.channelLinks && config.channelLinks.whatsapp) {
-      waLink.href = config.channelLinks.whatsapp
+      link.href = config.channelLinks.whatsapp
     }
   })
 
-  // Aplicar enlace de Telegram (t.me) A TODOS los links t.me (no canales)
-  const allTgLinks = document.querySelectorAll('a[href*="t.me"]:not([href*="channel"])')
-  allTgLinks.forEach((tgLink) => {
-    if (config.usernames && config.usernames.telegram) {
-      tgLink.href = `https://t.me/${config.usernames.telegram.replace(/^@/, '')}`
-      tgLink.textContent = config.usernames.telegram
+  document.querySelectorAll('a.channel-tg').forEach((link) => {
+    if (tgHandle) link.href = `https://t.me/${tgHandle}`
+  })
+
+  // Tarjetas de canales (pills convertidas en tarjetas)
+  document.querySelectorAll('a.channel-wa-channel').forEach((link) => {
+    if (config.channelLinkWhatsApp) link.href = config.channelLinkWhatsApp
+  })
+  document.querySelectorAll('a.channel-tg-channel').forEach((link) => {
+    if (config.channelLinkTelegram) link.href = config.channelLinkTelegram
+  })
+
+  // Resto de enlaces wa.me del sitio (hero, CTAs) conservando el mensaje
+  document.querySelectorAll('a[href*="wa.me"]:not(.channel-wa)').forEach((link) => {
+    if (!phoneDigits) return
+    try {
+      const url = new URL(link.href)
+      url.pathname = `/${phoneDigits}`
+      link.href = url.toString()
+    } catch (err) {
+      link.href = `https://wa.me/${phoneDigits}`
     }
   })
 
-  // Aplicar usernames a la sección de contacto
+  // Resto de enlaces t.me del sitio (no tarjetas) conservando parámetros
+  document.querySelectorAll('a[href*="t.me"]:not(.channel-tg):not(.channel-pill)').forEach((link) => {
+    if (!tgHandle) return
+    try {
+      const url = new URL(link.href)
+      url.pathname = `/${tgHandle}`
+      link.href = url.toString()
+    } catch (err) {
+      link.href = `https://t.me/${tgHandle}`
+    }
+  })
+
+  // Enlaces tel: que no son la tarjeta de llamada
+  document.querySelectorAll('a[href^="tel:"]:not(.channel-call)').forEach((link) => {
+    if (!phoneDigits) return
+    link.href = `tel:+${phoneDigits}`
+    if (/^[+\d\s()-]+$/.test(link.textContent.trim())) {
+      link.textContent = phone
+    }
+  })
+
+  // Textos de las tarjetas (solo el subtítulo)
   const contactWaText = document.querySelector('small[data-i18n="contact.waText"]')
-  if (contactWaText && config.usernames && config.usernames.whatsapp) {
-    contactWaText.textContent = config.usernames.whatsapp
-  }
+  if (contactWaText && waUser) contactWaText.textContent = waUser
 
   const contactTgText = document.querySelector('small[data-i18n="contact.tgText"]')
-  if (contactTgText && config.usernames && config.usernames.telegram) {
-    contactTgText.textContent = config.usernames.telegram
-  }
+  if (contactTgText && tgUser) contactTgText.textContent = tgUser
 
-  // Aplicar número de llamada a la tarjeta de llamada
   const callText = document.querySelector('small[data-i18n="contact.callText"]')
-  if (callText && config.phoneNumbers && config.phoneNumbers[0]) {
-    callText.textContent = config.phoneNumbers[0]
-  }
-
-  // Aplicar enlace de canal de Telegram en la sección de contacto
-  const tgChannelLink = document.querySelector('a.channel-tg')
-  if (tgChannelLink && config.channelLinkTelegram) {
-    tgChannelLink.href = config.channelLinkTelegram
-  }
-
-  // Aplicar enlaces de canales dedicados
-  // Canal de WhatsApp
-  const allWaChannelLinks = document.querySelectorAll('a[href*="whatsapp.com/channel"]')
-  allWaChannelLinks.forEach((link) => {
-    if (config.channelLinkWhatsApp) {
-      link.href = config.channelLinkWhatsApp
-    }
-  })
-
-  // Canal de Telegram
-  const allTgChannelLinks = document.querySelectorAll('a[href*="t.me"]')
-  allTgChannelLinks.forEach((link) => {
-    if (link.textContent && link.textContent.includes('SolarTwin')) {
-      if (config.channelLinkTelegram) {
-        link.href = config.channelLinkTelegram
-      }
-    }
-  })
+  if (callText && phone) callText.textContent = phone
 
   // Aplicar años de experiencia al badge-exp
   const expBadgeSpan = document.querySelector('.badge-exp span')
@@ -975,17 +981,20 @@ const applySiteConfig = () => {
     expStatValue.textContent = `+${config.experienceYears} años`
   }
 
-  // Reemplazar SolarTwin por businessName en todo el sitio
-  const businessNameFull = `${config.businessName[0]} ${config.businessName[1] || ''}`.trim()
-  const allElements = document.querySelectorAll('*')
-  allElements.forEach((el) => {
-    if (el.nodeType === Node.TEXT_NODE) {
-      const parent = el.parentElement
-      if (parent && !parent.querySelector('[data-i18n]')) {
-        el.textContent = el.textContent.replace(/SolarTwin/gi, businessNameFull)
+  // Reemplazar "SolarTwin" en los textos visibles por el nombre configurado
+  const businessNameFull = `${brandFirst} ${brandSecond}`.trim()
+  if (businessNameFull) {
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT)
+    const textNodes = []
+    while (walker.nextNode()) textNodes.push(walker.currentNode)
+    textNodes.forEach((node) => {
+      const tag = node.parentElement ? node.parentElement.tagName : ''
+      if (tag === 'SCRIPT' || tag === 'STYLE') return
+      if (/SolarTwin/i.test(node.nodeValue)) {
+        node.nodeValue = node.nodeValue.replace(/SolarTwin/gi, businessNameFull)
       }
-    }
-  })
+    })
+  }
 
   // Aplicar cantidad de especialistas al estadístico de hero
   const specValue = document.querySelector('[data-i18n="hero.statSpecialistsValue"]')
