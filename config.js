@@ -5,8 +5,8 @@ window.SOLARTWIN_CONFIG = {
 
   // Colores de identidad
   colors: {
-    primary: '#2731F5',
-    accent: '#F59827'
+    primary: '#FF5F1F',
+    accent: '#FF00FF'
   },
 
   // Años de experiencia
