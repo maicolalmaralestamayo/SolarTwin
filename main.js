@@ -19,8 +19,8 @@ const translations = {
     'theme.light': 'Claro',
     'theme.dark': 'Oscuro',
 
-    'nav.process': 'Ustedes',
-    'nav.ops': 'Operaciones',
+    'nav.process': 'Proceso',
+    'nav.ops': 'Nosotros',
     'nav.payment': 'Pago',
     'nav.contact': 'Contáctanos',
     'config.businessName': 'Nombre de negocio',
@@ -81,7 +81,7 @@ const translations = {
     'process.promise4Text':
       'Ajustamos la cantidad de paneles y su ubicación a tu consumo real, para que no pagues de más ni te quedes corto.',
 
-    'process.eyebrow': 'Cómo trabajamos',
+    'process.eyebrow': 'Proceso',
     'process.title':
       'De la primera llamada a tu <span class="grad-text">panel encendido</span>',
     'process.subtitle':
@@ -99,7 +99,8 @@ const translations = {
     'process.s4Text':
       'Elegimos el día, hacemos el trabajo y te explicamos cómo usar el sistema.',
     'process.caption': 'Montaje en Palma Soriano y toda la provincia',
-    'process.alt': 'Técnico instalando paneles solares sobre un techo de placas de hormigón',
+    'process.alt':
+      'Paneles solares sobre el techo de una casa de barrio en Santiago de Cuba, junto a tanques de agua',
     'config.businessNameLabel': 'Nombre del negocio',
     'config.businessNameFirst': 'Primera parte',
     'config.businessNameSecond': 'Segunda parte',
@@ -127,10 +128,10 @@ const translations = {
     'team.note':
       'El equipo lo forman especialistas en ingeniería eléctrica y metalurgia, en su mayoría jóvenes. Esa mezcla nos permite cuidar tanto la parte eléctrica como la estructura y el montaje, sin depender de terceros.',
 
-    'ops.eyebrow': 'Área de operaciones',
+    'ops.eyebrow': 'Nosotros',
     'ops.title': 'Estamos donde <span class="grad-text">tú estás</span>',
     'ops.subtitle':
-      'Operamos exclusivamente en la provincia de Santiago de Cuba y llegamos a todos sus municipios. Radicamos en Palma Soriano, así que tu visita no tiene recargo por distancia.',
+      'Somos un equipo de Palma Soriano que trabaja exclusivamente en la provincia de Santiago de Cuba, donde llegamos a todos sus municipios. Tu visita no tiene recargo por distancia.',
     'ops.cta': 'Consultar mi municipio',
     'ops.mapActive': 'Santiago de Cuba — área de operación',
     'ops.mapBase': 'Palma Soriano — base del equipo',
@@ -219,8 +220,8 @@ const translations = {
     'theme.light': 'Light',
     'theme.dark': 'Dark',
 
-    'nav.process': 'For you',
-    'nav.ops': 'Operations',
+    'nav.process': 'Process',
+    'nav.ops': 'About us',
     'nav.payment': 'Payment',
     'nav.contact': 'Contact us',
     'config.businessName': 'Business name',
@@ -281,7 +282,7 @@ const translations = {
     'process.promise4Text':
       'We match the number and position of the panels to your real consumption, so you never overpay or come up short.',
 
-    'process.eyebrow': 'How we work',
+    'process.eyebrow': 'Process',
     'process.title':
       'From the first call to your <span class="grad-text">panels switched on</span>',
     'process.subtitle':
@@ -299,7 +300,8 @@ const translations = {
     'process.s4Text':
       'We pick the day, do the work and show you how to use the system.',
     'process.caption': 'Installations in Palma Soriano and across the province',
-    'process.alt': 'Technician installing solar panels on a concrete slab roof',
+    'process.alt':
+      'Solar panels on the roof of a neighbourhood house in Santiago de Cuba, next to water tanks',
     'process.splitYouKicker': 'You provide',
     'process.splitYouTitle': 'The panels and solar cables',
     'process.splitYouText':
@@ -311,10 +313,10 @@ const translations = {
     'team.note':
       'The team is made up of electrical engineering and metalworking specialists, most of them young. That mix lets us take care of both the electrical side and the structure and installation, without depending on third parties.',
 
-    'ops.eyebrow': 'Service area',
+    'ops.eyebrow': 'About us',
     'ops.title': "We're right <span class=\"grad-text\">where you are</span>",
     'ops.subtitle':
-      "We work exclusively in Santiago de Cuba province and reach all of its municipalities. We're based in Palma Soriano, so your visit never carries a distance surcharge.",
+      "We're a team from Palma Soriano working exclusively in Santiago de Cuba province, where we reach every municipality. Your visit never carries a distance surcharge.",
     'ops.cta': 'Check my municipality',
     'ops.mapActive': 'Santiago de Cuba — service area',
     'ops.mapBase': 'Palma Soriano — team base',

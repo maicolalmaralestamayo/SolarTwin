@@ -60,16 +60,16 @@ El menú principal enlaza a las secciones con estos nombres visibles:
 
 | Menú | Sección | `id` |
 | --- | --- | --- |
-| Operaciones | Área de operaciones | `#operaciones` |
-| Ustedes | Cómo trabajamos | `#proceso` |
+| Nosotros | Nosotros (mapa de cobertura) | `#nosotros` |
+| Proceso | Proceso (pasos y compromisos) | `#proceso` |
 | Pago | Formas de pago | `#pago` |
 
 
-La sección de equipo ya no existe: de ella solo queda, como nota dentro de la portada, la explicación de que el equipo lo forman especialistas en ingeniería eléctrica y metalurgia. La antigua sección **Nosotros** también se eliminó y sus cuatro compromisos (garantía, calidad, seguridad y optimización) se integraron al final de **Ustedes** (`#proceso`), que es la única sección de proceso. La sección **Formas de pago** (`#pago`) va justo después de **Ustedes**, y después de ella solo queda **Contacto** (`#contacto`): la antigua sección **Solar y planeta** (`#planeta`), con su tabla de tarifas y su calculadora de ahorro, se eliminó. **Formas de pago** indica que el pago es en efectivo y siempre después de completado el trabajo (sin pago por adelantado), que se aceptan dólar (USD), euro (EUR) y moneda nacional (CUP), que la tasa de referencia del CUP es elToque, y añade la calculadora de paneles. El botón flotante de volver arriba aparece al pasar unos 600 px de scroll y se oculta al llegar al pie de página.
+La sección de equipo ya no existe: de ella solo queda, como nota dentro de la portada, la explicación de que el equipo lo forman especialistas en ingeniería eléctrica y metalurgia. La sección **Nosotros** (`#nosotros`) es la antigua área de operaciones: explica quiénes son y, con un mapa de Cuba, dónde trabajan y los 9 municipios que cubren. Sus cuatro compromisos (garantía, calidad, seguridad y optimización) se integraron al final de **Proceso** (`#proceso`), que es la única sección de proceso. La sección **Formas de pago** (`#pago`) va justo después de **Proceso**, y después de ella solo queda **Contacto** (`#contacto`): la antigua sección **Solar y planeta** (`#planeta`), con su tabla de tarifas y su calculadora de ahorro, se eliminó. **Formas de pago** indica que el pago es en efectivo y siempre después de completado el trabajo (sin pago por adelantado), que se aceptan dólar (USD), euro (EUR) y moneda nacional (CUP), que la tasa de referencia del CUP es elToque, y añade la calculadora de paneles. El botón flotante de volver arriba aparece al pasar unos 600 px de scroll y se oculta al llegar al pie de página.
 
 ## Aportes del cliente y de la empresa
 
-Dentro de **Cómo trabajamos** (`#proceso`), el panel “Tú aportas / Nosotros aportamos” deja claro el reparto: el cliente provee los paneles y los cables solares, y SolarTwin aporta la mano de obra para el montaje de las bases. Si cambia el reparto, actualiza el HTML y las claves `process.splitYou*` y `process.splitWe*` de los diccionarios `es` y `en`.
+Dentro de **Proceso** (`#proceso`), el panel “Tú aportas / Nosotros aportamos” deja claro el reparto: el cliente provee los paneles y los cables solares, y SolarTwin aporta la mano de obra para el montaje de las bases. Si cambia el reparto, actualiza el HTML y las claves `process.splitYou*` y `process.splitWe*` de los diccionarios `es` y `en`.
 
 ## Calculadora de paneles
 
