@@ -1586,6 +1586,7 @@ p {
   display: flex;
   align-items: center;
   gap: 1rem;
+  min-height: 87px;
   padding: 1.15rem 1.25rem;
   border-radius: 18px;
   background: linear-gradient(180deg, var(--surface-2), var(--surface));
@@ -1650,10 +1651,9 @@ p {
 }
 
 .channel-mail .channel-body small {
-  font-size: 0.75rem;
-  white-space: normal;
-  overflow-wrap: anywhere;
+  font-size: 0.7rem;
 }
+
 
 .channel-arrow {
   margin-left: auto;
