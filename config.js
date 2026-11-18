@@ -5,13 +5,13 @@ window.SOLARTWIN_CONFIG = {
   businessName: ['Solario', 'Twinario'],
   // Colores de identidad
   colors: {
-    primary: '#27F557',
-    accent: '#2731F5'
+    primary: '#2731F5',
+    accent: '#F5EB27'
   },
   // Años de experiencia
-  experienceYears: 50,
+  experienceYears: 5000,
   // Cantidad de especialistas
-  specialistsCount: 100,
+  specialistsCount: 1000,
   // Números de teléfono
   phoneNumbers: ['+53 5078 5555'],
   // Nombres de usuario en canales
@@ -38,7 +38,7 @@ window.SOLARTWIN_CONFIG = {
       code: 'EUR'
     },
     {
-      name: 'OK',
+      name: 'Moneda nacional',
       code: 'CUP'
     }
   ]
