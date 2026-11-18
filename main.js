@@ -932,6 +932,18 @@ const applySiteConfig = () => {
     contactTgText.textContent = config.usernames.telegram
   }
 
+  // Aplicar número de llamada a la tarjeta de llamada
+  const callText = document.querySelector('small[data-i18n="contact.callText"]')
+  if (callText && config.phoneNumbers && config.phoneNumbers[0]) {
+    callText.textContent = config.phoneNumbers[0]
+  }
+
+  // Aplicar enlace de canal de Telegram en la sección de contacto
+  const tgChannelLink = document.querySelector('a.channel-tg')
+  if (tgChannelLink && config.channelLinkTelegram) {
+    tgChannelLink.href = config.channelLinkTelegram
+  }
+
   // Aplicar enlaces de canales dedicados
   // Canal de WhatsApp
   const allWaChannelLinks = document.querySelectorAll('a[href*="whatsapp.com/channel"]')
