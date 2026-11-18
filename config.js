@@ -3,6 +3,9 @@ window.SOLARTWIN_CONFIG = {
   // Nombre del negocio (siempre 2 partes, ej: SolarTwin)
   businessName: ['Solar', 'Twin'],
 
+  // Eslogan que aparece debajo del nombre del sitio
+  slogan: 'Inviertes una vez, el sol paga el resto.',
+
   // Colores de identidad
   colors: {
     primary: '#FF5F1F',

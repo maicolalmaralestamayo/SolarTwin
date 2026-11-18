@@ -220,6 +220,22 @@ p {
   font-family: 'Space Grotesk', sans-serif;
 }
 
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.brand-slogan {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.66rem;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: 0;
+  color: var(--muted-2);
+}
+
 .brand-mark {
   width: 34px;
   height: 34px;
@@ -229,7 +245,8 @@ p {
 .brand-name {
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
-  font-size: 1.2rem;
+  font-size: 1.45rem;
+  line-height: 1.05;
   letter-spacing: -0.03em;
 }
 
@@ -2031,7 +2048,12 @@ p {
   }
 
   .brand-name {
-    font-size: 1rem;
+    font-size: 1.18rem;
+  }
+
+  .brand-slogan {
+    max-width: 22ch;
+    font-size: 0.6rem;
   }
 
   .header-tools {
@@ -2165,7 +2187,12 @@ p {
   }
 
   .brand-name {
-    font-size: 0.95rem;
+    font-size: 1.08rem;
+  }
+
+  .brand-slogan {
+    font-size: 0.56rem;
+    max-width: 20ch;
   }
 
   .brand-mark {

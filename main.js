@@ -418,6 +418,7 @@ const siteValues = (() => {
     first,
     second,
     fullName: `${first}${second}`.trim(),
+    slogan: String(siteConfig.slogan ?? '').trim(),
     phoneDigits,
     phoneDisplay: phoneDigits ? `+${[code, number].filter(Boolean).join(' ')}` : '',
     waUsername,
@@ -833,6 +834,15 @@ const applySiteConfig = () => {
     const twin = brand.querySelector('.twin')
     if (solar && siteValues.first) solar.textContent = siteValues.first
     if (twin && siteValues.second) twin.textContent = siteValues.second
+  })
+
+  // Eslogan bajo el nombre del sitio
+  document.querySelectorAll('.brand-slogan').forEach((slogan) => {
+    if (!siteValues.slogan) {
+      slogan.remove()
+      return
+    }
+    slogan.textContent = siteValues.slogan
   })
 
   const phone = siteValues.phoneDisplay
