@@ -1,7 +1,7 @@
 // Configuración empresarial
 window.SOLARTWIN_CONFIG = {
   // Nombre del negocio (siempre 2 partes, ej: SolarTwin)
-  businessName: ['Solar', 'Twinario'],
+  businessName: ['Solar', 'Twin'],
 
   // Colores de identidad
   colors: {
