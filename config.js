@@ -9,7 +9,7 @@ window.SOLARTWIN_CONFIG = {
     accent: '#ff00a8'
   },
   // Años de experiencia
-  experienceYears: 5,
+  experienceYears: 50,
   // Cantidad de especialistas
   specialistsCount: 10,
   // Números de teléfono
