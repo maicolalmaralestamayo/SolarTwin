@@ -59,13 +59,13 @@ El menú principal enlaza a las secciones con estos nombres visibles:
 
 | Menú | Sección | `id` |
 | --- | --- | --- |
-| Nosotros | Ventajas | `#ventajas` |
-| Ustedes | Cómo trabajamos | `#proceso` |
-| Equipo | Nuestro equipo | `#equipo` |
 | Operaciones | Área de operaciones | `#operaciones` |
+| Ustedes | Cómo trabajamos | `#proceso` |
+| Nosotros | Ventajas | `#ventajas` |
+| Equipo | Nuestro equipo | `#equipo` |
 | Pago | Formas de pago | `#pago` |
 
-La sección **Solar y planeta** (`#planeta`) va después de Operaciones y antes de Pago, pero no aparece en el menú. Incluye las ventajas ambientales, la calculadora de ahorro y la tabla de referencia. La sección **Formas de pago** (`#pago`) va después de Planeta y antes de Contacto: indica que el pago es en efectivo y siempre después de completado el trabajo (sin pago por adelantado), que se aceptan dólar (USD), euro (EUR) y moneda nacional (CUP), que la tasa de referencia del CUP es elToque, y añade la calculadora de paneles. El botón flotante de volver arriba aparece al pasar unos 600 px de scroll y se oculta al llegar al pie de página, donde queda el enlace de texto.
+La sección **Solar y planeta** (`#planeta`) va después de Operaciones y antes de Pago, pero no aparece en el menú. Incluye las ventajas ambientales, la calculadora de ahorro y la tabla de referencia. La sección **Formas de pago** (`#pago`) va después de Planeta y antes de Contacto: indica que el pago es en efectivo y siempre después de completado el trabajo (sin pago por adelantado), que se aceptan dólar (USD), euro (EUR) y moneda nacional (CUP), que la tasa de referencia del CUP es elToque, y añade la calculadora de paneles. El botón flotante de volver arriba aparece al pasar unos 600 px de scroll y se oculta al llegar al pie de página.
 
 ## Aportes del cliente y de la empresa
 

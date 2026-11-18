@@ -1,6 +1,6 @@
 const translations = {
   es: {
-    'meta.title': 'SolarTwin | Paneles solares en Santiago de Cuba',
+    'meta.title': 'SolarTwin · Montaje de paneles',
     'meta.description':
       'SolarTwin instala paneles solares en Santiago de Cuba y todos sus municipios. Un grupo de amigos con más de 5 años de experiencia, garantía y los mejores precios del mercado.',
 
@@ -250,11 +250,10 @@ const translations = {
     'footer.waChannel': 'Canal de WhatsApp',
     'footer.tgChannel': 'Canal de Telegram',
     'footer.photos': 'Fotos:',
-    'footer.top': 'Volver arriba ↑',
   },
 
   en: {
-    'meta.title': 'SolarTwin | Solar panels in Santiago de Cuba',
+    'meta.title': 'SolarTwin · Panel installation',
     'meta.description':
       'SolarTwin installs solar panels in Santiago de Cuba and every municipality. A group of friends with over 5 years of experience, warranty and the best prices on the market.',
 
@@ -487,7 +486,6 @@ const translations = {
     'footer.waChannel': 'WhatsApp channel',
     'footer.tgChannel': 'Telegram channel',
     'footer.photos': 'Photos:',
-    'footer.top': 'Back to top ↑',
   },
 }
 

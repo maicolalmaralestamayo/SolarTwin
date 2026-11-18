@@ -785,6 +785,7 @@ p {
   gap: 1.4rem;
   width: max-content;
   animation: marquee 34s linear infinite;
+  will-change: transform;
 }
 
 .marquee-track span {
@@ -1613,8 +1614,14 @@ p {
   color: var(--orange);
 }
 
-.channel-tg .channel-icon {
-  color: #6fc8ff;
+.channel-wa .channel-icon,
+.channel-wa-channel .channel-icon {
+  color: #25d366;
+}
+
+.channel-tg .channel-icon,
+.channel-tg-channel .channel-icon {
+  color: #229ed9;
 }
 
 .channel-call .channel-icon {
@@ -1622,7 +1629,7 @@ p {
 }
 
 .channel-mail .channel-icon {
-  color: #ffd166;
+  color: #ea4335;
 }
 
 .channel-icon svg {
@@ -2389,6 +2396,13 @@ p {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  /* La marquesina sigue desplazándose: es decorativa y así se ve en móviles
+     con "reducir animaciones" o ahorro de batería activado. */
+  .marquee-track {
+    animation-duration: 34s !important;
+    animation-iteration-count: infinite !important;
   }
 
   [data-reveal] {
