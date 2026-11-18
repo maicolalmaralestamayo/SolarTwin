@@ -138,43 +138,6 @@ const translations = {
     'ops.headSmall': '9 municipios · base en Palma Soriano',
     'ops.municipalities': 'Los 9 municipios que cubrimos',
 
-    'planet.eyebrow': 'Solar y planeta',
-    'planet.title':
-      'Buena para el planeta, <span class="grad-text">mejor para tu bolsillo</span>',
-    'planet.subtitle':
-      'Instalamos con los mejores materiales y la menor cantidad de recursos posible: menos desperdicio, más años de servicio y menos combustible fósil.',
-    'planet.b1Title': 'Menos emisiones',
-    'planet.b1Text':
-      'Cada kWh solar sustituye electricidad generada en su mayoría con petróleo y gas. Menos humo, menos CO₂ y menos dependencia de combustibles importados.',
-    'planet.b2Title': 'Menos presión sobre la red',
-    'planet.b2Text':
-      'Generar cerca de donde se consume reduce pérdidas y alivia la demanda del sistema eléctrico, sobre todo en los horarios de mayor consumo.',
-    'planet.b3Title': 'Energía local y duradera',
-    'planet.b3Text':
-      'El sol es un recurso gratuito y local. Un panel bien instalado trabaja más de 25 años con mantenimiento mínimo.',
-    'planet.savingsKicker': 'Cuánto puedes ahorrar',
-    'planet.savingsTitle': 'La tarifa sube por tramos. Tu factura puede bajar.',
-    'planet.savingsText':
-      'La tarifa residencial cubana es escalonada: los primeros 100 kWh cuestan 0,33 CUP/kWh, pero cada tramo siguiente es más caro, hasta 11,50 CUP/kWh entre 501 y 600 kWh y 25 CUP/kWh en el tramo máximo. Con solar, esos kWh caros dejan de entrar en tu factura.',
-    'planet.thTier': 'Tramo (kWh)',
-    'planet.thKwh': 'kWh',
-    'planet.thPrice': 'CUP/kWh',
-    'planet.thSubtotal': 'Subtotal',
-    'planet.tierLast': 'Más de 5 000',
-    'planet.savingsNote':
-      'Cada fila es un tramo: su precio se aplica solo a los kWh que caen dentro de él y el subtotal es lo que cuestan esos kWh si consumes el tramo completo. Los tramos se suman: 250 kWh cuestan 33,00 + 53,50 + 71,50 + 123,00 = 281,00 CUP al mes. El último tramo no tiene tope, por eso no lleva subtotal.',
-    'planet.calcLabel': 'Consumo mensual (kWh)',
-    'planet.calcPlaceholder': 'Ej.: 250',
-    'planet.calcButton': 'Calcular ahorro',
-    'planet.calcError': 'Escribe un consumo entre 1 y 20 000 kWh.',
-    'planet.calcBillLabel': 'Factura mensual actual:',
-    'planet.calcWeek': 'En una semana',
-    'planet.calcMonth': 'En un mes',
-    'planet.calcYear': 'En un año',
-    'planet.calcResultsNote':
-      'Estimación conservadora: 80% de tu consumo y de tu factura actual.',
-    'planet.source': 'Fuente: tarifa residencial vigente (Acuerdo 9810/2024).',
-
     'pay.eyebrow': 'Formas de pago',
     'pay.title': 'Paga <span class="grad-text">como prefieras</span>',
     'pay.subtitle':
@@ -358,43 +321,6 @@ const translations = {
     'ops.headStrong': 'Santiago de Cuba province',
     'ops.headSmall': '9 municipalities · based in Palma Soriano',
     'ops.municipalities': 'All 9 municipalities we cover',
-
-    'planet.eyebrow': 'Solar & planet',
-    'planet.title':
-      'Good for the planet, <span class="grad-text">better for your pocket</span>',
-    'planet.subtitle':
-      'We install with the best materials and the fewest resources possible: less waste, more years of service and less fossil fuel.',
-    'planet.b1Title': 'Fewer emissions',
-    'planet.b1Text':
-      'Every solar kWh replaces electricity mostly generated from oil and gas. Less smoke, less CO₂ and less dependence on imported fuel.',
-    'planet.b2Title': 'Less strain on the grid',
-    'planet.b2Text':
-      'Generating close to where it is used cuts losses and eases demand on the power system, especially at peak times.',
-    'planet.b3Title': 'Local, long-lasting energy',
-    'planet.b3Text':
-      'Sunlight is free and local. A well-installed panel works for over 25 years with minimal maintenance.',
-    'planet.savingsKicker': 'How much you can save',
-    'planet.savingsTitle': 'Tariffs rise in steps. Your bill can fall.',
-    'planet.savingsText':
-      "Cuba's residential tariff is tiered: the first 100 kWh cost 0.33 CUP/kWh, then each tier gets more expensive, up to 11.50 CUP/kWh for 501–600 kWh and 25 CUP/kWh at the top. With solar, those expensive kWh stop showing up on your bill.",
-    'planet.thTier': 'Tier (kWh)',
-    'planet.thKwh': 'kWh',
-    'planet.thPrice': 'CUP/kWh',
-    'planet.thSubtotal': 'Subtotal',
-    'planet.tierLast': 'Over 5,000',
-    'planet.savingsNote':
-      'Each row is a tier: its price applies only to the kWh that fall inside it, and the subtotal is what those kWh cost if you use the whole tier. Tiers add up: 250 kWh cost 33.00 + 53.50 + 71.50 + 123.00 = 281.00 CUP a month. The last tier has no upper limit, so it has no subtotal.',
-    'planet.calcLabel': 'Monthly usage (kWh)',
-    'planet.calcPlaceholder': 'e.g. 250',
-    'planet.calcButton': 'Calculate savings',
-    'planet.calcError': 'Enter usage between 1 and 20,000 kWh.',
-    'planet.calcBillLabel': 'Current monthly bill:',
-    'planet.calcWeek': 'In a week',
-    'planet.calcMonth': 'In a month',
-    'planet.calcYear': 'In a year',
-    'planet.calcResultsNote':
-      'Conservative estimate: 80% of your usage and of your current bill.',
-    'planet.source': 'Source: current residential tariff (Decree 9810/2024).',
 
     'pay.eyebrow': 'Payment options',
     'pay.title': 'Pay <span class="grad-text">however you prefer</span>',
@@ -752,89 +678,6 @@ const formatNumber = (value, decimals = 0) => {
   const [int, dec] = rounded.toFixed(decimals).split('.')
   const grouped = int.replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0')
   return dec && dec !== '00' ? `${grouped},${dec}` : grouped
-}
-
-/* Tarifa residencial cubana (Acuerdo 9810/2024), en CUP por kWh. */
-const TARIFF_TIERS = [
-  { upTo: 100, price: 0.33 },
-  { upTo: 150, price: 1.07 },
-  { upTo: 200, price: 1.43 },
-  { upTo: 250, price: 2.46 },
-  { upTo: 300, price: 3.0 },
-  { upTo: 350, price: 4.0 },
-  { upTo: 400, price: 5.0 },
-  { upTo: 450, price: 6.0 },
-  { upTo: 500, price: 7.0 },
-  { upTo: 600, price: 11.5 },
-  { upTo: 700, price: 11.81 },
-  { upTo: 1000, price: 12.31 },
-  { upTo: 1800, price: 13.5 },
-  { upTo: 2600, price: 14.75 },
-  { upTo: 3400, price: 16.13 },
-  { upTo: 4200, price: 17.44 },
-  { upTo: 5000, price: 18.75 },
-  { upTo: Infinity, price: 25.0 },
-]
-
-const monthlyBill = (kwh) => {
-  let total = 0
-  let previous = 0
-
-  for (const { upTo, price } of TARIFF_TIERS) {
-    const band = Math.min(kwh, upTo) - previous
-    if (band <= 0) break
-    total += band * price
-    previous = upTo
-  }
-
-  return total
-}
-
-const SAVINGS_SHARE = 0.8
-
-const savingsForm = document.querySelector('#savings-form')
-const savingsResults = document.querySelector('#savings-results')
-
-if (savingsForm && savingsResults) {
-  const kwhInput = savingsForm.querySelector('#kwh-input')
-  const errorEl = savingsForm.querySelector('#calc-error')
-  const billEl = savingsResults.querySelector('#calc-bill')
-  const weekKwhEl = savingsResults.querySelector('#calc-week-kwh')
-  const weekCupEl = savingsResults.querySelector('#calc-week-cup')
-  const monthKwhEl = savingsResults.querySelector('#calc-month-kwh')
-  const monthCupEl = savingsResults.querySelector('#calc-month-cup')
-  const yearKwhEl = savingsResults.querySelector('#calc-year-kwh')
-  const yearCupEl = savingsResults.querySelector('#calc-year-cup')
-
-  const fill = (kwhEl, cupEl, kwh, cup) => {
-    kwhEl.textContent = `${formatNumber(kwh)} kWh`
-    cupEl.textContent = `${formatNumber(cup, 2)} CUP`
-  }
-
-  savingsForm.addEventListener('submit', (event) => {
-    event.preventDefault()
-
-    const kwh = Number(kwhInput.value)
-    const valid = Number.isFinite(kwh) && kwh >= 1 && kwh <= 20000
-
-    errorEl.hidden = valid
-    savingsResults.hidden = !valid
-    if (!valid) return
-
-    const bill = monthlyBill(kwh)
-    const savedMonth = kwh * SAVINGS_SHARE
-    const savedCupMonth = bill * SAVINGS_SHARE
-
-    billEl.textContent = `${formatNumber(bill, 2)} CUP`
-    fill(weekKwhEl, weekCupEl, (savedMonth * 7) / 30, (savedCupMonth * 7) / 30)
-    fill(monthKwhEl, monthCupEl, savedMonth, savedCupMonth)
-    fill(yearKwhEl, yearCupEl, savedMonth * 12, savedCupMonth * 12)
-  })
-
-  kwhInput.addEventListener('input', () => {
-    errorEl.hidden = true
-    savingsResults.hidden = true
-  })
 }
 
 const config = window.SOLARTWIN_CONFIG ?? {}
