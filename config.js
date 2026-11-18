@@ -2,18 +2,18 @@
 // Todos los valores aquí pueden editarse para personalizar el sitio sin tocar código.
 window.SOLARTWIN_CONFIG = {
   // Nombre del negocio (siempre 2 partes, ej: SolarTwin)
-  businessName: ['Solar', 'Twin'],
+  businessName: ['Solarios', 'Twin'],
   // Colores de identidad
   colors: {
     primary: '#ff7a00',
     accent: '#ff00a8'
   },
   // Años de experiencia
-  experienceYears: 5,
+  experienceYears: 50,
   // Cantidad de especialistas
   specialistsCount: 10,
   // Números de teléfono
-  phoneNumbers: ['+53 5078 1823'],
+  phoneNumbers: ['+53 5078 5555'],
   // Nombres de usuario en canales
   usernames: {
     whatsapp: '@TwinTechnologyStartup',
@@ -38,7 +38,7 @@ window.SOLARTWIN_CONFIG = {
       code: 'EUR'
     },
     {
-      name: 'Moneda Nacional',
+      name: 'Monedas',
       code: 'CUP'
     }
   ]
