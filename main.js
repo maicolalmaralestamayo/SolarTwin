@@ -58,7 +58,7 @@ const translations = {
     'hero.photoTag': 'Energía limpia, todos los días',
     'hero.float1Title': 'El equipo',
     'hero.float1Text': 'Amigos, no solo socios',
-    'hero.float2Text': 'Nuestra base de operaciones',
+    'hero.float2Text': 'Nuestra sede, almacenes y proveedores',
 
     'marquee.guarantee': 'Garantía',
     'marquee.quality': 'Calidad',
@@ -157,7 +157,7 @@ const translations = {
     'pay.cupRate':
       'Los precios de nuestros servicios están expresados en USD. Si el pago se va a realizar en otra moneda, la tasa de cambio de referencia es la de <a href="https://eltoque.com/" target="_blank" rel="noopener">elToque</a>.',
     'contact.eyebrow': 'Hablemos',
-    'contact.title': 'Tu precio empieza con <span class="grad-text">un mensaje</span>',
+    'contact.title': 'Tu inversión comienza con <span class="grad-text">tu primer mensaje</span>',
     'contact.subtitle':
       'Escríbenos por el canal que prefieras. Te respondemos lo antes posible y sin compromiso.',
     'contact.waName': 'WhatsApp',
