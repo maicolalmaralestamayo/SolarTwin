@@ -82,31 +82,7 @@ window.SOLARTWIN_CONFIG = {
         bifaciality: 0.75,
         installFactor: 0.5
       }
-    },
-
-    // Tarifa residencial en CUP por kWh, por tramos progresivos.
-    // Acuerdo 9810/2024 del Consejo de Ministros (Gaceta Oficial 10 Extraordinaria
-    // de 2024), vigente desde el 1 de marzo de 2024.
-    tariffs: [
-      { upTo: 100, price: 0.33 },
-      { upTo: 150, price: 1.07 },
-      { upTo: 200, price: 1.43 },
-      { upTo: 250, price: 2.46 },
-      { upTo: 300, price: 3.0 },
-      { upTo: 350, price: 4.0 },
-      { upTo: 400, price: 5.0 },
-      { upTo: 450, price: 6.0 },
-      { upTo: 500, price: 7.0 },
-      { upTo: 600, price: 11.5 },
-      { upTo: 700, price: 11.81 },
-      { upTo: 1000, price: 12.31 },
-      { upTo: 1800, price: 13.5 },
-      { upTo: 2600, price: 14.75 },
-      { upTo: 3400, price: 16.13 },
-      { upTo: 4200, price: 17.44 },
-      { upTo: 5000, price: 18.75 },
-      { upTo: Infinity, price: 25.0 }
-    ]
+    }
   },
 
   // Preguntas frecuentes. Se muestran en la sección #faq y además generan los

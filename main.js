@@ -481,7 +481,6 @@ if (solarApi && solarForm && solarResult) {
   const solarDefaults = solarConfig.defaults ?? {}
   const solarSystem = solarConfig.system ?? {}
   const solarBifacial = solarSystem.bifacial ?? {}
-  const solarTariffs = Array.isArray(solarConfig.tariffs) ? solarConfig.tariffs : []
 
   const derate = Number(solarSystem.derate) > 0 ? Number(solarSystem.derate) : 0.85
   const inverterEfficiency =
@@ -582,8 +581,7 @@ if (solarApi && solarForm && solarResult) {
       battery: {
         dod: read(dodInput) / 100,
         efficiency: read(batteryEffInput) / 100
-      },
-      tariffs: solarTariffs
+      }
     })
 
     solarError.hidden = Boolean(result)

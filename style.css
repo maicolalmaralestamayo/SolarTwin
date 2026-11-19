@@ -2365,36 +2365,6 @@ p {
   letter-spacing: -0.02em;
 }
 
-.solar-facts {
-  display: grid;
-  margin: 0;
-  border-top: 1px solid var(--line);
-}
-
-.solar-facts > div {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 0.45rem 0;
-  border-bottom: 1px solid var(--line);
-}
-
-.solar-facts dt {
-  font-size: 0.78rem;
-  color: var(--muted);
-}
-
-.solar-facts dd {
-  margin: 0;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.84rem;
-  font-weight: 600;
-  text-align: right;
-  color: var(--text);
-  font-variant-numeric: tabular-nums;
-}
-
 .solar-system {
   margin: 0.7rem 0 0;
   font-size: 0.72rem;
@@ -2451,19 +2421,6 @@ p {
   font-size: 0.9rem;
 }
 
-/* Consumo y factura: bloque aparte del panel de resultados */
-
-.solar-energy {
-  grid-column: 1 / -1;
-  display: grid;
-  gap: 0.9rem;
-  padding: clamp(1.1rem, 2.4vw, 1.5rem) clamp(1.2rem, 2.6vw, 1.7rem);
-  border-radius: 16px;
-  border: 1px solid var(--line-strong);
-  background: radial-gradient(22rem 11rem at 100% 0%, rgba(255, 45, 149, 0.12), transparent 70%),
-    linear-gradient(180deg, var(--surface-2), var(--surface));
-}
-
 .solar-energy-kicker {
   margin: 0;
   font-family: 'Space Grotesk', sans-serif;
@@ -2481,8 +2438,7 @@ p {
   margin: 0;
 }
 
-.solar-energy-facts dt,
-.solar-money-label {
+.solar-energy-facts dt {
   font-size: 0.72rem;
   color: var(--muted);
 }
@@ -2494,144 +2450,6 @@ p {
   font-weight: 600;
   color: var(--text);
   font-variant-numeric: tabular-nums;
-}
-
-.solar-money {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.9rem;
-  margin: 0;
-  padding-top: 0.9rem;
-  border-top: 1px solid var(--line);
-}
-
-.solar-money dd {
-  margin: 0;
-}
-
-.solar-money strong {
-  display: block;
-  margin-top: 0.25rem;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(1.4rem, 2.6vw, 1.8rem);
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-}
-
-.solar-energy-note {
-  margin: 0;
-  font-size: 0.72rem;
-  line-height: 1.5;
-  color: var(--muted-2);
-}
-
-.solar-tariff {
-  padding-top: 0.8rem;
-  border-top: 1px solid var(--line);
-  font-size: 0.74rem;
-  line-height: 1.5;
-  color: var(--muted-2);
-}
-
-.solar-tariff-summary {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-.solar-tariff p {
-  margin: 0.6rem 0 0;
-}
-
-.solar-tariff-scroll {
-  margin-top: 0.7rem;
-  overflow-x: auto;
-}
-
-.solar-tariff-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.72rem;
-  font-variant-numeric: tabular-nums;
-}
-
-.solar-tariff-table caption {
-  padding-bottom: 0.4rem;
-  font-size: 0.66rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-align: left;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-.solar-tariff-table th,
-.solar-tariff-table td {
-  padding: 0.35rem 0.5rem;
-  border-bottom: 1px solid var(--line);
-  text-align: right;
-  white-space: nowrap;
-}
-
-.solar-tariff-table th:first-child,
-.solar-tariff-table td:first-child {
-  padding-left: 0;
-  text-align: left;
-  white-space: normal;
-}
-
-.solar-tariff-table td:last-child {
-  padding-right: 0;
-}
-
-.solar-tariff-table thead th {
-  font-size: 0.64rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-.solar-tariff-table tbody th {
-  font-weight: 500;
-  color: var(--muted-2);
-}
-
-.solar-tariff-table tbody td {
-  color: var(--text);
-}
-
-.solar-tariff-table tfoot th,
-.solar-tariff-table tfoot td {
-  border-bottom: 0;
-  padding-top: 0.5rem;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: var(--text);
-}
-
-.solar-tariff-table tfoot td {
-  color: var(--orange);
-}
-
-.solar-tariff-source {
-  margin: 0;
-  font-size: 0.68rem;
-  line-height: 1.5;
-  color: var(--muted-2);
-}
-
-.solar-tariff-source a {
-  color: var(--muted);
-}
-
-
-.solar-facts {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 @media (max-width: 960px) {
@@ -2646,8 +2464,6 @@ p {
   }
 
   .solar-energy-facts,
-  .solar-money,
-  .solar-facts,
   .solar-calc {
     grid-template-columns: 1fr;
   }

@@ -219,41 +219,6 @@ window.SOLAR_CALC = (function () {
   }
 
   /**
-   * Factura eléctrica cubana por tramos progresivos: a cada bloque solo se le
-   * aplica el precio a los kWh que caen dentro de él.
-   * @param {number} monthlyKwh
-   * @param {TariffBlock[]} tariffs
-   * @returns {number} CUP
-   */
-  function billFor(monthlyKwh, tariffs) {
-    if (!positive(monthlyKwh) || !Array.isArray(tariffs) || !tariffs.length) return 0
-
-    let remaining = monthlyKwh
-    let lower = 0
-    let total = 0
-
-    for (const block of tariffs) {
-      const upTo = Number(block.upTo)
-      const price = Number(block.price)
-      const limit = Number.isFinite(upTo) ? upTo : Infinity
-      const size = limit - lower
-      if (!positive(size) || !Number.isFinite(price)) {
-        lower = limit
-        continue
-      }
-      const inBlock = Math.min(remaining, size)
-      if (inBlock > 0) {
-        total += inBlock * price
-        remaining -= inBlock
-      }
-      lower = limit
-      if (remaining <= 0) break
-    }
-
-    return total
-  }
-
-  /**
    * Cálculo completo del sistema.
    * @param {SolarInput} input
    * @returns {SolarResult | null} null si falta algún dato imprescindible
@@ -313,11 +278,6 @@ window.SOLAR_CALC = (function () {
       annual: monthProduction * 12
     }
 
-    const gridKwh = Math.max(0, use.monthly - monthProduction)
-    const billCurrent = billFor(use.monthly, input.tariffs)
-    const billWithSolar = billFor(gridKwh, input.tariffs)
-    const saving = Math.max(0, billCurrent - billWithSolar)
-
     return {
       consumption: use,
       panels,
@@ -325,14 +285,6 @@ window.SOLAR_CALC = (function () {
       inverterKw: inverterKw(panels, panelWatts),
       batteryKwh: batteryKwh(dailyKwh, autonomyDays, battery),
       production,
-      bill: {
-        current: billCurrent,
-        annual: billCurrent * 12,
-        withSolar: billWithSolar,
-        saving,
-        savingAnnual: saving * 12
-      },
-      gridKwh,
       coverage: use.monthly > 0 ? Math.min(1, monthProduction / use.monthly) : 0
     }
   }

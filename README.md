@@ -90,7 +90,7 @@ Todo lo que cambia con el negocio vive aquí:
 | `channelLink*` | Enlaces a los canales y redes; si están vacíos, esa tarjeta no se muestra. |
 | `paymentCurrencies` | Monedas aceptadas. |
 | `panelPriceUsd` | Precio base por panel para la calculadora de costo. |
-| `solar` | Calculadora Solar: valores iniciales, constantes del sistema y tarifa por tramos (ver abajo). |
+| `solar` | Calculadora Solar: valores iniciales y constantes del sistema (ver abajo). |
 | `faq` | Preguntas frecuentes: `{ q, a }` (ver abajo). |
 | `testimonials` | Opiniones de clientes (ver abajo). |
 | `siteUrl` | Dominio público cuando exista, para completar los enlaces al compartir. |
@@ -127,11 +127,9 @@ No publiques opiniones que no sean de clientes reales. Con una o dos basta para 
 
 Dentro de **Proceso** (`#proceso`), el panel “Tú aportas / Nosotros aportamos” deja claro el reparto: el cliente provee los paneles y los cables solares, y SolarTwin aporta la mano de obra para el montaje de las bases. Si cambia el reparto, actualiza el HTML y las claves `process.splitYou*` y `process.splitWe*` del diccionario `es`.
 
-## Calculadoras
+## Calculadora de costo
 
-Las dos están en **Formas de pago** (`#pago`).
-
-**Costo.** El precio base por panel vive en `config.js`:
+Está en **Formas de pago** (`#pago`). El precio base por panel vive en `config.js`:
 
 ```js
 panelPriceUsd: 180,
@@ -143,23 +141,21 @@ El **pago** se realiza en efectivo y después de completado el trabajo; no se pi
 
 ## Calculadora Solar
 
-La sección **Calculadora Solar** (`#calculadora`, entre Formas de pago y Preguntas frecuentes) dimensiona el sistema a partir del consumo diario, muestra el consumo semanal, mensual y anual, y calcula la factura y el ahorro en CUP. La lógica vive en `solar.js` —funciones puras, sin DOM, documentadas con JSDoc— y los datos en `config.js`:
+La sección **Calculadora Solar** (`#calculadora`, entre Formas de pago y Preguntas frecuentes) dimensiona el sistema a partir del consumo diario, estima el costo en USD y muestra la producción solar (semanal, mensual y anual) junto con los datos del sistema. La lógica vive en `solar.js` —funciones puras, sin DOM, documentadas con JSDoc— y los datos en `config.js`:
 
 ```js
 solar: {
-  defaults: { dailyKwh: 10, autonomyDays: 1, cellTech: 'topcon', panelWatts: 400, construction: 'monofacial', batteryTech: 'lfp', hsp: 5.5 },
-  system: { derate: 0.85, inverterEfficiency: 0.975, bifacial: { albedo: 0.2, bifaciality: 0.75, installFactor: 0.5 } },
-  tariffs: [{ upTo: 100, price: 0.33 }, { upTo: 150, price: 1.07 }, /* … */],
+  defaults: { dailyKwh: 3, autonomyDays: 0.5, cellTech: 'topcon', panelWatts: 500, construction: 'monofacial', batteryTech: 'lfp', hsp: 8 },
+  system: { derate: 0.85, inverterEfficiency: 0.975, bifacial: { albedo: 0.2, bifaciality: 0.75, installFactor: 0.5 } }
 },
 ```
 
 - `defaults`: lo que trae el formulario al abrir la página. La tecnología de celda rellena la eficiencia y el coeficiente de temperatura; la de batería rellena el DoD y la eficiencia. Los cuatro siguen siendo editables.
 - `system`: constantes del sistema, solo se muestran (no se editan).
-- `tariffs`: tramos progresivos de la tarifa residencial en CUP/kWh. La factura aplica a cada tramo únicamente los kWh que caen dentro de él. Los valores actuales son los del Acuerdo 9810/2024 (Gaceta Oficial 10 Extraordinaria de 2024, vigente desde el 1 de marzo de 2024); si cambia la tarifa, solo hay que editar esta lista.
 
 Los resultados se recalculan solos: cada campo escucha `input` y `change`, y al cargar la página se hace un primer cálculo con los valores de `defaults`. No hay botón ni envío de formulario.
 
-El panel de resultados muestra el dimensionamiento, la producción, la factura que quedaría con el sistema solar y el ahorro. Debajo, un bloque aparte (**Consumo y factura**, `.solar-energy`) recoge el consumo semanal, mensual y anual en kWh y, resaltados en los colores de identidad, el gasto de un mes y el de un año (el pago mensual multiplicado por 12). Dentro de ese mismo bloque, el desplegable **Cómo se calcula la factura eléctrica en Cuba** explica la tarifa progresiva y muestra una tabla con el desglose de la factura según el consumo mensual: tramo, CUP/kWh, kWh de ese tramo e importe, con el total al pie. Los tramos se leen de `tariffs` y solo aparecen los que toca el consumo calculado.
+El panel de resultados muestra el dimensionamiento, el costo estimado en USD con botón de WhatsApp, la producción solar (semanal, mensual y anual) y los datos del sistema. El consumo se usa internamente para calcular la cobertura del sistema.
 
 ## Preguntas frecuentes
 
