@@ -314,29 +314,13 @@ const applyConfigToTexts = () => {
 
   // Textos de la sección Proceso cargados desde config.js
   const processCfg = siteConfig.process ?? {}
-  const processMap = {
-    promisesTitle: 'process.promisesTitle',
-    promise1Title: 'process.promise1Title',
-    promise1Text: 'process.promise1Text',
-    promise2Title: 'process.promise2Title',
-    promise2Text: 'process.promise2Text',
-    promise3Title: 'process.promise3Title',
-    promise3Text: 'process.promise3Text',
-    promise4Title: 'process.promise4Title',
-    promise4Text: 'process.promise4Text',
+  const processScalarMap = {
     eyebrow: 'process.eyebrow',
     title: 'process.title',
     subtitle: 'process.subtitle',
-    s1Title: 'process.s1Title',
-    s1Text: 'process.s1Text',
-    s2Title: 'process.s2Title',
-    s2Text: 'process.s2Text',
-    s3Title: 'process.s3Title',
-    s3Text: 'process.s3Text',
-    s4Title: 'process.s4Title',
-    s4Text: 'process.s4Text',
     caption: 'process.caption',
     alt: 'process.alt',
+    promisesTitle: 'process.promisesTitle',
     splitYouKicker: 'process.splitYouKicker',
     splitYouTitle: 'process.splitYouTitle',
     splitYouText: 'process.splitYouText',
@@ -344,7 +328,7 @@ const applyConfigToTexts = () => {
     splitWeTitle: 'process.splitWeTitle',
     splitWeText: 'process.splitWeText',
   }
-  Object.entries(processMap).forEach(([cfgKey, dictKey]) => {
+  Object.entries(processScalarMap).forEach(([cfgKey, dictKey]) => {
     const value = processCfg[cfgKey]
     if (value !== undefined && value !== null && String(value).trim() !== '') {
       dict[dictKey] = applyConfigToText(String(value))
@@ -782,6 +766,68 @@ if (faqWrap) {
     })
     document.head.append(ld)
   }
+}
+
+/* ---------- Proceso desde config.js ---------- */
+
+const processStepsWrap = document.querySelector('#process-steps')
+const processPromisesWrap = document.querySelector('#process-promises')
+
+const processIcons = [
+  '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 2.5v5.8c0 4.4-2.9 7.9-7 9.7-4.1-1.8-7-5.3-7-9.7V5.5L12 3Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8.8 12.1l2.2 2.2 4.3-4.4" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="5.2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M8.6 13.6 7 21l5-2.6 5 2.6-1.6-7.4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9.9 9.1l1.5 1.5 2.9-3" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 5 6.8v4.9c0 4.2 2.9 7.6 7 9.3 4.1-1.7 7-5.1 7-9.3V6.8L12 3.5Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M12 8.6v4.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="16" r="1.1" fill="currentColor"/></svg>',
+  '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8v3M12 18.2v3M2.8 12h3M18.2 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="12" r="3.2" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>',
+]
+
+const processCfg = siteConfig.process ?? {}
+
+if (processStepsWrap) {
+  const steps = Array.isArray(processCfg.steps) ? processCfg.steps : []
+  processStepsWrap.replaceChildren(
+    ...steps.map((item, index) => {
+      const li = document.createElement('li')
+      li.setAttribute('data-reveal', '')
+
+      const num = document.createElement('span')
+      num.className = 'step-num'
+      num.textContent = String(index + 1).padStart(2, '0')
+
+      const body = document.createElement('div')
+      const title = document.createElement('h3')
+      title.textContent = applyConfigToText(String(item?.title ?? ''))
+      const text = document.createElement('p')
+      text.textContent = applyConfigToText(String(item?.text ?? ''))
+
+      body.append(title, text)
+      li.append(num, body)
+      return li
+    })
+  )
+}
+
+if (processPromisesWrap) {
+  const promises = Array.isArray(processCfg.promises) ? processCfg.promises : []
+  processPromisesWrap.replaceChildren(
+    ...promises.map((item, index) => {
+      const article = document.createElement('article')
+      article.className = 'card'
+      article.setAttribute('data-reveal', '')
+
+      const iconWrap = document.createElement('span')
+      iconWrap.className = 'card-icon'
+      iconWrap.innerHTML = processIcons[index % processIcons.length]
+
+      const title = document.createElement('h3')
+      title.textContent = applyConfigToText(String(item?.title ?? ''))
+
+      const text = document.createElement('p')
+      text.textContent = applyConfigToText(String(item?.text ?? ''))
+
+      article.append(iconWrap, title, text)
+      return article
+    })
+  )
 }
 
 /* ---------- Header y menú ---------- */
