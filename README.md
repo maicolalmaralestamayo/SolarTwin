@@ -159,7 +159,7 @@ solar: {
 
 Los resultados se recalculan solos: cada campo escucha `input` y `change`, y al cargar la página se hace un primer cálculo con los valores de `defaults`. No hay botón ni envío de formulario.
 
-El panel de resultados muestra el dimensionamiento, la producción, la factura que quedaría con el sistema solar y el ahorro. Debajo, un bloque aparte (**Consumo y factura**, `.solar-energy`) recoge el consumo semanal, mensual y anual en kWh y, resaltados en los colores de identidad, el gasto de un mes y el de un año (el pago mensual multiplicado por 12). Debajo, un desplegable **Cómo se calcula la factura eléctrica en Cuba** explica la tarifa progresiva por tramos y lista los precios leídos de `tariffs`.
+El panel de resultados muestra el dimensionamiento, la producción, la factura que quedaría con el sistema solar y el ahorro. Debajo, un bloque aparte (**Consumo y factura**, `.solar-energy`) recoge el consumo semanal, mensual y anual en kWh y, resaltados en los colores de identidad, el gasto de un mes y el de un año (el pago mensual multiplicado por 12). Dentro de ese mismo bloque, el desplegable **Cómo se calcula la factura eléctrica en Cuba** explica la tarifa progresiva y muestra una tabla con el desglose de la factura según el consumo mensual: tramo, CUP/kWh, kWh de ese tramo e importe, con el total al pie. Los tramos se leen de `tariffs` y solo aparecen los que toca el consumo calculado.
 
 ## Preguntas frecuentes
 

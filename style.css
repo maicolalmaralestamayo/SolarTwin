@@ -2623,8 +2623,7 @@ p {
 }
 
 .solar-tariff {
-  margin-top: 0.85rem;
-  padding-top: 0.7rem;
+  padding-top: 0.8rem;
   border-top: 1px solid var(--line);
   font-size: 0.74rem;
   line-height: 1.5;
@@ -2653,17 +2652,76 @@ p {
   margin: 0.6rem 0 0;
 }
 
-.solar-tariff-blocks {
-  margin: 0.6rem 0 0;
-  padding-left: 1.05rem;
-  columns: 2;
-  column-gap: 1.2rem;
+.solar-tariff-scroll {
+  margin-top: 0.7rem;
+  overflow-x: auto;
+}
+
+.solar-tariff-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.72rem;
   font-variant-numeric: tabular-nums;
 }
 
-.solar-tariff-blocks li {
-  break-inside: avoid;
-  margin-bottom: 0.15rem;
+.solar-tariff-table caption {
+  padding-bottom: 0.4rem;
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-align: left;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.solar-tariff-table th,
+.solar-tariff-table td {
+  padding: 0.35rem 0.5rem;
+  border-bottom: 1px solid var(--line);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.solar-tariff-table th:first-child,
+.solar-tariff-table td:first-child {
+  padding-left: 0;
+  text-align: left;
+  white-space: normal;
+}
+
+.solar-tariff-table td:last-child {
+  padding-right: 0;
+}
+
+.solar-tariff-table thead th {
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.solar-tariff-table tbody th {
+  font-weight: 500;
+  color: var(--muted-2);
+}
+
+.solar-tariff-table tbody td {
+  color: var(--text);
+}
+
+.solar-tariff-table tfoot th,
+.solar-tariff-table tfoot td {
+  border-bottom: 0;
+  padding-top: 0.5rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.solar-tariff-table tfoot td {
+  color: var(--orange);
 }
 
 @media (max-width: 960px) {
@@ -2675,10 +2733,6 @@ p {
 @media (max-width: 560px) {
   .solar-fields {
     grid-template-columns: 1fr;
-  }
-
-  .solar-tariff-blocks {
-    columns: 1;
   }
 
   .solar-energy-facts,

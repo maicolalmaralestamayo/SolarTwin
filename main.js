@@ -637,6 +637,59 @@ if (solarApi && solarForm && solarResult) {
 
   const pct = (value, decimals = 1) => `${formatNumber(value * 100, decimals)} %`
 
+  const tariffRows = out('#solar-tariff-rows')
+  const tariffTotal = out('#solar-tariff-total')
+
+  /* Desglose de la factura mensual por tramos, generado desde config.js */
+  const renderTariff = (monthlyKwh) => {
+    if (!tariffRows || !Number.isFinite(monthlyKwh)) return
+
+    let remaining = monthlyKwh
+    let lower = 0
+    let total = 0
+    const rows = []
+
+    for (const block of solarTariffs) {
+      const upTo = Number(block.upTo)
+      const price = Number(block.price)
+      const limit = Number.isFinite(upTo) ? upTo : Infinity
+      const size = limit - lower
+
+      if (size > 0) {
+        const inBlock = Math.min(remaining, size)
+        if (inBlock > 0) {
+          const row = document.createElement('tr')
+          const label = Number.isFinite(upTo)
+            ? `Hasta ${formatNumber(upTo)} kWh`
+            : `Más de ${formatNumber(lower)} kWh`
+          const cells = [
+            label,
+            Number.isFinite(price) ? price.toFixed(2).replace('.', ',') : '—',
+            formatNumber(inBlock, Number.isInteger(inBlock) ? 0 : 1),
+            formatNumber(inBlock * price, 2)
+          ]
+
+          cells.forEach((text, index) => {
+            const cell = document.createElement(index === 0 ? 'th' : 'td')
+            if (index === 0) cell.setAttribute('scope', 'row')
+            cell.textContent = text
+            row.append(cell)
+          })
+
+          rows.push(row)
+          total += inBlock * price
+          remaining -= inBlock
+        }
+      }
+
+      lower = limit
+      if (remaining <= 0) break
+    }
+
+    tariffRows.replaceChildren(...rows)
+    if (tariffTotal) tariffTotal.textContent = `${formatNumber(total)} CUP/mes`
+  }
+
   const renderSolar = () => {
     const result = solarApi.computeSystem({
       dailyKwh: read(dailyInput),
@@ -677,6 +730,7 @@ if (solarApi && solarForm && solarResult) {
     billEl.textContent = `${formatNumber(result.bill.current)} CUP/mes`
     billAnnualEl.textContent = `${formatNumber(result.bill.annual)} CUP/año`
     billAfterEl.textContent = `${formatNumber(result.bill.withSolar)} CUP/mes`
+    renderTariff(result.consumption.monthly)
     savingEl.textContent = `${formatNumber(result.bill.saving)} CUP/mes · ${formatNumber(result.bill.savingAnnual)} CUP/año`
 
     systemEl.textContent =
@@ -716,25 +770,6 @@ if (solarApi && solarForm && solarResult) {
     input.addEventListener('input', renderSolar)
     input.addEventListener('change', renderSolar)
   })
-
-  /* Explicación de la tarifa por tramos, generada desde config.js */
-  const tariffList = out('#solar-tariff-blocks')
-  if (tariffList && solarTariffs.length) {
-    let lower = 0
-    tariffList.replaceChildren(
-      ...solarTariffs.map((block) => {
-        const upTo = Number(block.upTo)
-        const price = Number(block.price)
-        const item = document.createElement('li')
-        const priceText = Number.isFinite(price) ? `${price.toFixed(2).replace('.', ',')} CUP/kWh` : '—'
-        item.textContent = Number.isFinite(upTo)
-          ? `Hasta ${formatNumber(upTo)} kWh: ${priceText}`
-          : `Más de ${formatNumber(lower)} kWh: ${priceText}`
-        if (Number.isFinite(upTo)) lower = upTo
-        return item
-      })
-    )
-  }
 
   applyCellTech()
   applyBatteryTech()
