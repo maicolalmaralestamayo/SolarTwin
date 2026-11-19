@@ -662,6 +662,57 @@ if (quotesWrap && quotesSection) {
   }
 }
 
+/* ---------- Preguntas frecuentes desde config.js ---------- */
+
+const faqWrap = document.querySelector('#faq .faq')
+
+if (faqWrap) {
+  const faqItems = (Array.isArray(siteConfig.faq) ? siteConfig.faq : [])
+    .map((item) => ({
+      q: String(item?.q ?? '').trim(),
+      a: String(item?.a ?? '').trim(),
+    }))
+    .filter((item) => item.q && item.a)
+
+  if (faqItems.length) {
+    const plainText = (html) => {
+      const holder = document.createElement('div')
+      holder.innerHTML = html
+      return holder.textContent.replace(/\s+/g, ' ').trim()
+    }
+
+    faqWrap.replaceChildren(
+      ...faqItems.map((item) => {
+        const details = document.createElement('details')
+        details.className = 'faq-item'
+
+        const summary = document.createElement('summary')
+        summary.textContent = item.q
+
+        const answer = document.createElement('p')
+        answer.innerHTML = item.a
+
+        details.append(summary, answer)
+        return details
+      })
+    )
+
+    // Datos estructurados a juego con las preguntas visibles.
+    const ld = document.createElement('script')
+    ld.type = 'application/ld+json'
+    ld.textContent = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faqItems.map((item) => ({
+        '@type': 'Question',
+        name: item.q,
+        acceptedAnswer: { '@type': 'Answer', text: plainText(item.a) },
+      })),
+    })
+    document.head.append(ld)
+  }
+}
+
 /* ---------- Header y menú ---------- */
 
 const header = document.querySelector('.site-header')

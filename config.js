@@ -67,6 +67,36 @@ window.SOLARTWIN_CONFIG = {
   // de ahorro muestra solo la energía y no habla de dinero.
   electricityRateCup: 0,
 
+  // Preguntas frecuentes. Se muestran en la sección #faq y además generan los
+  // datos estructurados (FAQPage) que leen los buscadores.
+  // El texto de la respuesta puede llevar enlaces HTML.
+  faq: [
+    {
+      q: '¿Qué incluye el precio del montaje?',
+      a: 'Incluye la mano de obra del montaje y los recursos que ponemos nosotros: bases, soportes y el resto de los materiales de la instalación. Los paneles y los cables solares los aporta el cliente.'
+    },
+    {
+      q: '¿Quién compra los paneles y los cables solares?',
+      a: 'Los aporta el cliente. Nosotros compramos solo los recursos necesarios para el montaje y te damos un precio cerrado antes de empezar.'
+    },
+    {
+      q: '¿Cuánto tarda el montaje?',
+      a: 'Depende del tamaño del sistema y de las condiciones del techo. Después de la visita te damos una fecha y un plazo concreto.'
+    },
+    {
+      q: '¿Qué cubre la garantía?',
+      a: 'Cada montaje queda respaldado por escrito. Si algo no funciona como debe, volvemos y lo resolvemos.'
+    },
+    {
+      q: '¿Cómo y cuándo se paga?',
+      a: 'En efectivo y al terminar el trabajo, sin pago por adelantado. Aceptamos USD, EUR y CUP; para el CUP la tasa de referencia es la de <a href="https://eltoque.com/" target="_blank" rel="noopener">elToque</a>.'
+    },
+    {
+      q: '¿Llegan a mi municipio?',
+      a: 'Trabajamos en toda la provincia de Santiago de Cuba, con base en Palma Soriano. Escríbenos y te confirmamos la fecha más cercana.'
+    }
+  ],
+
   // Opiniones de clientes. Si la lista está vacía, la sección no se muestra.
   // Ejemplo: { name: 'Ana', place: 'Palma Soriano', text: '...' }
   testimonials: [],

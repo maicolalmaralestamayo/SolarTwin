@@ -91,6 +91,7 @@ Todo lo que cambia con el negocio vive aquí:
 | `panelPriceUsd` | Precio base por panel para la calculadora de costo. |
 | `panelKwhPerMonth` | Energía que produce un panel al mes (kWh) para la calculadora de ahorro. |
 | `electricityRateCup` | Precio del kWh en CUP. Si es `0`, la calculadora de ahorro solo muestra energía. |
+| `faq` | Preguntas frecuentes: `{ q, a }` (ver abajo). |
 | `testimonials` | Opiniones de clientes (ver abajo). |
 | `siteUrl` | Dominio público cuando exista, para completar los enlaces al compartir. |
 
@@ -151,7 +152,15 @@ El **pago** se realiza en efectivo y después de completado el trabajo; no se pi
 
 ## Preguntas frecuentes
 
-La sección `#faq` (antes de Contacto) usa `<details>` nativos: se abre y se cierra sin JavaScript. Si cambias una pregunta o una respuesta, actualiza también el bloque `FAQPage` del `<head>` de `index.html` para que Google siga mostrando la misma información.
+La sección `#faq` (antes de Contacto) se genera desde `config.js` y usa `<details>` nativos: las tarjetas se abren y se cierran sin JavaScript extra.
+
+```js
+faq: [
+  { q: '¿Cuánto tarda el montaje?', a: 'Depende del tamaño del sistema y del techo.' },
+],
+```
+
+El texto de `a` admite enlaces HTML. Con esas mismas preguntas se generan los datos estructurados `FAQPage` que leen los buscadores, así que solo hay que editar `config.js`: no queda ningún bloque duplicado en el HTML. Si la lista está vacía, la sección queda sin preguntas.
 
 ## Cómo se comparte el enlace
 

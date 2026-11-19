@@ -254,14 +254,20 @@ p {
   letter-spacing: -0.03em;
 }
 
-.brand-name .solar,
-.brand-word .solar {
-  color: var(--orange);
+/* El nombre del negocio siempre con el degradado de los dos colores. */
+.brand-name,
+.brand-word {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
+.brand-name .solar,
 .brand-name .twin,
+.brand-word .solar,
 .brand-word .twin {
-  color: var(--fuchsia);
+  color: transparent;
 }
 
 .brand-name .solar {
@@ -571,11 +577,8 @@ p {
   color: var(--text-soft);
 }
 
-.hero-note {
-  margin-top: 1rem;
-  max-width: 52ch;
-  font-size: 0.92rem;
-  color: var(--text-soft);
+.lead + .lead {
+  margin-top: 0.9rem;
 }
 
 .hero-actions {
