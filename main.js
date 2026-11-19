@@ -466,7 +466,7 @@ const applyText = () => {
   updateThemeLabel()
 }
 
-/* ---------- Calculadora de ahorro y de paneles ---------- */
+/* ---------- Calculadora de paneles ---------- */
 
 const formatNumber = (value, decimals = 0) => {
   const rounded = decimals ? Math.round(value * 100) / 100 : Math.round(value)
@@ -538,93 +538,6 @@ if (panelForm && panelResult) {
   // La cantidad inicial (1) ya viene calculada al abrir la página
   const initialCount = Number(countInput.value)
   if (isValidCount(initialCount)) renderTotal(initialCount)
-}
-
-/* ---------- Calculadora de ahorro (energía generada) ---------- */
-
-const KWH_PER_PANEL = (() => {
-  const value = Number(config.panelKwhPerMonth)
-  return Number.isFinite(value) && value > 0 ? value : 70
-})()
-
-const CUP_PER_KWH = (() => {
-  const value = Number(config.electricityRateCup)
-  return Number.isFinite(value) && value > 0 ? value : 0
-})()
-
-const kwhLabel = document.querySelector('#kwh-per-panel')
-if (kwhLabel) kwhLabel.textContent = formatNumber(KWH_PER_PANEL)
-
-const savingsForm = document.querySelector('#savings-form')
-const savingsResult = document.querySelector('#savings-result')
-
-if (savingsForm && savingsResult) {
-  const savingsInput = savingsForm.querySelector('#savings-count')
-  const savingsError = savingsForm.querySelector('#savings-error')
-  const savingsTotal = savingsResult.querySelector('#savings-total')
-  const savingsDetail = savingsResult.querySelector('#savings-detail')
-  const savingsYear = savingsResult.querySelector('#savings-year')
-  const savingsMoney = savingsResult.querySelector('#savings-money')
-  const chips = Array.from(savingsForm.querySelectorAll('.chip[data-panels]'))
-
-  const isValidPanels = (count) => Number.isInteger(count) && count >= 1 && count <= 60
-
-  const renderSavings = (count) => {
-    const month = count * KWH_PER_PANEL
-    const panels = count === 1 ? 'panel' : 'paneles'
-
-    savingsTotal.textContent = `${formatNumber(month)} kWh`
-    savingsDetail.textContent = `${count} ${panels} × ${formatNumber(KWH_PER_PANEL)} kWh = ${formatNumber(month)} kWh al mes`
-    savingsYear.textContent = `${formatNumber(month * 12)} kWh al año`
-
-    if (savingsMoney) {
-      if (CUP_PER_KWH) {
-        savingsMoney.hidden = false
-        savingsMoney.textContent = `${formatNumber(month * CUP_PER_KWH)} CUP al mes · ${formatNumber(month * 12 * CUP_PER_KWH)} CUP al año`
-      } else {
-        savingsMoney.hidden = true
-        savingsMoney.textContent = '—'
-      }
-    }
-
-    chips.forEach((chip) => {
-      const active = Number(chip.dataset.panels) === count
-      chip.classList.toggle('is-active', active)
-      chip.setAttribute('aria-pressed', String(active))
-    })
-  }
-
-  savingsForm.addEventListener('submit', (event) => {
-    event.preventDefault()
-
-    const count = Number(savingsInput.value)
-    const valid = isValidPanels(count)
-
-    savingsError.hidden = valid
-    savingsInput.setAttribute('aria-invalid', String(!valid))
-    if (!valid) return
-
-    renderSavings(count)
-  })
-
-  savingsInput.addEventListener('input', () => {
-    savingsError.hidden = true
-    savingsInput.removeAttribute('aria-invalid')
-  })
-
-  chips.forEach((chip) => {
-    chip.addEventListener('click', () => {
-      const count = Number(chip.dataset.panels)
-      if (!isValidPanels(count)) return
-      savingsInput.value = String(count)
-      savingsError.hidden = true
-      savingsInput.removeAttribute('aria-invalid')
-      renderSavings(count)
-    })
-  })
-
-  const initialPanels = Number(savingsInput.value)
-  if (isValidPanels(initialPanels)) renderSavings(initialPanels)
 }
 
 /* ---------- Calculadora Solar (#calculadora) ---------- */

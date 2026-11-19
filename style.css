@@ -765,7 +765,6 @@ p {
   position: relative;
   z-index: 1;
   overflow: hidden;
-  border-block: 1px solid var(--line);
   background: linear-gradient(
     90deg,
     color-mix(in srgb, var(--orange) 6%, transparent),
@@ -825,7 +824,6 @@ p {
 
 .section-alt {
   background: linear-gradient(180deg, transparent, var(--alt-bg) 18%, transparent);
-  border-block: 1px solid var(--line);
 }
 
 .section-head {
@@ -2223,42 +2221,7 @@ p {
   transform: scaleX(1);
 }
 
-/* ---------- Calculadora: chips y presupuesto ---------- */
-
-.calc-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-top: 0.7rem;
-}
-
-.chip {
-  padding: 0.35rem 0.8rem;
-  border-radius: 999px;
-  border: 1px solid var(--line-strong);
-  background: var(--ghost-bg);
-  color: var(--muted);
-  font: inherit;
-  font-size: 0.78rem;
-  cursor: pointer;
-  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
-}
-
-.chip:hover {
-  color: var(--text);
-  border-color: var(--orange);
-}
-
-.chip.is-active {
-  color: var(--text);
-  border-color: var(--orange);
-  background: color-mix(in srgb, var(--orange) 14%, transparent);
-}
-
-.chip:focus-visible {
-  outline: 2px solid var(--orange);
-  outline-offset: 2px;
-}
+/* ---------- Calculadora: presupuesto ---------- */
 
 .panel-quote {
   margin-top: 0.9rem;

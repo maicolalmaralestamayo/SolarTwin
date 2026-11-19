@@ -60,13 +60,6 @@ window.SOLARTWIN_CONFIG = {
   // Precio base por panel para la calculadora de costo (USD)
   panelPriceUsd: 180,
 
-  // Energía que produce un panel al mes (kWh) para la calculadora de ahorro
-  panelKwhPerMonth: 70,
-
-  // Precio de la electricidad (CUP por kWh). Si lo dejas en 0, la calculadora
-  // de ahorro muestra solo la energía y no habla de dinero.
-  electricityRateCup: 0,
-
   // Calculadora Solar (#calculadora)
   solar: {
     // Valores con los que abre el formulario

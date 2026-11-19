@@ -868,59 +868,6 @@
             </p>
           </div>
 
-          <div class="panel-calc savings-calc" data-reveal>
-            <div class="panel-calc-copy">
-              <p class="pay-kicker">Calculadora de ahorro</p>
-              <h3>¿Cuánta energía te dan tus paneles?</h3>
-              <p class="panel-calc-text">
-                Un panel bien orientado produce unos <strong id="kwh-per-panel">70</strong> kWh al
-                mes. Indica cuántos quieres instalar y te decimos cuánta energía puedes dejar de
-                comprar a la red.
-              </p>
-              <form class="panel-form" id="savings-form" novalidate>
-                <label for="savings-count">Cantidad de paneles</label>
-                <div class="panel-input-row">
-                  <input
-                    id="savings-count"
-                    name="savingsPanels"
-                    type="number"
-                    inputmode="numeric"
-                    min="1"
-                    max="60"
-                    value="6"
-                    step="1"
-                    aria-describedby="savings-error"
-                  />
-                  <button class="btn btn-primary" type="submit">Calcular</button>
-                </div>
-                <div class="calc-chips" role="group" aria-label="Cantidades frecuentes">
-                  <button class="chip" type="button" data-panels="2">2 paneles</button>
-                  <button class="chip" type="button" data-panels="4">4 paneles</button>
-                  <button class="chip" type="button" data-panels="6">6 paneles</button>
-                  <button class="chip" type="button" data-panels="8">8 paneles</button>
-                  <button class="chip" type="button" data-panels="12">12 paneles</button>
-                  <button class="chip" type="button" data-panels="16">16 paneles</button>
-                </div>
-                <p class="calc-error" id="savings-error" hidden>
-                  Escribe una cantidad entera entre 1 y 60 paneles.
-                </p>
-              </form>
-            </div>
-
-            <div class="panel-result" id="savings-result" aria-live="polite">
-              <span class="panel-result-label">Energía estimada</span>
-              <strong class="grad-text" id="savings-total">—</strong>
-              <span class="panel-result-detail" id="savings-detail">—</span>
-              <span class="panel-result-detail" id="savings-year">—</span>
-              <span class="panel-result-detail" id="savings-money" hidden>—</span>
-            </div>
-
-            <p class="calc-disclaimer">
-              Estimación para Cuba: un panel de 550 W rinde unos 70 kWh al mes (unas 4,5 horas de
-              sol al día al 80 % de rendimiento). La producción real depende del lugar, la
-              orientación y la limpieza de los paneles.
-            </p>
-          </div>
         </div>
       </section>
 

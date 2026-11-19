@@ -57,7 +57,7 @@ ErrorDocument 404 /404.html
 - Textos: directamente en `index.html` y en el diccionario `es` de `main.js`.
 - El sitio tiene un solo idioma (español): no hay selector de idioma ni versiones traducidas.
 - Colores y estilos: `style.css`.
-- Precio de cada panel y datos de la calculadora de ahorro: `config.js` (ver más abajo).
+- Precio de cada panel: `config.js` (ver más abajo).
 - Fotos: reemplaza los archivos de `img/` manteniendo los nombres, o cambia la ruta en `index.html`.
 - El tema oscuro se aplica por defecto; el menú de tema de la cabecera permite pasar a claro o automático (según el sistema) y la preferencia se guarda en el navegador.
 
@@ -68,8 +68,8 @@ El menú principal enlaza a las secciones con estos nombres visibles:
 | --- | --- | --- |
 | Nosotros | Nosotros (mapa de cobertura) | `#nosotros` |
 | Proceso | Proceso (pasos y compromisos) | `#proceso` |
-| Pago | Formas de pago y calculadoras | `#pago` |
-| Calculadora | Calculadora Solar (dimensionamiento y ahorro) | `#calculadora` |
+| Pago | Formas de pago y calculadora de paneles | `#pago` |
+| Calculadora | Calculadora Solar (consumo, dimensionamiento y factura) | `#calculadora` |
 | Contáctanos | Formas de contacto | `#contacto` |
 
 Mientras el visitante recorre la página, el enlace de la sección en la que está se marca solo (`aria-current`).
@@ -90,8 +90,6 @@ Todo lo que cambia con el negocio vive aquí:
 | `channelLink*` | Enlaces a los canales y redes; si están vacíos, esa tarjeta no se muestra. |
 | `paymentCurrencies` | Monedas aceptadas. |
 | `panelPriceUsd` | Precio base por panel para la calculadora de costo. |
-| `panelKwhPerMonth` | Energía que produce un panel al mes (kWh) para la calculadora de ahorro. |
-| `electricityRateCup` | Precio del kWh en CUP. Si es `0`, la calculadora de ahorro solo muestra energía. |
 | `solar` | Calculadora Solar: valores iniciales, constantes del sistema y tarifa por tramos (ver abajo). |
 | `faq` | Preguntas frecuentes: `{ q, a }` (ver abajo). |
 | `testimonials` | Opiniones de clientes (ver abajo). |
@@ -140,15 +138,6 @@ panelPriceUsd: 180,
 ```
 
 La calculadora lo muestra en USD (la moneda base), multiplica por la cantidad entera que escriba el cliente e incluye el aviso de que el cálculo es aproximado. El botón **Pedir este presupuesto por WhatsApp** abre el chat con la cantidad y el nombre del negocio ya escritos en el mensaje.
-
-**Ahorro.** Indica cuánta energía dan los paneles:
-
-```js
-panelKwhPerMonth: 70,
-electricityRateCup: 0,
-```
-
-La estimación parte de que un panel de 550 W rinde unos 70 kWh al mes en Cuba (unas 4,5 horas de sol al día al 80 % de rendimiento). Muestra kWh al mes y al año. Si pones en `electricityRateCup` el precio del kWh en CUP, añade además el ahorro mensual y anual en esa moneda; mientras esté en `0` no habla de dinero.
 
 El **pago** se realiza en efectivo y después de completado el trabajo; no se pide pago por adelantado. Para el CUP se toma como referencia la tasa de [elToque](https://eltoque.com/).
 
