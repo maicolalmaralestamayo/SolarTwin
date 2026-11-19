@@ -40,7 +40,14 @@
     <meta name="twitter:image" content="./img/og-image.jpg" />
 
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
-    <link rel="preload" as="image" href="./img/imagen-1-800.webp" type="image/webp" />
+    <link
+      rel="preload"
+      as="image"
+      href="./img/imagen-1-800.webp"
+      imagesrcset="./img/imagen-1-800.webp 800w, ./img/imagen-1-1400.webp 1400w"
+      imagesizes="(max-width: 960px) 92vw, 560px"
+      type="image/webp"
+    />
     <script>
       // Aplica el tema guardado antes de pintar, para evitar parpadeos.
       ;(function () {
@@ -69,7 +76,6 @@
         "email": "twin.technology.startup@gmail.com",
         "url": "./",
         "image": "./img/og-image.jpg",
-        "priceRange": "USD",
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Palma Soriano",
