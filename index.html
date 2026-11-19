@@ -1129,8 +1129,6 @@
                 Revisa los valores: el consumo, la potencia del panel y las horas de sol deben ser
                 mayores que cero.
               </p>
-
-              <button class="btn btn-primary solar-submit" type="submit">Calcular</button>
             </form>
 
             <div class="solar-result" id="solar-result" aria-live="polite">
@@ -1160,12 +1158,24 @@
                   <dd id="solar-production-detail">—</dd>
                 </div>
                 <div>
+                  <dt>Consumo semanal</dt>
+                  <dd id="solar-consumption-weekly">—</dd>
+                </div>
+                <div>
                   <dt>Consumo mensual</dt>
                   <dd id="solar-consumption">—</dd>
                 </div>
                 <div>
+                  <dt>Consumo anual</dt>
+                  <dd id="solar-consumption-annual">—</dd>
+                </div>
+                <div>
                   <dt>Factura actual</dt>
                   <dd id="solar-bill">—</dd>
+                </div>
+                <div>
+                  <dt>Factura anual</dt>
+                  <dd id="solar-bill-annual">—</dd>
                 </div>
                 <div>
                   <dt>Factura con el sistema solar</dt>
@@ -1179,9 +1189,20 @@
 
               <p class="solar-system" id="solar-system">—</p>
 
-              <a class="btn btn-primary panel-quote" id="solar-cta" href="#contacto">
-                Solicitar cotización con estos datos
-              </a>
+              <details class="solar-tariff">
+                <summary>Cómo se calcula la factura eléctrica en Cuba</summary>
+                <p>
+                  La tarifa residencial cubana es progresiva por tramos: cada kWh se cobra al
+                  precio del tramo en el que cae, no todo el consumo al precio más alto. La
+                  calculadora va sumando bloque a bloque el consumo del mes y multiplica ese pago
+                  por 12 para obtener el anual.
+                </p>
+                <ul class="solar-tariff-blocks" id="solar-tariff-blocks"></ul>
+                <p class="solar-tariff-source">
+                  Tarifa del Acuerdo 9810/2024 (Gaceta Oficial 10 Extraordinaria de 2024),
+                  vigente desde el 1 de marzo de 2024.
+                </p>
+              </details>
             </div>
 
             <p class="calc-disclaimer">

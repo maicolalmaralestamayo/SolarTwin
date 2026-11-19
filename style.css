@@ -2517,12 +2517,6 @@ p {
   color: var(--muted-2);
 }
 
-.solar-submit {
-  width: 100%;
-  margin-top: 1rem;
-  justify-content: center;
-}
-
 .solar-result {
   display: grid;
   gap: 0.35rem;
@@ -2591,6 +2585,50 @@ p {
   color: var(--muted-2);
 }
 
+.solar-tariff {
+  margin-top: 0.85rem;
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.74rem;
+  line-height: 1.5;
+  color: var(--muted-2);
+}
+
+.solar-tariff summary {
+  cursor: pointer;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.solar-tariff summary::marker {
+  color: var(--orange);
+}
+
+.solar-tariff summary:hover {
+  color: var(--text);
+}
+
+.solar-tariff p {
+  margin: 0.6rem 0 0;
+}
+
+.solar-tariff-blocks {
+  margin: 0.6rem 0 0;
+  padding-left: 1.05rem;
+  columns: 2;
+  column-gap: 1.2rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.solar-tariff-blocks li {
+  break-inside: avoid;
+  margin-bottom: 0.15rem;
+}
+
 @media (max-width: 960px) {
   .solar-calc {
     grid-template-columns: 1fr;
@@ -2600,5 +2638,9 @@ p {
 @media (max-width: 560px) {
   .solar-fields {
     grid-template-columns: 1fr;
+  }
+
+  .solar-tariff-blocks {
+    columns: 1;
   }
 }

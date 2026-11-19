@@ -154,7 +154,7 @@ El **pago** se realiza en efectivo y después de completado el trabajo; no se pi
 
 ## Calculadora Solar
 
-La sección **Calculadora Solar** (`#calculadora`, entre Formas de pago y Preguntas frecuentes) dimensiona el sistema a partir del consumo diario y calcula el ahorro en CUP. La lógica vive en `solar.js` —funciones puras, sin DOM, documentadas con JSDoc— y los datos en `config.js`:
+La sección **Calculadora Solar** (`#calculadora`, entre Formas de pago y Preguntas frecuentes) dimensiona el sistema a partir del consumo diario, muestra el consumo semanal, mensual y anual, y calcula la factura y el ahorro en CUP. La lógica vive en `solar.js` —funciones puras, sin DOM, documentadas con JSDoc— y los datos en `config.js`:
 
 ```js
 solar: {
@@ -168,7 +168,9 @@ solar: {
 - `system`: constantes del sistema, solo se muestran (no se editan).
 - `tariffs`: tramos progresivos de la tarifa residencial en CUP/kWh. La factura aplica a cada tramo únicamente los kWh que caen dentro de él. Los valores actuales son los del Acuerdo 9810/2024 (Gaceta Oficial 10 Extraordinaria de 2024, vigente desde el 1 de marzo de 2024); si cambia la tarifa, solo hay que editar esta lista.
 
-El botón **Solicitar cotización con estos datos** lleva al visitante a la sección de contacto.
+Los resultados se recalculan solos: cada campo escucha `input` y `change`, y al cargar la página se hace un primer cálculo con los valores de `defaults`. No hay botón ni envío de formulario.
+
+El panel de resultados muestra el consumo semanal, mensual y anual en kWh, la factura mensual y la anual (el pago mensual multiplicado por 12), la factura que quedaría con el sistema solar y el ahorro. Debajo, un desplegable **Cómo se calcula la factura eléctrica en Cuba** explica la tarifa progresiva por tramos y lista los precios leídos de `tariffs`.
 
 ## Preguntas frecuentes
 

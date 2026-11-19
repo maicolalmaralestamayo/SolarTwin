@@ -55,7 +55,7 @@
  * @property {number} inverterKw
  * @property {number} batteryKwh
  * @property {{ monthly: number, daily: number, weekly: number, annual: number }} production
- * @property {{ current: number, withSolar: number, saving: number, savingAnnual: number }} bill
+ * @property {{ current: number, annual: number, withSolar: number, saving: number, savingAnnual: number }} bill
  * @property {number} gridKwh           Energía que sigue comprando a la red al mes
  * @property {number} coverage          Fracción del consumo cubierta (0–1)
  */
@@ -295,6 +295,7 @@ window.SOLAR_CALC = (function () {
       production,
       bill: {
         current: billCurrent,
+        annual: billCurrent * 12,
         withSolar: billWithSolar,
         saving,
         savingAnnual: saving * 12
