@@ -58,7 +58,7 @@ window.SOLARTWIN_CONFIG = {
   ],
 
   // Precio base por panel para la calculadora de costo (USD)
-  panelPriceUsd: 180,
+  panelPriceUsd: 90,
 
   // Calculadora Solar (#calculadora)
   solar: {
