@@ -156,19 +156,6 @@ const translations = {
     'pay.cup': 'Moneda Nacional',
     'pay.cupRate':
       'Los precios de nuestros servicios están expresados en USD. Si el pago se va a realizar en otra moneda, la tasa de cambio de referencia es la de <a href="https://eltoque.com/" target="_blank" rel="noopener">elToque</a>.',
-    'pay.calcKicker': 'Calculadora de paneles',
-    'pay.calcTitle': '¿Cuánto cuestan tus paneles?',
-    'pay.calcText':
-      'Indica cuántos paneles necesitas. El precio base es por panel y se expresa en USD, la moneda base.',
-    'pay.calcPriceLabel': 'Precio por panel:',
-    'pay.calcCountLabel': 'Cantidad de paneles',
-    'pay.calcPlaceholder': 'Ej.: 6',
-    'pay.calcButton': 'Calcular',
-    'pay.calcError': 'Escribe una cantidad entera entre 1 y 500 paneles.',
-    'pay.calcResultLabel': 'Costo estimado',
-    'pay.calcDisclaimer':
-      'Cálculo aproximado. El precio final depende del precio de los insumos en el mercado y de las condiciones del montaje.',
-
     'contact.eyebrow': 'Hablemos',
     'contact.title': 'Tu precio empieza con <span class="grad-text">un mensaje</span>',
     'contact.subtitle':
@@ -466,7 +453,7 @@ const applyText = () => {
   updateThemeLabel()
 }
 
-/* ---------- Calculadora de paneles ---------- */
+/* ---------- Configuración y precio por panel ---------- */
 
 const formatNumber = (value, decimals = 0) => {
   const rounded = decimals ? Math.round(value * 100) / 100 : Math.round(value)
@@ -481,64 +468,6 @@ const PANEL_PRICE_USD =
   Number.isFinite(configuredPanelPrice) && configuredPanelPrice > 0
     ? configuredPanelPrice
     : 180
-
-const panelPriceEl = document.querySelector('#panel-price')
-if (panelPriceEl) panelPriceEl.textContent = `${formatNumber(PANEL_PRICE_USD, 2)} USD`
-
-const panelForm = document.querySelector('#panel-form')
-const panelResult = document.querySelector('#panel-result')
-
-if (panelForm && panelResult) {
-  const countInput = panelForm.querySelector('#panel-count')
-  const errorEl = panelForm.querySelector('#panel-error')
-  const totalEl = panelResult.querySelector('#panel-total')
-  const detailEl = panelResult.querySelector('#panel-detail')
-
-  const isValidCount = (count) => Number.isInteger(count) && count >= 1 && count <= 500
-
-  // Botón de presupuesto: lleva al chat con la cantidad ya escrita.
-  const quoteLink = document.querySelector('#panel-quote')
-  const updateQuote = (count) => {
-    if (!quoteLink) return
-    const panels = count === 1 ? 'panel' : 'paneles'
-    const message = `Hola ${siteValues.fullName || 'SolarTwin'}, quiero un presupuesto para ${count} ${panels}.`
-    try {
-      const url = new URL(quoteLink.href)
-      url.searchParams.set('text', message)
-      quoteLink.href = url.toString()
-    } catch (err) {
-      /* enlace no válido: se queda el de por defecto */
-    }
-  }
-
-  const renderTotal = (count) => {
-    totalEl.textContent = `${formatNumber(count * PANEL_PRICE_USD, 2)} USD`
-    detailEl.textContent = `${count} × ${formatNumber(PANEL_PRICE_USD, 2)} USD`
-    updateQuote(count)
-  }
-
-  panelForm.addEventListener('submit', (event) => {
-    event.preventDefault()
-
-    const count = Number(countInput.value)
-    const valid = isValidCount(count)
-
-    errorEl.hidden = valid
-    countInput.setAttribute('aria-invalid', String(!valid))
-    if (!valid) return
-
-    renderTotal(count)
-  })
-
-  countInput.addEventListener('input', () => {
-    errorEl.hidden = true
-    countInput.removeAttribute('aria-invalid')
-  })
-
-  // La cantidad inicial (1) ya viene calculada al abrir la página
-  const initialCount = Number(countInput.value)
-  if (isValidCount(initialCount)) renderTotal(initialCount)
-}
 
 /* ---------- Calculadora Solar (#calculadora) ---------- */
 
@@ -581,6 +510,9 @@ if (solarApi && solarForm && solarResult) {
   const out = (selector) => solarCalc.querySelector(selector)
   const panelsEl = out('#solar-panels')
   const panelsDetailEl = out('#solar-panels-detail')
+  const costEl = out('#solar-cost')
+  const costDetailEl = out('#solar-cost-detail')
+  const costQuoteEl = out('#solar-cost-quote')
   const arrayEl = out('#solar-array')
   const inverterEl = out('#solar-inverter')
   const batteryEl = out('#solar-battery-capacity')
@@ -720,6 +652,23 @@ if (solarApi && solarForm && solarResult) {
 
     panelsEl.textContent = `${formatNumber(result.panels)} ${panelLabel}`
     panelsDetailEl.textContent = `${formatNumber(result.arrayKw, 2)} kWp instalados · ${formatNumber(panelWatts)} Wp por panel`
+
+    const panelCost = result.panels * PANEL_PRICE_USD
+    costEl.textContent = `${formatNumber(panelCost, 2)} USD`
+    costDetailEl.textContent = `${formatNumber(result.panels)} × ${formatNumber(PANEL_PRICE_USD, 2)} USD por panel`
+    if (costQuoteEl) {
+      const message =
+        `Hola ${siteValues.fullName || 'SolarTwin'}, la calculadora me dio ` +
+        `${formatNumber(result.panels)} ${panelLabel} (${formatNumber(result.arrayKw, 2)} kWp) ` +
+        `y un costo estimado de ${formatNumber(panelCost, 2)} USD en paneles. Quiero detalles.`
+      try {
+        const url = new URL(costQuoteEl.href)
+        url.searchParams.set('text', message)
+        costQuoteEl.href = url.toString()
+      } catch (err) {
+        /* enlace no válido: se queda el de por defecto */
+      }
+    }
     arrayEl.textContent = `${formatNumber(result.arrayKw, 2)} kWp`
     inverterEl.textContent = `${formatNumber(result.inverterKw, 2)} kW`
     batteryEl.textContent = `${formatNumber(result.batteryKwh, 1)} kWh`

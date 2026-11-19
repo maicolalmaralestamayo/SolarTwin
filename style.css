@@ -925,56 +925,6 @@ p {
   line-height: 1.6;
 }
 
-/* ---------- Calculadora de paneles ---------- */
-
-.panel-form label {
-  display: block;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--muted-2);
-}
-
-.panel-input-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.55rem;
-  margin-top: 0.5rem;
-}
-
-.panel-input-row input {
-  flex: 1 1 9rem;
-  width: 100%;
-  min-width: 0;
-  height: 46px;
-  padding: 0 0.9rem;
-  border-radius: 12px;
-  border: 1px solid var(--line-strong);
-  background: var(--ghost-bg);
-  color: var(--text);
-  font: inherit;
-  font-size: 0.95rem;
-  font-variant-numeric: tabular-nums;
-}
-
-.panel-input-row input::placeholder {
-  color: var(--muted-2);
-}
-
-.panel-input-row input:focus-visible {
-  outline: none;
-  border-color: var(--orange);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--orange) 18%, transparent);
-}
-
-.panel-input-row .btn {
-  flex: 0 0 auto;
-  white-space: nowrap;
-}
-
 .calc-error {
   margin-top: 0.5rem;
   font-size: 0.8rem;
@@ -1760,72 +1710,7 @@ p {
   color: var(--text);
 }
 
-/* Calculadora de paneles */
-
-.panel-calc {
-  margin-top: 1.1rem;
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: clamp(1.2rem, 3vw, 2.4rem);
-  align-items: center;
-  padding: clamp(1.5rem, 3vw, 2.2rem);
-  border-radius: var(--radius);
-  border: 1px solid var(--line);
-  background: radial-gradient(26rem 16rem at 100% 0%, rgba(255, 45, 149, 0.12), transparent 65%),
-    linear-gradient(180deg, var(--surface-2), var(--surface));
-}
-
-.panel-calc .pay-kicker {
-  margin-bottom: 0.4rem;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.69rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-.panel-calc-text {
-  max-width: 52ch;
-  font-size: 0.94rem;
-}
-
-.panel-calc h3 {
-  margin-bottom: 0.45rem;
-}
-
-.panel-price {
-  display: flex;
-  align-items: baseline;
-  gap: 0.5rem;
-  margin: 0.9rem 0 0;
-  font-size: 0.88rem;
-  color: var(--muted);
-}
-
-.panel-price strong {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 1.3rem;
-  letter-spacing: -0.02em;
-  color: var(--text);
-}
-
-.panel-form {
-  margin-top: 1rem;
-}
-
-.panel-result {
-  display: grid;
-  gap: 0.3rem;
-  padding: 1.3rem 1.4rem;
-  border-radius: 16px;
-  border: 1px solid var(--line-strong);
-  background: var(--ghost-bg);
-}
-
-.panel-result[hidden] {
-  display: none;
-}
+/* Etiquetas reutilizadas por el panel de resultados de la calculadora solar */
 
 .panel-result-label {
   font-size: 0.7rem;
@@ -1833,12 +1718,6 @@ p {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--muted-2);
-}
-
-.panel-result strong {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(1.7rem, 3vw, 2.1rem);
-  letter-spacing: -0.02em;
 }
 
 .panel-result-detail {
@@ -1899,10 +1778,6 @@ p {
 @media (max-width: 1000px) {
   .cards-4 {
     grid-template-columns: repeat(2, 1fr);
-  }
-
-  .panel-calc {
-    grid-template-columns: 1fr;
   }
 
   .hero-grid,
@@ -2221,17 +2096,6 @@ p {
   transform: scaleX(1);
 }
 
-/* ---------- Calculadora: presupuesto ---------- */
-
-.panel-quote {
-  margin-top: 0.9rem;
-  width: 100%;
-  justify-content: center;
-  text-align: center;
-  font-size: 0.85rem;
-  padding: 0.7rem 1rem;
-}
-
 /* ---------- Opiniones ---------- */
 
 #opiniones[hidden] {
@@ -2536,6 +2400,55 @@ p {
   font-size: 0.72rem;
   line-height: 1.5;
   color: var(--muted-2);
+}
+
+/* Costo estimado: resalta en los colores de identidad */
+
+.solar-cost {
+  display: grid;
+  gap: 0.9rem;
+  margin-top: 0.85rem;
+  padding: 1rem 1.1rem;
+  border-radius: 14px;
+  border: 1px solid color-mix(in srgb, var(--fuchsia) 42%, transparent);
+  background:
+    radial-gradient(16rem 9rem at 0% 0%, color-mix(in srgb, var(--orange) 18%, transparent), transparent 70%),
+    radial-gradient(18rem 10rem at 100% 100%, color-mix(in srgb, var(--fuchsia) 22%, transparent), transparent 70%),
+    var(--ghost-bg);
+}
+
+.solar-cost-kicker {
+  display: block;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.solar-cost strong {
+  display: block;
+  margin-top: 0.15rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.6rem, 3vw, 2rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.solar-cost-detail {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.78rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.solar-cost-quote {
+  width: 100%;
+  padding: 0.75rem 1.1rem;
+  font-size: 0.9rem;
 }
 
 /* Consumo y factura: bloque aparte del panel de resultados */
