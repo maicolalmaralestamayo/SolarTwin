@@ -167,11 +167,11 @@ Un `sitemap.xml` necesita URLs absolutas, así que conviene generarlo cuando exi
 
 ## Fotos y licencias
 
-Las dos fotos muestran paneles montados sobre techos y azoteas de hormigón. Están recortadas en cuadrado y optimizadas en `img/`, en JPEG y en WebP (el navegador elige el formato y el tamaño con `<picture>`):
+Las dos fotos muestran paneles montados sobre techos y azoteas de hormigón. Están recortadas en cuadrado y optimizadas en `img/`, solo en WebP: cada foto tiene dos tamaños y el navegador elige con `srcset`/`sizes` (`imagen-1-800.webp` / `imagen-1-1400.webp` y `imagen-2-800.webp` / `imagen-2-1000.webp`). La miniatura para compartir (`og-image.jpg`) sigue en JPEG porque algunas redes no aceptan WebP.
 
 | Archivo | Autor | Licencia | Fuente |
 | --- | --- | --- | --- |
-| `imagen-1.jpg` | Escla | CC BY-SA 4.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Solar_panels_in_Santiago_de_Cuba_2026-07.jpg) |
-| `imagen-2.jpg` | UnifiedFunctionality | CC BY-SA 4.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Solar_panel_power_station_in_Cuba.jpg) |
+| `imagen-1-*.webp` | Escla | CC BY-SA 4.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Solar_panels_in_Santiago_de_Cuba_2026-07.jpg) |
+| `imagen-2-*.webp` | UnifiedFunctionality | CC BY-SA 4.0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Solar_panel_power_station_in_Cuba.jpg) |
 
 Si sustituyes una foto, actualiza también su crédito o elimina la línea si la nueva imagen no lo necesita. La foto de Santiago de Cuba es CC BY-SA 4.0: sus versiones recortadas conservan esa licencia.

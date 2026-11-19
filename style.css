@@ -2203,10 +2203,10 @@ p {
   }
 }
 
-/* ---------- Imágenes con WebP ---------- */
+/* ---------- Imágenes de portada y proceso ---------- */
 
-.photo-frame picture,
-.process-media picture {
+.photo-frame img,
+.process-media img {
   display: block;
 }
 
