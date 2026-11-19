@@ -2431,7 +2431,7 @@ p {
 }
 
 /* Días de autonomía: se lee en décimas (baterías nocturnas) */
-.solar-input input[type="number"] {
+.solar-input input {
   font-variant-numeric: tabular-nums;
 }
 
@@ -2503,7 +2503,7 @@ p {
 
 .solar-facts {
   display: grid;
-  margin: 0.9rem 0 0;
+  margin: 0;
   border-top: 1px solid var(--line);
 }
 
@@ -2529,21 +2529,6 @@ p {
   text-align: right;
   color: var(--text);
   font-variant-numeric: tabular-nums;
-}
-
-.solar-facts .solar-saving {
-  border-bottom: 0;
-  padding-bottom: 0.1rem;
-}
-
-.solar-facts .solar-saving dt {
-  color: var(--text);
-  font-weight: 600;
-}
-
-.solar-facts .solar-saving dd {
-  font-size: 1rem;
-  color: var(--orange);
 }
 
 .solar-system {
@@ -2635,22 +2620,13 @@ p {
   color: var(--muted-2);
 }
 
-.solar-tariff summary {
-  cursor: pointer;
+.solar-tariff-summary {
   font-family: 'Space Grotesk', sans-serif;
   font-size: 0.7rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--muted);
-}
-
-.solar-tariff summary::marker {
-  color: var(--orange);
-}
-
-.solar-tariff summary:hover {
-  color: var(--text);
 }
 
 .solar-tariff p {
@@ -2729,6 +2705,22 @@ p {
   color: var(--orange);
 }
 
+.solar-tariff-source {
+  margin: 0;
+  font-size: 0.68rem;
+  line-height: 1.5;
+  color: var(--muted-2);
+}
+
+.solar-tariff-source a {
+  color: var(--muted);
+}
+
+
+.solar-facts {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 @media (max-width: 960px) {
   .solar-calc {
     grid-template-columns: 1fr;
@@ -2741,7 +2733,9 @@ p {
   }
 
   .solar-energy-facts,
-  .solar-money {
+  .solar-money,
+  .solar-facts,
+  .solar-calc {
     grid-template-columns: 1fr;
   }
 }

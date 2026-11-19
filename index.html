@@ -917,7 +917,7 @@
                       inputmode="decimal"
                       min="0"
                       max="15"
-                      step="any"
+                      step="0.1"
                       value="1"
                       required
                     />
@@ -1083,7 +1083,7 @@
               <strong class="grad-text" id="solar-panels">—</strong>
               <span class="panel-result-detail" id="solar-panels-detail">—</span>
 
-              <dl class="solar-facts">
+              <dl class="solar-energy-facts">
                 <div>
                   <dt>Potencia instalada</dt>
                   <dd id="solar-array">—</dd>
@@ -1097,9 +1097,17 @@
                   <dd id="solar-battery-capacity">—</dd>
                 </div>
                 <div>
-                  <dt>Producción por panel (diario)</dt>
-                  <dd id="solar-production-per-panel">—</dd>
+                  <dt>Factura con el sistema solar</dt>
+                  <dd id="solar-bill-after">—</dd>
                 </div>
+              </dl>
+
+              <p class="solar-system" id="solar-system">—</p>
+            </div>
+
+            <div class="solar-energy">
+              <p class="solar-energy-kicker">Producción solar</p>
+              <dl class="solar-energy-facts">
                 <div>
                   <dt>Producción solar mensual</dt>
                   <dd id="solar-production">—</dd>
@@ -1108,26 +1116,7 @@
                   <dt>Producción diaria y anual</dt>
                   <dd id="solar-production-detail">—</dd>
                 </div>
-                <div>
-                  <dt>Factura con el sistema solar</dt>
-                  <dd id="solar-bill-after">—</dd>
-                </div>
-                <div class="solar-saving">
-                  <dt>Ahorro estimado</dt>
-                  <dd id="solar-saving">—</dd>
-                </div>
               </dl>
-
-              <p class="solar-system" id="solar-system">—</p>
-
-              <p class="solar-sizing-note">
-                El sistema se dimensiona para cubrir tu consumo diario: la calculadora indica cuántos paneles
-                necesitas y, con esos paneles, cuánta energía producen. Si cambias la eficiencia del panel,
-                cambia el número de paneles necesarios (con menos eficiencia hacen falta más para cubrir lo
-                mismo), por eso la producción total puede subir o bajar. La producción por panel siempre baja
-                con menor eficiencia o peor coeficiente de temperatura.
-              </p>
-
             </div>
 
             <div class="solar-energy">
@@ -1161,8 +1150,8 @@
                 es el pago de un mes multiplicado por 12.
               </p>
 
-              <details class="solar-tariff">
-                <summary>Cómo se calcula la factura eléctrica en Cuba</summary>
+              <div class="solar-tariff">
+                <p class="solar-tariff-summary">Cómo se calcula la factura eléctrica en Cuba</p>
                 <p>
                   La tarifa residencial cubana es progresiva por tramos: cada kWh se cobra al
                   precio del tramo en el que cae, no todo el consumo al precio más alto. Con tu
@@ -1192,7 +1181,7 @@
                   Tarifa del Acuerdo 9810/2024 (Gaceta Oficial 10 Extraordinaria de 2024),
                   vigente desde el 1 de marzo de 2024.
                 </p>
-              </details>
+              </div>
             </div>
 
             <p class="calc-disclaimer">

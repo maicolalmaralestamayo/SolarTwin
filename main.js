@@ -584,22 +584,21 @@ if (solarApi && solarForm && solarResult) {
   const arrayEl = out('#solar-array')
   const inverterEl = out('#solar-inverter')
   const batteryEl = out('#solar-battery-capacity')
-      const productionEl = out('#solar-production')
-    const productionDetailEl = out('#solar-production-detail')
-    const productionPerPanelEl = out('#solar-production-per-panel')
+  const productionEl = out('#solar-production')
+  const productionDetailEl = out('#solar-production-detail')
   const consumptionWeeklyEl = out('#solar-consumption-weekly')
   const consumptionEl = out('#solar-consumption')
   const consumptionAnnualEl = out('#solar-consumption-annual')
   const billEl = out('#solar-bill')
   const billAnnualEl = out('#solar-bill-annual')
   const billAfterEl = out('#solar-bill-after')
-  const savingEl = out('#solar-saving')
   const systemEl = out('#solar-system')
 
   const read = (input) => {
     if (!input) return NaN
-    const value = Number(String(input.value).trim().replace(',', '.'))
-    return Number.isFinite(value) ? value : NaN
+    const value = Number(String(input.value).replace(',', '.'))
+    if (!Number.isFinite(value)) return NaN
+    return value
   }
 
   /* Valores iniciales desde config.js (el HTML solo lleva el respaldo) */
@@ -639,12 +638,12 @@ if (solarApi && solarForm && solarResult) {
 
   const pct = (value, decimals = 1) => `${formatNumber(value * 100, decimals)} %`
 
-  const tariffRows = out('#solar-tariff-rows')
-  const tariffTotal = out('#solar-tariff-total')
+  const tariffRowsEl = out('#solar-tariff-rows')
+  const tariffTotalEl = out('#solar-tariff-total')
 
   /* Desglose de la factura mensual por tramos, generado desde config.js */
   const renderTariff = (monthlyKwh) => {
-    if (!tariffRows || !Number.isFinite(monthlyKwh)) return
+    if (!tariffRowsEl || !Number.isFinite(monthlyKwh)) return
 
     let remaining = monthlyKwh
     let lower = 0
@@ -688,8 +687,8 @@ if (solarApi && solarForm && solarResult) {
       if (remaining <= 0) break
     }
 
-    tariffRows.replaceChildren(...rows)
-    if (tariffTotal) tariffTotal.textContent = `${formatNumber(total)} CUP/mes`
+    tariffRowsEl.replaceChildren(...rows)
+    if (tariffTotalEl) tariffTotalEl.textContent = `${formatNumber(total)} CUP/mes`
   }
 
   const renderSolar = () => {
@@ -725,9 +724,6 @@ if (solarApi && solarForm && solarResult) {
     inverterEl.textContent = `${formatNumber(result.inverterKw, 2)} kW`
     batteryEl.textContent = `${formatNumber(result.batteryKwh, 1)} kWh`
 
-    const perPanelDaily = result.production.daily / Math.max(1, result.panels)
-    productionPerPanelEl.textContent = `${formatNumber(perPanelDaily, 2)} kWh/día · ${formatNumber(perPanelDaily * 30.4, 1)} kWh/mes por panel`
-
     productionEl.textContent = `${formatNumber(result.production.monthly)} kWh/mes`
     productionDetailEl.textContent = `${formatNumber(result.production.daily, 1)} kWh/día · ${formatNumber(result.production.annual)} kWh/año`
     consumptionWeeklyEl.textContent = `${formatNumber(result.consumption.weekly)} kWh/semana`
@@ -738,8 +734,6 @@ if (solarApi && solarForm && solarResult) {
     billAnnualEl.textContent = `${formatNumber(result.bill.annual)} CUP/año`
     billAfterEl.textContent = `${formatNumber(result.bill.withSolar)} CUP/mes`
     renderTariff(result.consumption.monthly)
-    savingEl.textContent = `${formatNumber(result.bill.saving)} CUP/mes · ${formatNumber(result.bill.savingAnnual)} CUP/año`
-
     systemEl.textContent =
       `Valores del sistema: eficiencia global ${pct(derate)}, inversor ${pct(inverterEfficiency)}, ` +
       `albedo ${formatNumber(bifacial.albedo, 2)}, bifacialidad ${formatNumber(bifacial.bifaciality, 2)} ` +
