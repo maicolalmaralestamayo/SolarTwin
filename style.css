@@ -223,11 +223,15 @@ p {
 .brand-text {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 0.15rem;
   min-width: 0;
 }
 
+/* El eslogan siempre va en su propia línea, debajo del nombre del sitio. */
 .brand-slogan {
+  display: block;
+  align-self: flex-start;
   font-family: 'Inter', system-ui, sans-serif;
   font-size: 0.66rem;
   font-weight: 500;
@@ -1499,35 +1503,27 @@ p {
   transform: translateX(3px);
 }
 
-.channel-links {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  align-items: stretch;
-  gap: 0.9rem;
-  max-width: 860px;
-  margin: 1.6rem auto 0;
+/* ---------- Redes sociales ---------- */
+
+.social-channels {
+  max-width: 900px;
 }
 
-.channel-links-label {
-  grid-column: 1 / -1;
-  width: 100%;
-  max-width: 32ch;
-  margin: 0 auto 0.35rem;
-  text-align: center;
-  font-size: clamp(1rem, 2.6vw, 1.15rem);
-  font-weight: 600;
-  line-height: 1.35;
-  letter-spacing: 0;
+/* Si el enlace no está en config.js, la tarjeta no se muestra. */
+.social-link[hidden] {
+  display: none;
+}
+
+.channel-fb .channel-icon {
+  color: #1877f2;
+}
+
+.channel-ig .channel-icon {
+  color: #e1306c;
+}
+
+.channel-tt .channel-icon {
   color: var(--text);
-}
-
-.channel-pill {
-  width: 100%;
-}
-
-.pill-brand {
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 700;
 }
 
 /* ---------- Footer ---------- */
@@ -2099,16 +2095,6 @@ p {
 
   .map-legend {
     font-size: 0.78rem;
-  }
-
-  .channel-links {
-    grid-template-columns: 1fr;
-    gap: 0.5rem;
-  }
-
-  .channel-pill {
-    width: 100%;
-    justify-content: flex-start;
   }
 
   .float-card {

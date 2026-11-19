@@ -180,9 +180,20 @@ const translations = {
     'contact.callText': '+53 5078 1823',
     'contact.mailName': 'Correo',
     'contact.mailText': 'twin.technology.startup@gmail.com',
-    'contact.channelsLabel': 'Mira nuestros trabajos en nuestras plataformas sociales',
-    'contact.waChannel': 'Canal de WhatsApp',
-    'contact.tgChannel': 'Canal de Telegram',
+    'social.eyebrow': 'Redes sociales',
+    'social.title': 'Síguenos en nuestras redes sociales',
+    'social.subtitle':
+      'Publicamos nuestros montajes y novedades en estos canales. Elige dónde quieres seguirnos.',
+    'social.waName': 'Canal de WhatsApp',
+    'social.waText': 'Nuestro canal de difusión',
+    'social.tgName': 'Canal de Telegram',
+    'social.tgText': 'Nuestro canal de difusión',
+    'social.fbName': 'Facebook',
+    'social.fbText': 'Nuestra página en Facebook',
+    'social.igName': 'Instagram',
+    'social.igText': 'Nuestra página en Instagram',
+    'social.ttName': 'TikTok',
+    'social.ttText': 'Nuestra página en TikTok',
     'config.footerBusinessLabel': 'Negocio',
     'config.footerYearsLabel': 'Años',
     'config.footerSpecialistsLabel': 'Especialistas',
@@ -245,6 +256,9 @@ const siteValues = (() => {
     tgChat: tgUsername ? `https://t.me/${tgUsername}` : '',
     waChannel: String(siteConfig.channelLinkWhatsApp ?? '').trim(),
     tgChannel: String(siteConfig.channelLinkTelegram ?? '').trim(),
+    facebook: String(siteConfig.channelLinkFacebook ?? '').trim(),
+    instagram: String(siteConfig.channelLinkInstagram ?? '').trim(),
+    tiktok: String(siteConfig.channelLinkTikTok ?? '').trim(),
     years: toNumber(siteConfig.experienceYears),
     specialists: toNumber(siteConfig.specialistsCount),
     currencies: Array.isArray(siteConfig.paymentCurrencies)
@@ -622,7 +636,7 @@ const applySiteConfig = () => {
   })
 
   // Chat privado de WhatsApp: https://wa.me/ + código + número (conserva el mensaje)
-  document.querySelectorAll('a[href*="wa.me"]').forEach((link) => {
+  document.querySelectorAll('a[href*="wa.me"]:not(.social-link)').forEach((link) => {
     if (!phoneDigits) return
     try {
       const url = new URL(link.href)
@@ -637,7 +651,7 @@ const applySiteConfig = () => {
   })
 
   // Chat privado de Telegram: https://t.me/ + usuario
-  document.querySelectorAll('a[href*="t.me"]:not(.channel-tg-channel)').forEach((link) => {
+  document.querySelectorAll('a[href*="t.me"]:not(.social-link)').forEach((link) => {
     if (!siteValues.tgUsername) return
     try {
       const url = new URL(link.href)
@@ -648,12 +662,24 @@ const applySiteConfig = () => {
     }
   })
 
-  // Canales de difusión: enlaces directos de config.js
-  document.querySelectorAll('a.channel-wa-channel').forEach((link) => {
-    if (siteValues.waChannel) link.href = siteValues.waChannel
-  })
-  document.querySelectorAll('a.channel-tg-channel').forEach((link) => {
-    if (siteValues.tgChannel) link.href = siteValues.tgChannel
+  // Canales y redes sociales: enlace directo de config.js.
+  // Si el enlace está vacío, la tarjeta no se muestra.
+  const socialLinks = {
+    whatsapp: siteValues.waChannel,
+    telegram: siteValues.tgChannel,
+    facebook: siteValues.facebook,
+    instagram: siteValues.instagram,
+    tiktok: siteValues.tiktok,
+  }
+
+  document.querySelectorAll('a.social-link[data-social]').forEach((link) => {
+    const url = socialLinks[link.dataset.social] ?? ''
+    if (!url) {
+      link.hidden = true
+      return
+    }
+    link.hidden = false
+    link.href = url
   })
 
   // Nombre del negocio dentro del enlace de correo (asunto y cuerpo)

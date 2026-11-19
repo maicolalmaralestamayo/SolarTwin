@@ -30,9 +30,13 @@ window.SOLARTWIN_CONFIG = {
     telegram: 'TwinTechnologyStartup'
   },
   
-  // Enlaces a canales
+  // Enlaces a canales y redes sociales
+  // Si un enlace está vacío, ese canal no se muestra en la página.
   channelLinkWhatsApp: 'https://whatsapp.com/channel/0029VbEJEn0DeON1xsuwb83M',
   channelLinkTelegram: 'https://t.me/SolarTwin',
+  channelLinkFacebook: '',
+  channelLinkInstagram: '',
+  channelLinkTikTok: '',
   
   // Monedas de pago
   paymentCurrencies: [

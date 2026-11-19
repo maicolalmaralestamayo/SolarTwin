@@ -65,6 +65,20 @@ El menú principal enlaza a las secciones con estos nombres visibles:
 | Pago | Formas de pago | `#pago` |
 
 
+## Canales y redes sociales
+
+Después de **Nosotros** (`#nosotros`) va la sección **Síguenos en nuestras redes sociales**, que no aparece en el menú principal. Muestra una tarjeta por cada canal configurado en `config.js`:
+
+```js
+channelLinkWhatsApp: 'https://whatsapp.com/channel/...',
+channelLinkTelegram: 'https://t.me/SolarTwin',
+channelLinkFacebook: '',
+channelLinkInstagram: '',
+channelLinkTikTok: '',
+```
+
+Si un enlace se deja vacío, su tarjeta no se muestra: solo aparecen los canales que tengan URL.
+
 La sección de equipo ya no existe: de ella solo queda, como nota dentro de la portada, la explicación de que el equipo lo forman especialistas en ingeniería eléctrica y metalurgia. La sección **Nosotros** (`#nosotros`) es la antigua área de operaciones: explica quiénes son y, con un mapa de Cuba, dónde trabajan y los 9 municipios que cubren. Sus cuatro compromisos (garantía, calidad, seguridad y optimización) se integraron al final de **Proceso** (`#proceso`), que es la única sección de proceso. La sección **Formas de pago** (`#pago`) va justo después de **Proceso**, y después de ella solo queda **Contacto** (`#contacto`): la antigua sección **Solar y planeta** (`#planeta`), con su tabla de tarifas y su calculadora de ahorro, se eliminó. **Formas de pago** indica que el pago es en efectivo y siempre después de completado el trabajo (sin pago por adelantado), que se aceptan dólar (USD), euro (EUR) y moneda nacional (CUP), que la tasa de referencia del CUP es elToque, y añade la calculadora de paneles. El botón flotante de volver arriba aparece al pasar unos 600 px de scroll y se oculta al llegar al pie de página.
 
 ## Aportes del cliente y de la empresa
