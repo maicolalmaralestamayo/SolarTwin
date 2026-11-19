@@ -45,7 +45,7 @@ const translations = {
       'El sol trabaja para ti.<br /><span class="grad-text">Nosotros lo conectamos.</span>',
     'hero.lead':
       'Somos <span class="brand-word"><span class="solar">Solar</span><span class="twin">Twin</span></span>, un grupo de amigos radicado en Palma Soriano. Montamos paneles solares en toda la provincia de Santiago de Cuba, con garantía, seguridad y los mejores precios del mercado.',
-    'hero.ctaWa': 'Pedir precio por WhatsApp',
+    'hero.ctaWa': 'Pedir detalles por Whatsapp',
     'hero.ctaCall': 'Llamar +53 5078 1823',
     'hero.statExpLabel': 'Experiencia',
     'hero.statExpValue': '+5 años',
@@ -132,7 +132,7 @@ const translations = {
     'ops.title': 'Estamos donde <span class="grad-text">tú estás</span>',
     'ops.subtitle':
       'Somos un equipo de Palma Soriano que trabaja exclusivamente en la provincia de Santiago de Cuba, donde llegamos a todos sus municipios. Tu visita no tiene recargo por distancia.',
-    'ops.cta': 'Consultar mi municipio',
+    'ops.cta': 'Pedir detalles por Whatsapp',
     'ops.mapActive': 'Santiago de Cuba — área de operación',
     'ops.mapBase': 'Palma Soriano — base del equipo',
     'ops.headStrong': 'Provincia de Santiago de Cuba',
@@ -599,10 +599,7 @@ if (solarApi && solarForm && solarResult) {
     costEl.textContent = `${formatNumber(panelCost, 2)} USD`
     costDetailEl.textContent = `${formatNumber(result.panels)} × ${formatNumber(PANEL_PRICE_USD, 2)} USD por panel`
     if (costQuoteEl) {
-      const message =
-        `Hola ${siteValues.fullName || 'SolarTwin'}, la calculadora me dio ` +
-        `${formatNumber(result.panels)} ${panelLabel} (${formatNumber(result.arrayKw, 2)} kWp) ` +
-        `y un costo estimado de ${formatNumber(panelCost, 2)} USD en paneles. Quiero detalles.`
+      const message = 'Hola, me interesan sus servicios.'
       try {
         const url = new URL(costQuoteEl.href)
         url.searchParams.set('text', message)

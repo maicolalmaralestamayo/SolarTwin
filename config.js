@@ -64,13 +64,13 @@ window.SOLARTWIN_CONFIG = {
   solar: {
     // Valores con los que abre el formulario
     defaults: {
-      dailyKwh: 10,
-      autonomyDays: 1,
+      dailyKwh: 3,
+      autonomyDays: 0.5,
       cellTech: 'topcon',
-      panelWatts: 400,
+      panelWatts: 500,
       construction: 'monofacial',
       batteryTech: 'lfp',
-      hsp: 5.5
+      hsp: 8
     },
 
     // Constantes del sistema: se muestran en los resultados y no se editan
