@@ -519,11 +519,6 @@ if (solarApi && solarForm && solarResult) {
   const productionWeeklyEl = out('#solar-production-weekly')
   const productionEl = out('#solar-production')
   const productionAnnualEl = out('#solar-production-annual')
-  const consumptionWeeklyEl = out('#solar-consumption-weekly')
-  const consumptionEl = out('#solar-consumption')
-  const consumptionAnnualEl = out('#solar-consumption-annual')
-  const billEl = out('#solar-bill')
-  const billAnnualEl = out('#solar-bill-annual')
   const systemEl = out('#solar-system')
 
   const read = (input) => {
@@ -569,59 +564,6 @@ if (solarApi && solarForm && solarResult) {
   }
 
   const pct = (value, decimals = 1) => `${formatNumber(value * 100, decimals)} %`
-
-  const tariffRowsEl = out('#solar-tariff-rows')
-  const tariffTotalEl = out('#solar-tariff-total')
-
-  /* Desglose de la factura mensual por tramos, generado desde config.js */
-  const renderTariff = (monthlyKwh) => {
-    if (!tariffRowsEl || !Number.isFinite(monthlyKwh)) return
-
-    let remaining = monthlyKwh
-    let lower = 0
-    let total = 0
-    const rows = []
-
-    for (const block of solarTariffs) {
-      const upTo = Number(block.upTo)
-      const price = Number(block.price)
-      const limit = Number.isFinite(upTo) ? upTo : Infinity
-      const size = limit - lower
-
-      if (size > 0) {
-        const inBlock = Math.min(remaining, size)
-        if (inBlock > 0) {
-          const row = document.createElement('tr')
-          const label = Number.isFinite(upTo)
-            ? `Hasta ${formatNumber(upTo)} kWh`
-            : `Más de ${formatNumber(lower)} kWh`
-          const cells = [
-            label,
-            Number.isFinite(price) ? price.toFixed(2).replace('.', ',') : '—',
-            formatNumber(inBlock, Number.isInteger(inBlock) ? 0 : 1),
-            formatNumber(inBlock * price, 2)
-          ]
-
-          cells.forEach((text, index) => {
-            const cell = document.createElement(index === 0 ? 'th' : 'td')
-            if (index === 0) cell.setAttribute('scope', 'row')
-            cell.textContent = text
-            row.append(cell)
-          })
-
-          rows.push(row)
-          total += inBlock * price
-          remaining -= inBlock
-        }
-      }
-
-      lower = limit
-      if (remaining <= 0) break
-    }
-
-    tariffRowsEl.replaceChildren(...rows)
-    if (tariffTotalEl) tariffTotalEl.textContent = `${formatNumber(total)} CUP/mes`
-  }
 
   const renderSolar = () => {
     const result = solarApi.computeSystem({
@@ -676,13 +618,7 @@ if (solarApi && solarForm && solarResult) {
     productionWeeklyEl.textContent = `${formatNumber(result.production.weekly)} kWh/semana`
     productionEl.textContent = `${formatNumber(result.production.monthly)} kWh/mes`
     productionAnnualEl.textContent = `${formatNumber(result.production.annual)} kWh/año`
-    consumptionWeeklyEl.textContent = `${formatNumber(result.consumption.weekly)} kWh/semana`
-    consumptionEl.textContent = `${formatNumber(result.consumption.monthly)} kWh/mes`
-    consumptionAnnualEl.textContent = `${formatNumber(result.consumption.annual)} kWh/año`
 
-    billEl.textContent = `${formatNumber(result.bill.current)} CUP/mes`
-    billAnnualEl.textContent = `${formatNumber(result.bill.annual)} CUP/año`
-    renderTariff(result.consumption.monthly)
     systemEl.textContent =
       `Valores del sistema: eficiencia global ${pct(derate)}, inversor ${pct(inverterEfficiency)}, ` +
       `albedo ${formatNumber(bifacial.albedo, 2)}, bifacialidad ${formatNumber(bifacial.bifaciality, 2)} ` +
