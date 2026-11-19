@@ -116,19 +116,39 @@ window.SOLAR_CALC = (function () {
   }
 
   /**
-   * Energía diaria que entrega un panel, ya con el derate del sistema y la
-   * ganancia bifacial si corresponde.
+   * Temperatura de celda asumida en operación (Cuba, cubierta ≤ 1 m sobre techo).
+   * Afecta la producción mediante el coeficiente de temperatura del panel.
+   */
+  const CELL_TEMPERATURE_C = 45
+
+  /**
+   * Energía diaria que entrega un panel, ya con el derate del sistema, la
+   * ganancia bifacial si corresponde, la eficiencia del panel y la pérdida
+   * por temperatura.
    * @param {Object} params
    * @param {number} params.panelWatts
    * @param {number} params.hsp
    * @param {number} params.derate
    * @param {Construction} params.construction
    * @param {BifacialFactor} params.bifacial
+   * @param {number} params.panelEfficiency  Eficiencia de conversión del panel (0–1)
+   * @param {number} params.tempCoef         Coeficiente de temperatura (%/°C, negativo)
    * @returns {number} kWh/día
    */
-  function panelDailyKwh({ panelWatts, hsp, derate, construction, bifacial }) {
+  function panelDailyKwh({ panelWatts, hsp, derate, construction, bifacial, panelEfficiency, tempCoef }) {
     const base = (panelWatts / 1000) * hsp * derate
-    return base * bifacialGain(construction, bifacial)
+
+    // La eficiencia del panel escala la producción respecto a un panel de referencia
+    // del 20 %: un panel más eficiente entrega más energía por Wp instalado.
+    const efficiencyFactor = Number.isFinite(panelEfficiency) ? panelEfficiency / 0.20 : 1
+
+    // Pérdida por temperatura: a mayor temperatura de celda, menor producción.
+    // tempCoef es negativo (%/°C); a 45 °C la pérdida es tempCoef × (45 − 25).
+    const tempLoss = Number.isFinite(tempCoef)
+      ? 1 + (tempCoef / 100) * (CELL_TEMPERATURE_C - 25)
+      : 1
+
+    return base * bifacialGain(construction, bifacial) * efficiencyFactor * Math.max(0, tempLoss)
   }
 
   /**
@@ -143,8 +163,8 @@ window.SOLAR_CALC = (function () {
    * @param {BifacialFactor} params.bifacial
    * @returns {number}
    */
-  function panelsNeeded({ dailyKwh, panelWatts, hsp, derate, construction, bifacial }) {
-    const perPanel = panelDailyKwh({ panelWatts, hsp, derate, construction, bifacial })
+  function panelsNeeded({ dailyKwh, panelWatts, hsp, derate, construction, bifacial, panelEfficiency, tempCoef }) {
+    const perPanel = panelDailyKwh({ panelWatts, hsp, derate, construction, bifacial, panelEfficiency, tempCoef })
     if (!positive(perPanel) || !positive(dailyKwh)) return 0
     return Math.ceil(dailyKwh / perPanel)
   }
@@ -186,8 +206,8 @@ window.SOLAR_CALC = (function () {
    * @param {BifacialFactor} params.bifacial
    * @returns {number} kWh/mes
    */
-  function monthlyProduction({ panels, panelWatts, hsp, derate, construction, bifacial }) {
-    const perPanel = panelDailyKwh({ panelWatts, hsp, derate, construction, bifacial })
+  function monthlyProduction({ panels, panelWatts, hsp, derate, construction, bifacial, panelEfficiency, tempCoef }) {
+    const perPanel = panelDailyKwh({ panelWatts, hsp, derate, construction, bifacial, panelEfficiency, tempCoef })
     return panels * perPanel * DAYS_PER_MONTH
   }
 
@@ -263,7 +283,9 @@ window.SOLAR_CALC = (function () {
       hsp,
       derate,
       construction,
-      bifacial
+      bifacial,
+      panelEfficiency: Number(input?.panelEfficiency),
+      tempCoef: Number(input?.tempCoef)
     })
 
     const monthProduction = monthlyProduction({
@@ -272,7 +294,9 @@ window.SOLAR_CALC = (function () {
       hsp,
       derate,
       construction,
-      bifacial
+      bifacial,
+      panelEfficiency: Number(input?.panelEfficiency),
+      tempCoef: Number(input?.tempCoef)
     })
 
     const production = {
@@ -311,6 +335,7 @@ window.SOLAR_CALC = (function () {
     BATTERY_TECHS,
     DAYS_PER_MONTH,
     WEEKS_PER_MONTH,
+    CELL_TEMPERATURE_C,
     consumption,
     bifacialGain,
     panelsNeeded,

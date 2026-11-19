@@ -702,6 +702,8 @@ if (solarApi && solarForm && solarResult) {
       derate,
       inverterEfficiency,
       bifacial,
+      panelEfficiency: read(efficiencyInput) / 100,
+      tempCoef: read(tempCoefInput),
       battery: {
         dod: read(dodInput) / 100,
         efficiency: read(batteryEffInput) / 100
