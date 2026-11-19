@@ -85,6 +85,38 @@ window.SOLARTWIN_CONFIG = {
     }
   },
 
+  // Sección Proceso (#proceso). Los textos se cargan desde aquí.
+  process: {
+    promisesTitle: 'Cuatro compromisos que respaldan cada paso',
+    promise1Title: 'Garantía',
+    promise1Text: 'Cada montaje queda respaldado por escrito. Si algo no funciona como debe, volvemos y lo resolvemos.',
+    promise2Title: 'Calidad',
+    promise2Text: 'Materiales resistentes y acabados cuidados, pensados para durar años bajo el sol y la lluvia.',
+    promise3Title: 'Seguridad',
+    promise3Text: 'Instalamos siguiendo normas eléctricas y de altura, para proteger a tu familia, tus equipos y tu techo.',
+    promise4Title: 'Optimización',
+    promise4Text: 'Ajustamos la cantidad de paneles y su ubicación a tu consumo real, para que no pagues de más ni te quedes corto.',
+    eyebrow: 'Proceso',
+    title: 'Del primer contacto a tu <span class="grad-text">panel conectado</span>',
+    subtitle: 'Un proceso claro, sin sorpresas y con una sola pregunta: ¿cómo te contactamos?',
+    s1Title: 'Nos contactas',
+    s1Text: 'Escríbenos por WhatsApp, Telegram o llámanos. Cuéntanos qué necesitas.',
+    s2Title: 'Visitamos tu espacio',
+    s2Text: 'Vamos al lugar, medimos y revisamos dónde irán los paneles y la instalación.',
+    s3Title: 'Adquirimos los recursos y fijamos el precio',
+    s3Text: 'Compramos solo los recursos necesarios, con los mejores materiales, y te damos un precio cerrado con los mejores precios del mercado.',
+    s4Title: 'Concretamos la fecha y montamos',
+    s4Text: 'Elegimos el día, hacemos el trabajo y te explicamos cómo usar el sistema.',
+    caption: 'Montaje en Palma Soriano y toda la provincia',
+    alt: 'Panel solar instalado en el patio de una casa de campo cubana, con techo de zinc y montañas al fondo',
+    splitYouKicker: 'Tú aportas',
+    splitYouTitle: 'Los paneles y los cables solares',
+    splitYouText: 'El cliente (tú) provee los paneles y los cables solares que se van a instalar.',
+    splitWeKicker: 'Nosotros aportamos',
+    splitWeTitle: 'La mano de obra del montaje',
+    splitWeText: 'SolarTwin pone la mano de obra para el montaje de las bases.'
+  },
+
   // Preguntas frecuentes. Se muestran en la sección #faq y además generan los
   // datos estructurados (FAQPage) que leen los buscadores.
   // El texto de la respuesta puede llevar enlaces HTML.

@@ -83,7 +83,7 @@ const translations = {
 
     'process.eyebrow': 'Proceso',
     'process.title':
-      'De la primera llamada a tu <span class="grad-text">panel encendido</span>',
+      'Del primer contacto a tu <span class="grad-text">panel conectado</span>',
     'process.subtitle':
       'Un proceso claro, sin sorpresas y con una sola pregunta: ¿cómo te contactamos?',
     'process.s1Title': 'Nos contactas',
@@ -311,6 +311,45 @@ const applyConfigToTexts = () => {
   if (siteValues.tgHandle) dict['contact.tgText'] = siteValues.tgHandle
   if (siteValues.phoneDisplay) dict['contact.callText'] = siteValues.phoneDisplay
   if (siteValues.email) dict['contact.mailText'] = siteValues.email
+
+  // Textos de la sección Proceso cargados desde config.js
+  const processCfg = siteConfig.process ?? {}
+  const processMap = {
+    promisesTitle: 'process.promisesTitle',
+    promise1Title: 'process.promise1Title',
+    promise1Text: 'process.promise1Text',
+    promise2Title: 'process.promise2Title',
+    promise2Text: 'process.promise2Text',
+    promise3Title: 'process.promise3Title',
+    promise3Text: 'process.promise3Text',
+    promise4Title: 'process.promise4Title',
+    promise4Text: 'process.promise4Text',
+    eyebrow: 'process.eyebrow',
+    title: 'process.title',
+    subtitle: 'process.subtitle',
+    s1Title: 'process.s1Title',
+    s1Text: 'process.s1Text',
+    s2Title: 'process.s2Title',
+    s2Text: 'process.s2Text',
+    s3Title: 'process.s3Title',
+    s3Text: 'process.s3Text',
+    s4Title: 'process.s4Title',
+    s4Text: 'process.s4Text',
+    caption: 'process.caption',
+    alt: 'process.alt',
+    splitYouKicker: 'process.splitYouKicker',
+    splitYouTitle: 'process.splitYouTitle',
+    splitYouText: 'process.splitYouText',
+    splitWeKicker: 'process.splitWeKicker',
+    splitWeTitle: 'process.splitWeTitle',
+    splitWeText: 'process.splitWeText',
+  }
+  Object.entries(processMap).forEach(([cfgKey, dictKey]) => {
+    const value = processCfg[cfgKey]
+    if (value !== undefined && value !== null && String(value).trim() !== '') {
+      dict[dictKey] = applyConfigToText(String(value))
+    }
+  })
 
   const count = siteValues.currencies.length
   if (count) {
