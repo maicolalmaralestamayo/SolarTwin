@@ -543,6 +543,7 @@ if (panelForm && panelResult) {
 /* ---------- Calculadora Solar (#calculadora) ---------- */
 
 const solarApi = window.SOLAR_CALC
+const { CELL_TEMPERATURE_C } = solarApi
 const solarForm = document.querySelector('#solar-form')
 const solarResult = document.querySelector('#solar-result')
 
@@ -583,8 +584,9 @@ if (solarApi && solarForm && solarResult) {
   const arrayEl = out('#solar-array')
   const inverterEl = out('#solar-inverter')
   const batteryEl = out('#solar-battery-capacity')
-  const productionEl = out('#solar-production')
-  const productionDetailEl = out('#solar-production-detail')
+      const productionEl = out('#solar-production')
+    const productionDetailEl = out('#solar-production-detail')
+    const productionPerPanelEl = out('#solar-production-per-panel')
   const consumptionWeeklyEl = out('#solar-consumption-weekly')
   const consumptionEl = out('#solar-consumption')
   const consumptionAnnualEl = out('#solar-consumption-annual')
@@ -723,6 +725,9 @@ if (solarApi && solarForm && solarResult) {
     inverterEl.textContent = `${formatNumber(result.inverterKw, 2)} kW`
     batteryEl.textContent = `${formatNumber(result.batteryKwh, 1)} kWh`
 
+    const perPanelDaily = result.production.daily / Math.max(1, result.panels)
+    productionPerPanelEl.textContent = `${formatNumber(perPanelDaily, 2)} kWh/día · ${formatNumber(perPanelDaily * 30.4, 1)} kWh/mes por panel`
+
     productionEl.textContent = `${formatNumber(result.production.monthly)} kWh/mes`
     productionDetailEl.textContent = `${formatNumber(result.production.daily, 1)} kWh/día · ${formatNumber(result.production.annual)} kWh/año`
     consumptionWeeklyEl.textContent = `${formatNumber(result.consumption.weekly)} kWh/semana`
@@ -739,6 +744,7 @@ if (solarApi && solarForm && solarResult) {
       `Valores del sistema: eficiencia global ${pct(derate)}, inversor ${pct(inverterEfficiency)}, ` +
       `albedo ${formatNumber(bifacial.albedo, 2)}, bifacialidad ${formatNumber(bifacial.bifaciality, 2)} ` +
       `e instalación bifacial ${formatNumber(bifacial.installFactor, 2)}. ` +
+      `Temperatura de celda asumida: ${CELL_TEMPERATURE_C} °C. ` +
       `El sistema cubre el ${pct(result.coverage)} de tu consumo mensual.`
   }
 

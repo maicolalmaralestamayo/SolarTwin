@@ -116,8 +116,15 @@ window.SOLAR_CALC = (function () {
   }
 
   /**
-   * Temperatura de celda asumida en operación (Cuba, cubierta ≤ 1 m sobre techo).
-   * Afecta la producción mediante el coeficiente de temperatura del panel.
+   * Temperatura de celda asumida en operación.
+   *
+   * Valor conservatism para Cuba: cubierta a ≤ 1 m sobre el techo, techo oscuro
+   * o sin ventilación forzada. Con pátio o techo ventilado puede ser nearer a
+   * 40 °C; con muy buena ventilación, 35–38 °C. Cambia CELL_TEMPERATURE_C si
+   * tu instalación es muy diferente.
+   *
+   * Este valor solo afecta la pérdida por temperatura cuando se incluye el
+   * coeficiente de temperatura del panel en el cálculo.
    */
   const CELL_TEMPERATURE_C = 45
 
