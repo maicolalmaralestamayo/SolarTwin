@@ -584,14 +584,14 @@ if (solarApi && solarForm && solarResult) {
   const arrayEl = out('#solar-array')
   const inverterEl = out('#solar-inverter')
   const batteryEl = out('#solar-battery-capacity')
+  const productionWeeklyEl = out('#solar-production-weekly')
   const productionEl = out('#solar-production')
-  const productionDetailEl = out('#solar-production-detail')
+  const productionAnnualEl = out('#solar-production-annual')
   const consumptionWeeklyEl = out('#solar-consumption-weekly')
   const consumptionEl = out('#solar-consumption')
   const consumptionAnnualEl = out('#solar-consumption-annual')
   const billEl = out('#solar-bill')
   const billAnnualEl = out('#solar-bill-annual')
-  const billAfterEl = out('#solar-bill-after')
   const systemEl = out('#solar-system')
 
   const read = (input) => {
@@ -724,15 +724,15 @@ if (solarApi && solarForm && solarResult) {
     inverterEl.textContent = `${formatNumber(result.inverterKw, 2)} kW`
     batteryEl.textContent = `${formatNumber(result.batteryKwh, 1)} kWh`
 
+    productionWeeklyEl.textContent = `${formatNumber(result.production.weekly)} kWh/semana`
     productionEl.textContent = `${formatNumber(result.production.monthly)} kWh/mes`
-    productionDetailEl.textContent = `${formatNumber(result.production.daily, 1)} kWh/día · ${formatNumber(result.production.annual)} kWh/año`
+    productionAnnualEl.textContent = `${formatNumber(result.production.annual)} kWh/año`
     consumptionWeeklyEl.textContent = `${formatNumber(result.consumption.weekly)} kWh/semana`
     consumptionEl.textContent = `${formatNumber(result.consumption.monthly)} kWh/mes`
     consumptionAnnualEl.textContent = `${formatNumber(result.consumption.annual)} kWh/año`
 
     billEl.textContent = `${formatNumber(result.bill.current)} CUP/mes`
     billAnnualEl.textContent = `${formatNumber(result.bill.annual)} CUP/año`
-    billAfterEl.textContent = `${formatNumber(result.bill.withSolar)} CUP/mes`
     renderTariff(result.consumption.monthly)
     systemEl.textContent =
       `Valores del sistema: eficiencia global ${pct(derate)}, inversor ${pct(inverterEfficiency)}, ` +
