@@ -2383,3 +2383,222 @@ p {
   line-height: 1.6;
   color: var(--muted);
 }
+
+/* ---------- Calculadora Solar ---------- */
+
+.solar-calc {
+  margin-top: 1.1rem;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: clamp(1.2rem, 3vw, 2.4rem);
+  align-items: start;
+  padding: clamp(1.5rem, 3vw, 2.2rem);
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: radial-gradient(26rem 16rem at 100% 0%, rgba(255, 45, 149, 0.12), transparent 65%),
+    linear-gradient(180deg, var(--surface-2), var(--surface));
+}
+
+.solar-form {
+  margin: 0;
+}
+
+.solar-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem 0.9rem;
+}
+
+.solar-field label {
+  display: block;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: var(--muted-2);
+}
+
+.solar-input {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  height: 46px;
+  margin-top: 0.4rem;
+  padding: 0 0.75rem;
+  border-radius: 12px;
+  border: 1px solid var(--line-strong);
+  background: var(--ghost-bg);
+}
+
+.solar-input:focus-within {
+  border-color: var(--orange);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--orange) 20%, transparent);
+}
+
+.solar-input input,
+.solar-input select {
+  flex: 1 1 auto;
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 0.92rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.solar-input select {
+  appearance: none;
+  cursor: pointer;
+}
+
+.solar-input select option {
+  background: var(--surface);
+  color: var(--text);
+}
+
+.solar-input input:focus-visible,
+.solar-input select:focus-visible {
+  outline: none;
+}
+
+.solar-input:has(select) {
+  position: relative;
+  padding-right: 2rem;
+}
+
+.solar-input:has(select)::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 0.9rem;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-right: 2px solid var(--muted-2);
+  border-bottom: 2px solid var(--muted-2);
+  transform: translateY(-70%) rotate(45deg);
+  pointer-events: none;
+}
+
+.solar-unit {
+  flex: 0 0 auto;
+  font-size: 0.75rem;
+  color: var(--muted-2);
+  white-space: nowrap;
+}
+
+.solar-advanced {
+  margin: 1rem 0 0;
+  padding: 0.9rem 1rem 1rem;
+  border-radius: 14px;
+  border: 1px dashed var(--line-strong);
+  background: color-mix(in srgb, var(--ghost-bg) 60%, transparent);
+}
+
+.solar-advanced legend {
+  padding: 0 0.35rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.solar-hint {
+  margin: 0.7rem 0 0;
+  font-size: 0.74rem;
+  line-height: 1.5;
+  color: var(--muted-2);
+}
+
+.solar-submit {
+  width: 100%;
+  margin-top: 1rem;
+  justify-content: center;
+}
+
+.solar-result {
+  display: grid;
+  gap: 0.35rem;
+  padding: 1.3rem 1.4rem;
+  border-radius: 16px;
+  border: 1px solid var(--line-strong);
+  background: var(--ghost-bg);
+}
+
+.solar-result > strong {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.7rem, 3vw, 2.1rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.solar-facts {
+  display: grid;
+  margin: 0.9rem 0 0;
+  border-top: 1px solid var(--line);
+}
+
+.solar-facts > div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.45rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.solar-facts dt {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.solar-facts dd {
+  margin: 0;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.84rem;
+  font-weight: 600;
+  text-align: right;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+.solar-facts .solar-saving {
+  border-bottom: 0;
+  padding-bottom: 0.1rem;
+}
+
+.solar-facts .solar-saving dt {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.solar-facts .solar-saving dd {
+  font-size: 1rem;
+  color: var(--orange);
+}
+
+.solar-system {
+  margin: 0.7rem 0 0;
+  font-size: 0.72rem;
+  line-height: 1.5;
+  color: var(--muted-2);
+}
+
+@media (max-width: 960px) {
+  .solar-calc {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .solar-fields {
+    grid-template-columns: 1fr;
+  }
+}

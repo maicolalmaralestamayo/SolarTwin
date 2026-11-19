@@ -21,6 +21,7 @@ const translations = {
     'nav.process': 'Proceso',
     'nav.ops': 'Nosotros',
     'nav.payment': 'Pago',
+    'nav.calc': 'Calculadora',
     'nav.contact': 'Contáctanos',
     'config.businessName': 'Nombre de negocio',
     'config.businessName2': 'Segunda parte',
@@ -624,6 +625,181 @@ if (savingsForm && savingsResult) {
 
   const initialPanels = Number(savingsInput.value)
   if (isValidPanels(initialPanels)) renderSavings(initialPanels)
+}
+
+/* ---------- Calculadora Solar (#calculadora) ---------- */
+
+const solarApi = window.SOLAR_CALC
+const solarForm = document.querySelector('#solar-form')
+const solarResult = document.querySelector('#solar-result')
+
+if (solarApi && solarForm && solarResult) {
+  const solarConfig = config.solar ?? {}
+  const solarDefaults = solarConfig.defaults ?? {}
+  const solarSystem = solarConfig.system ?? {}
+  const solarBifacial = solarSystem.bifacial ?? {}
+  const solarTariffs = Array.isArray(solarConfig.tariffs) ? solarConfig.tariffs : []
+
+  const derate = Number(solarSystem.derate) > 0 ? Number(solarSystem.derate) : 0.85
+  const inverterEfficiency =
+    Number(solarSystem.inverterEfficiency) > 0 ? Number(solarSystem.inverterEfficiency) : 0.975
+  const bifacial = {
+    albedo: Number(solarBifacial.albedo) || 0,
+    bifaciality: Number(solarBifacial.bifaciality) || 0,
+    installFactor: Number(solarBifacial.installFactor) || 0
+  }
+
+  const field = (selector) => solarForm.querySelector(selector)
+  const dailyInput = field('#solar-daily')
+  const autonomyInput = field('#solar-autonomy')
+  const cellSelect = field('#solar-cell')
+  const panelInput = field('#solar-panel')
+  const constructionSelect = field('#solar-construction')
+  const batterySelect = field('#solar-battery')
+  const hspInput = field('#solar-hsp')
+  const efficiencyInput = field('#solar-efficiency')
+  const tempCoefInput = field('#solar-tempcoef')
+  const dodInput = field('#solar-dod')
+  const batteryEffInput = field('#solar-battery-eff')
+  const solarError = field('#solar-error')
+
+  const out = (selector) => solarResult.querySelector(selector)
+  const panelsEl = out('#solar-panels')
+  const panelsDetailEl = out('#solar-panels-detail')
+  const arrayEl = out('#solar-array')
+  const inverterEl = out('#solar-inverter')
+  const batteryEl = out('#solar-battery-capacity')
+  const productionEl = out('#solar-production')
+  const productionDetailEl = out('#solar-production-detail')
+  const consumptionEl = out('#solar-consumption')
+  const billEl = out('#solar-bill')
+  const billAfterEl = out('#solar-bill-after')
+  const savingEl = out('#solar-saving')
+  const systemEl = out('#solar-system')
+
+  const read = (input) => {
+    if (!input) return NaN
+    const value = Number(String(input.value).trim().replace(',', '.'))
+    return Number.isFinite(value) ? value : NaN
+  }
+
+  /* Valores iniciales desde config.js (el HTML solo lleva el respaldo) */
+  const setValue = (input, value) => {
+    if (!input || !Number.isFinite(Number(value))) return
+    input.value = String(value)
+  }
+
+  setValue(dailyInput, solarDefaults.dailyKwh)
+  setValue(autonomyInput, solarDefaults.autonomyDays)
+  setValue(panelInput, solarDefaults.panelWatts)
+  setValue(hspInput, solarDefaults.hsp)
+
+  const setSelect = (select, value) => {
+    if (!select || !value) return
+    if (Array.from(select.options).some((option) => option.value === value)) select.value = value
+  }
+
+  setSelect(cellSelect, solarDefaults.cellTech)
+  setSelect(constructionSelect, solarDefaults.construction)
+  setSelect(batterySelect, solarDefaults.batteryTech)
+
+  /* Autocompletado de los valores de cada tecnología */
+  const applyCellTech = () => {
+    const tech = solarApi.CELL_TECHS[cellSelect.value]
+    if (!tech) return
+    efficiencyInput.value = String(Math.round(tech.efficiency * 1000) / 10)
+    tempCoefInput.value = String(tech.tempCoef)
+  }
+
+  const applyBatteryTech = () => {
+    const tech = solarApi.BATTERY_TECHS[batterySelect.value]
+    if (!tech) return
+    dodInput.value = String(Math.round(tech.dod * 100))
+    batteryEffInput.value = String(Math.round(tech.efficiency * 100))
+  }
+
+  const pct = (value, decimals = 1) => `${formatNumber(value * 100, decimals)} %`
+
+  const renderSolar = () => {
+    const result = solarApi.computeSystem({
+      dailyKwh: read(dailyInput),
+      autonomyDays: read(autonomyInput),
+      cellTech: cellSelect.value,
+      panelWatts: read(panelInput),
+      construction: constructionSelect.value,
+      batteryTech: batterySelect.value,
+      hsp: read(hspInput),
+      derate,
+      inverterEfficiency,
+      bifacial,
+      battery: {
+        dod: read(dodInput) / 100,
+        efficiency: read(batteryEffInput) / 100
+      },
+      tariffs: solarTariffs
+    })
+
+    solarError.hidden = Boolean(result)
+    if (!result) return
+
+    const panelWatts = read(panelInput)
+    const panelLabel = result.panels === 1 ? 'panel' : 'paneles'
+
+    panelsEl.textContent = `${formatNumber(result.panels)} ${panelLabel}`
+    panelsDetailEl.textContent = `${formatNumber(result.arrayKw, 2)} kWp instalados · ${formatNumber(panelWatts)} Wp por panel`
+    arrayEl.textContent = `${formatNumber(result.arrayKw, 2)} kWp`
+    inverterEl.textContent = `${formatNumber(result.inverterKw, 2)} kW`
+    batteryEl.textContent = `${formatNumber(result.batteryKwh, 1)} kWh`
+
+    productionEl.textContent = `${formatNumber(result.production.monthly)} kWh/mes`
+    productionDetailEl.textContent = `${formatNumber(result.production.daily, 1)} kWh/día · ${formatNumber(result.production.annual)} kWh/año`
+    consumptionEl.textContent = `${formatNumber(result.consumption.monthly)} kWh/mes`
+
+    billEl.textContent = `${formatNumber(result.bill.current)} CUP`
+    billAfterEl.textContent = `${formatNumber(result.bill.withSolar)} CUP`
+    savingEl.textContent = `${formatNumber(result.bill.saving)} CUP/mes · ${formatNumber(result.bill.savingAnnual)} CUP/año`
+
+    systemEl.textContent =
+      `Valores del sistema: eficiencia global ${pct(derate)}, inversor ${pct(inverterEfficiency)}, ` +
+      `albedo ${formatNumber(bifacial.albedo, 2)}, bifacialidad ${formatNumber(bifacial.bifaciality, 2)} ` +
+      `e instalación bifacial ${formatNumber(bifacial.installFactor, 2)}. ` +
+      `El sistema cubre el ${pct(result.coverage)} de tu consumo mensual.`
+  }
+
+  cellSelect.addEventListener('change', () => {
+    applyCellTech()
+    renderSolar()
+  })
+
+  batterySelect.addEventListener('change', () => {
+    applyBatteryTech()
+    renderSolar()
+  })
+
+  solarForm.addEventListener('submit', (event) => {
+    event.preventDefault()
+    renderSolar()
+  })
+
+  ;[
+    dailyInput,
+    autonomyInput,
+    panelInput,
+    constructionSelect,
+    hspInput,
+    efficiencyInput,
+    tempCoefInput,
+    dodInput,
+    batteryEffInput
+  ].forEach((input) => {
+    if (!input) return
+    input.addEventListener('input', renderSolar)
+    input.addEventListener('change', renderSolar)
+  })
+
+  applyCellTech()
+  applyBatteryTech()
+  renderSolar()
 }
 
 /* ---------- Opiniones de clientes desde config.js ---------- */

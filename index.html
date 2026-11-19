@@ -62,6 +62,7 @@
     </script>
     <link rel="stylesheet" href="./style.css" />
     <script defer src="./config.js"></script>
+    <script defer src="./solar.js"></script>
     <script defer src="./main.js"></script>
 
     <!-- Datos estructurados de negocio local (Google). Si cambia el teléfono o
@@ -125,6 +126,7 @@
           <a href="#nosotros" data-text="nav.ops">Nosotros</a>
           <a href="#proceso" data-text="nav.process">Proceso</a>
           <a href="#pago" data-text="nav.payment">Pago</a>
+          <a href="#calculadora" data-text="nav.calc">Calculadora</a>
           <a class="btn btn-sm btn-primary nav-cta" href="#contacto" data-text="nav.contact">Contáctanos</a>
         </nav>
 
@@ -917,6 +919,274 @@
               Estimación para Cuba: un panel de 550 W rinde unos 70 kWh al mes (unas 4,5 horas de
               sol al día al 80 % de rendimiento). La producción real depende del lugar, la
               orientación y la limpieza de los paneles.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CALCULADORA SOLAR -->
+      <section class="section" id="calculadora">
+        <div class="wrap">
+          <div class="section-head center">
+            <p class="eyebrow" data-reveal>
+              <span class="dot" aria-hidden="true"></span>
+              <span>Calculadora solar</span>
+            </p>
+            <h2 data-reveal>Calcula tu <span class="grad-text">sistema solar</span></h2>
+            <p class="section-sub" data-reveal>
+              Introduce tu consumo diario y obtén el dimensionamiento, la producción estimada y tu
+              ahorro en CUP.
+            </p>
+          </div>
+
+          <div class="solar-calc" data-reveal>
+            <form class="solar-form" id="solar-form" novalidate>
+              <div class="solar-fields">
+                <div class="solar-field">
+                  <label for="solar-daily">Consumo diario promedio</label>
+                  <div class="solar-input">
+                    <input
+                      id="solar-daily"
+                      name="dailyKwh"
+                      type="number"
+                      inputmode="decimal"
+                      min="0.1"
+                      max="500"
+                      step="0.1"
+                      value="10"
+                      required
+                    />
+                    <span class="solar-unit">kWh/día</span>
+                  </div>
+                </div>
+
+                <div class="solar-field">
+                  <label for="solar-autonomy">Días de autonomía de baterías</label>
+                  <div class="solar-input">
+                    <input
+                      id="solar-autonomy"
+                      name="autonomyDays"
+                      type="number"
+                      inputmode="numeric"
+                      min="0"
+                      max="15"
+                      step="1"
+                      value="1"
+                      required
+                    />
+                    <span class="solar-unit">días</span>
+                  </div>
+                </div>
+
+                <div class="solar-field">
+                  <label for="solar-cell">Tecnología de celda del panel</label>
+                  <div class="solar-input">
+                    <select id="solar-cell" name="cellTech">
+                      <option value="poly">Policristalino</option>
+                      <option value="perc">Monocristalino PERC</option>
+                      <option value="topcon">TOPCon (tipo N)</option>
+                      <option value="hjt">HJT</option>
+                      <option value="ibc">Back Contact (IBC/BC)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="solar-field">
+                  <label for="solar-panel">Potencia nominal del panel</label>
+                  <div class="solar-input">
+                    <input
+                      id="solar-panel"
+                      name="panelWatts"
+                      type="number"
+                      inputmode="numeric"
+                      min="50"
+                      max="1200"
+                      step="10"
+                      value="400"
+                      required
+                    />
+                    <span class="solar-unit">Wp</span>
+                  </div>
+                </div>
+
+                <div class="solar-field">
+                  <label for="solar-construction">Construcción del panel</label>
+                  <div class="solar-input">
+                    <select id="solar-construction" name="construction">
+                      <option value="monofacial">Monofacial</option>
+                      <option value="bifacial">Bifacial</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="solar-field">
+                  <label for="solar-battery">Tecnología de batería</label>
+                  <div class="solar-input">
+                    <select id="solar-battery" name="batteryTech">
+                      <option value="lfp">Litio LFP</option>
+                      <option value="lead">Plomo-ácido</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="solar-field">
+                  <label for="solar-hsp">Horas Solares Pico (HSP)</label>
+                  <div class="solar-input">
+                    <input
+                      id="solar-hsp"
+                      name="hsp"
+                      type="number"
+                      inputmode="decimal"
+                      min="1"
+                      max="9"
+                      step="0.1"
+                      value="5.5"
+                      required
+                    />
+                    <span class="solar-unit">h</span>
+                  </div>
+                </div>
+              </div>
+
+              <fieldset class="solar-advanced">
+                <legend>Valores de la tecnología</legend>
+                <div class="solar-fields">
+                  <div class="solar-field">
+                    <label for="solar-efficiency">Eficiencia del panel</label>
+                    <div class="solar-input">
+                      <input
+                        id="solar-efficiency"
+                        name="efficiency"
+                        type="number"
+                        inputmode="decimal"
+                        min="5"
+                        max="30"
+                        step="0.1"
+                        value="22.8"
+                      />
+                      <span class="solar-unit">%</span>
+                    </div>
+                  </div>
+
+                  <div class="solar-field">
+                    <label for="solar-tempcoef">Coeficiente de temperatura</label>
+                    <div class="solar-input">
+                      <input
+                        id="solar-tempcoef"
+                        name="tempCoef"
+                        type="number"
+                        inputmode="decimal"
+                        min="-1"
+                        max="0"
+                        step="0.01"
+                        value="-0.3"
+                      />
+                      <span class="solar-unit">%/°C</span>
+                    </div>
+                  </div>
+
+                  <div class="solar-field">
+                    <label for="solar-dod">Profundidad de descarga (DoD)</label>
+                    <div class="solar-input">
+                      <input
+                        id="solar-dod"
+                        name="dod"
+                        type="number"
+                        inputmode="decimal"
+                        min="10"
+                        max="100"
+                        step="1"
+                        value="80"
+                      />
+                      <span class="solar-unit">%</span>
+                    </div>
+                  </div>
+
+                  <div class="solar-field">
+                    <label for="solar-battery-eff">Eficiencia de la batería</label>
+                    <div class="solar-input">
+                      <input
+                        id="solar-battery-eff"
+                        name="batteryEfficiency"
+                        type="number"
+                        inputmode="decimal"
+                        min="50"
+                        max="100"
+                        step="0.5"
+                        value="92"
+                      />
+                      <span class="solar-unit">%</span>
+                    </div>
+                  </div>
+                </div>
+                <p class="solar-hint">
+                  Se completan al elegir la tecnología y puedes ajustarlos a la ficha del panel o
+                  de la batería que vayas a usar.
+                </p>
+              </fieldset>
+
+              <p class="calc-error" id="solar-error" hidden>
+                Revisa los valores: el consumo, la potencia del panel y las horas de sol deben ser
+                mayores que cero.
+              </p>
+
+              <button class="btn btn-primary solar-submit" type="submit">Calcular</button>
+            </form>
+
+            <div class="solar-result" id="solar-result" aria-live="polite">
+              <span class="panel-result-label">Paneles necesarios</span>
+              <strong class="grad-text" id="solar-panels">—</strong>
+              <span class="panel-result-detail" id="solar-panels-detail">—</span>
+
+              <dl class="solar-facts">
+                <div>
+                  <dt>Potencia instalada</dt>
+                  <dd id="solar-array">—</dd>
+                </div>
+                <div>
+                  <dt>Inversor recomendado</dt>
+                  <dd id="solar-inverter">—</dd>
+                </div>
+                <div>
+                  <dt>Capacidad de baterías</dt>
+                  <dd id="solar-battery-capacity">—</dd>
+                </div>
+                <div>
+                  <dt>Producción solar mensual</dt>
+                  <dd id="solar-production">—</dd>
+                </div>
+                <div>
+                  <dt>Producción diaria y anual</dt>
+                  <dd id="solar-production-detail">—</dd>
+                </div>
+                <div>
+                  <dt>Consumo mensual</dt>
+                  <dd id="solar-consumption">—</dd>
+                </div>
+                <div>
+                  <dt>Factura actual</dt>
+                  <dd id="solar-bill">—</dd>
+                </div>
+                <div>
+                  <dt>Factura con el sistema solar</dt>
+                  <dd id="solar-bill-after">—</dd>
+                </div>
+                <div class="solar-saving">
+                  <dt>Ahorro estimado</dt>
+                  <dd id="solar-saving">—</dd>
+                </div>
+              </dl>
+
+              <p class="solar-system" id="solar-system">—</p>
+
+              <a class="btn btn-primary panel-quote" id="solar-cta" href="#contacto">
+                Solicitar cotización con estos datos
+              </a>
+            </div>
+
+            <p class="calc-disclaimer">
+              Cálculos estimados. Los resultados reales dependen de la irradiación local, sombreado,
+              orientación e inclinación de los paneles.
             </p>
           </div>
         </div>

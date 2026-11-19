@@ -69,6 +69,7 @@ El menú principal enlaza a las secciones con estos nombres visibles:
 | Nosotros | Nosotros (mapa de cobertura) | `#nosotros` |
 | Proceso | Proceso (pasos y compromisos) | `#proceso` |
 | Pago | Formas de pago y calculadoras | `#pago` |
+| Calculadora | Calculadora Solar (dimensionamiento y ahorro) | `#calculadora` |
 | Contáctanos | Formas de contacto | `#contacto` |
 
 Mientras el visitante recorre la página, el enlace de la sección en la que está se marca solo (`aria-current`).
@@ -91,6 +92,7 @@ Todo lo que cambia con el negocio vive aquí:
 | `panelPriceUsd` | Precio base por panel para la calculadora de costo. |
 | `panelKwhPerMonth` | Energía que produce un panel al mes (kWh) para la calculadora de ahorro. |
 | `electricityRateCup` | Precio del kWh en CUP. Si es `0`, la calculadora de ahorro solo muestra energía. |
+| `solar` | Calculadora Solar: valores iniciales, constantes del sistema y tarifa por tramos (ver abajo). |
 | `faq` | Preguntas frecuentes: `{ q, a }` (ver abajo). |
 | `testimonials` | Opiniones de clientes (ver abajo). |
 | `siteUrl` | Dominio público cuando exista, para completar los enlaces al compartir. |
@@ -149,6 +151,24 @@ electricityRateCup: 0,
 La estimación parte de que un panel de 550 W rinde unos 70 kWh al mes en Cuba (unas 4,5 horas de sol al día al 80 % de rendimiento). Muestra kWh al mes y al año. Si pones en `electricityRateCup` el precio del kWh en CUP, añade además el ahorro mensual y anual en esa moneda; mientras esté en `0` no habla de dinero.
 
 El **pago** se realiza en efectivo y después de completado el trabajo; no se pide pago por adelantado. Para el CUP se toma como referencia la tasa de [elToque](https://eltoque.com/).
+
+## Calculadora Solar
+
+La sección **Calculadora Solar** (`#calculadora`, entre Formas de pago y Preguntas frecuentes) dimensiona el sistema a partir del consumo diario y calcula el ahorro en CUP. La lógica vive en `solar.js` —funciones puras, sin DOM, documentadas con JSDoc— y los datos en `config.js`:
+
+```js
+solar: {
+  defaults: { dailyKwh: 10, autonomyDays: 1, cellTech: 'topcon', panelWatts: 400, construction: 'monofacial', batteryTech: 'lfp', hsp: 5.5 },
+  system: { derate: 0.85, inverterEfficiency: 0.975, bifacial: { albedo: 0.2, bifaciality: 0.75, installFactor: 0.5 } },
+  tariffs: [{ upTo: 100, price: 0.33 }, { upTo: 150, price: 1.07 }, /* … */],
+},
+```
+
+- `defaults`: lo que trae el formulario al abrir la página. La tecnología de celda rellena la eficiencia y el coeficiente de temperatura; la de batería rellena el DoD y la eficiencia. Los cuatro siguen siendo editables.
+- `system`: constantes del sistema, solo se muestran (no se editan).
+- `tariffs`: tramos progresivos de la tarifa residencial en CUP/kWh. La factura aplica a cada tramo únicamente los kWh que caen dentro de él. Los valores actuales son los del Acuerdo 9810/2024 (Gaceta Oficial 10 Extraordinaria de 2024, vigente desde el 1 de marzo de 2024); si cambia la tarifa, solo hay que editar esta lista.
+
+El botón **Solicitar cotización con estos datos** lleva al visitante a la sección de contacto.
 
 ## Preguntas frecuentes
 
