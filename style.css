@@ -2430,6 +2430,11 @@ p {
   outline: none;
 }
 
+/* Días de autonomía: se lee en décimas (baterías nocturnas) */
+.solar-input input[type="number"] {
+  font-variant-numeric: tabular-nums;
+}
+
 .solar-input:has(select) {
   position: relative;
   padding-right: 2rem;

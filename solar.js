@@ -78,9 +78,10 @@ window.SOLAR_CALC = (function () {
     lead: { label: 'Plomo-ácido', dod: 0.5, efficiency: 0.85 }
   }
 
-  const DAYS_PER_MONTH = 30.4
+  // Un mes de consumo equivale a 32 días (según indicación del usuario).
+  const DAYS_PER_MONTH = 32
   const DAYS_PER_YEAR = 365
-  const WEEKS_PER_MONTH = 4.33
+  const WEEKS_PER_MONTH = 4
 
   /** Comprueba que un valor sea un número finito y mayor que cero. */
   const positive = (value) => Number.isFinite(value) && value > 0
