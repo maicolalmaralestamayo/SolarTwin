@@ -576,7 +576,8 @@ if (solarApi && solarForm && solarResult) {
   const batteryEffInput = field('#solar-battery-eff')
   const solarError = field('#solar-error')
 
-  const out = (selector) => solarResult.querySelector(selector)
+  const solarCalc = solarResult.closest('.solar-calc') ?? solarResult
+  const out = (selector) => solarCalc.querySelector(selector)
   const panelsEl = out('#solar-panels')
   const panelsDetailEl = out('#solar-panels-detail')
   const arrayEl = out('#solar-array')
