@@ -2202,3 +2202,181 @@ p {
     transform: none;
   }
 }
+
+/* ---------- Imágenes con WebP ---------- */
+
+.photo-frame picture,
+.process-media picture {
+  display: block;
+}
+
+/* ---------- Sección activa en el menú ---------- */
+
+.nav > a:not(.btn)[aria-current='true'] {
+  color: var(--text);
+}
+
+.nav > a:not(.btn)[aria-current='true']::after {
+  transform: scaleX(1);
+}
+
+/* ---------- Calculadora: chips y presupuesto ---------- */
+
+.calc-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.7rem;
+}
+
+.chip {
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  background: var(--ghost-bg);
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.chip:hover {
+  color: var(--text);
+  border-color: var(--orange);
+}
+
+.chip.is-active {
+  color: var(--text);
+  border-color: var(--orange);
+  background: color-mix(in srgb, var(--orange) 14%, transparent);
+}
+
+.chip:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: 2px;
+}
+
+.panel-quote {
+  margin-top: 0.9rem;
+  width: 100%;
+  justify-content: center;
+  text-align: center;
+  font-size: 0.85rem;
+  padding: 0.7rem 1rem;
+}
+
+/* ---------- Opiniones ---------- */
+
+#opiniones[hidden] {
+  display: none;
+}
+
+.quotes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  gap: 1rem;
+}
+
+.quote-card {
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, var(--surface-2), var(--surface));
+}
+
+.quote-card blockquote {
+  margin: 0;
+  font-size: 0.96rem;
+  line-height: 1.6;
+}
+
+.quote-card blockquote::before {
+  content: '“';
+  display: block;
+  margin-bottom: 0.35rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2rem;
+  line-height: 0.6;
+  color: var(--orange);
+}
+
+.quote-card figcaption {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.quote-card figcaption strong {
+  font-size: 0.88rem;
+  color: var(--text);
+}
+
+/* ---------- Preguntas frecuentes ---------- */
+
+.faq {
+  display: grid;
+  gap: 0.6rem;
+  max-width: 52rem;
+  margin: 0 auto;
+}
+
+.faq-item {
+  padding: 0 1.2rem;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: var(--ghost-bg);
+  transition: border-color 0.2s ease;
+}
+
+.faq-item[open] {
+  border-color: var(--line-strong);
+}
+
+.faq-item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.98rem;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary::after {
+  content: '+';
+  flex: 0 0 auto;
+  font-size: 1.2rem;
+  color: var(--orange);
+  transition: transform 0.2s ease;
+}
+
+.faq-item[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.faq-item summary:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: 4px;
+  border-radius: 8px;
+}
+
+.faq-item p {
+  max-width: 62ch;
+  margin: 0 0 1.1rem;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--muted);
+}

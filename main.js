@@ -246,6 +246,7 @@ const siteValues = (() => {
     second,
     fullName: `${first}${second}`.trim(),
     slogan: String(siteConfig.slogan ?? '').trim(),
+    email: String(siteConfig.email ?? '').trim(),
     phoneDigits,
     phoneDisplay: phoneDigits ? `+${[code, number].filter(Boolean).join(' ')}` : '',
     waUsername,
@@ -321,6 +322,7 @@ const applyConfigToTexts = () => {
   if (siteValues.waHandle) dict['contact.waText'] = siteValues.waHandle
   if (siteValues.tgHandle) dict['contact.tgText'] = siteValues.tgHandle
   if (siteValues.phoneDisplay) dict['contact.callText'] = siteValues.phoneDisplay
+  if (siteValues.email) dict['contact.mailText'] = siteValues.email
 
   const count = siteValues.currencies.length
   if (count) {
@@ -428,30 +430,30 @@ document.addEventListener('keydown', (event) => {
 const applyText = () => {
   const dict = translations.es
 
-  document.querySelectorAll('[data-i18n]').forEach((el) => {
-    const value = dict[el.dataset.i18n]
+  document.querySelectorAll('[data-text]').forEach((el) => {
+    const value = dict[el.dataset.text]
     if (value === undefined) return
-    if (el.hasAttribute('data-i18n-html')) el.innerHTML = value
+    if (el.hasAttribute('data-text-html')) el.innerHTML = value
     else el.textContent = value
   })
 
-  document.querySelectorAll('[data-i18n-aria]').forEach((el) => {
-    const value = dict[el.dataset.i18nAria]
+  document.querySelectorAll('[data-text-aria]').forEach((el) => {
+    const value = dict[el.dataset.textAria]
     if (value !== undefined) el.setAttribute('aria-label', value)
   })
 
-  document.querySelectorAll('[data-i18n-title]').forEach((el) => {
-    const value = dict[el.dataset.i18nTitle]
+  document.querySelectorAll('[data-text-title]').forEach((el) => {
+    const value = dict[el.dataset.textTitle]
     if (value !== undefined) el.setAttribute('title', value)
   })
 
-  document.querySelectorAll('[data-i18n-alt]').forEach((el) => {
-    const value = dict[el.dataset.i18nAlt]
+  document.querySelectorAll('[data-text-alt]').forEach((el) => {
+    const value = dict[el.dataset.textAlt]
     if (value !== undefined) el.setAttribute('alt', value)
   })
 
-  document.querySelectorAll('[data-i18n-placeholder]').forEach((el) => {
-    const value = dict[el.dataset.i18nPlaceholder]
+  document.querySelectorAll('[data-text-placeholder]').forEach((el) => {
+    const value = dict[el.dataset.textPlaceholder]
     if (value !== undefined) el.setAttribute('placeholder', value)
   })
 
@@ -493,9 +495,25 @@ if (panelForm && panelResult) {
 
   const isValidCount = (count) => Number.isInteger(count) && count >= 1 && count <= 500
 
+  // Botón de presupuesto: lleva al chat con la cantidad ya escrita.
+  const quoteLink = document.querySelector('#panel-quote')
+  const updateQuote = (count) => {
+    if (!quoteLink) return
+    const panels = count === 1 ? 'panel' : 'paneles'
+    const message = `Hola ${siteValues.fullName || 'SolarTwin'}, quiero un presupuesto para ${count} ${panels}.`
+    try {
+      const url = new URL(quoteLink.href)
+      url.searchParams.set('text', message)
+      quoteLink.href = url.toString()
+    } catch (err) {
+      /* enlace no válido: se queda el de por defecto */
+    }
+  }
+
   const renderTotal = (count) => {
     totalEl.textContent = `${formatNumber(count * PANEL_PRICE_USD, 2)} USD`
     detailEl.textContent = `${count} × ${formatNumber(PANEL_PRICE_USD, 2)} USD`
+    updateQuote(count)
   }
 
   panelForm.addEventListener('submit', (event) => {
@@ -505,6 +523,7 @@ if (panelForm && panelResult) {
     const valid = isValidCount(count)
 
     errorEl.hidden = valid
+    countInput.setAttribute('aria-invalid', String(!valid))
     if (!valid) return
 
     renderTotal(count)
@@ -512,11 +531,135 @@ if (panelForm && panelResult) {
 
   countInput.addEventListener('input', () => {
     errorEl.hidden = true
+    countInput.removeAttribute('aria-invalid')
   })
 
   // La cantidad inicial (1) ya viene calculada al abrir la página
   const initialCount = Number(countInput.value)
   if (isValidCount(initialCount)) renderTotal(initialCount)
+}
+
+/* ---------- Calculadora de ahorro (energía generada) ---------- */
+
+const KWH_PER_PANEL = (() => {
+  const value = Number(config.panelKwhPerMonth)
+  return Number.isFinite(value) && value > 0 ? value : 70
+})()
+
+const CUP_PER_KWH = (() => {
+  const value = Number(config.electricityRateCup)
+  return Number.isFinite(value) && value > 0 ? value : 0
+})()
+
+const kwhLabel = document.querySelector('#kwh-per-panel')
+if (kwhLabel) kwhLabel.textContent = formatNumber(KWH_PER_PANEL)
+
+const savingsForm = document.querySelector('#savings-form')
+const savingsResult = document.querySelector('#savings-result')
+
+if (savingsForm && savingsResult) {
+  const savingsInput = savingsForm.querySelector('#savings-count')
+  const savingsError = savingsForm.querySelector('#savings-error')
+  const savingsTotal = savingsResult.querySelector('#savings-total')
+  const savingsDetail = savingsResult.querySelector('#savings-detail')
+  const savingsYear = savingsResult.querySelector('#savings-year')
+  const savingsMoney = savingsResult.querySelector('#savings-money')
+  const chips = Array.from(savingsForm.querySelectorAll('.chip[data-panels]'))
+
+  const isValidPanels = (count) => Number.isInteger(count) && count >= 1 && count <= 60
+
+  const renderSavings = (count) => {
+    const month = count * KWH_PER_PANEL
+    const panels = count === 1 ? 'panel' : 'paneles'
+
+    savingsTotal.textContent = `${formatNumber(month)} kWh`
+    savingsDetail.textContent = `${count} ${panels} × ${formatNumber(KWH_PER_PANEL)} kWh = ${formatNumber(month)} kWh al mes`
+    savingsYear.textContent = `${formatNumber(month * 12)} kWh al año`
+
+    if (savingsMoney) {
+      if (CUP_PER_KWH) {
+        savingsMoney.hidden = false
+        savingsMoney.textContent = `${formatNumber(month * CUP_PER_KWH)} CUP al mes · ${formatNumber(month * 12 * CUP_PER_KWH)} CUP al año`
+      } else {
+        savingsMoney.hidden = true
+        savingsMoney.textContent = '—'
+      }
+    }
+
+    chips.forEach((chip) => {
+      const active = Number(chip.dataset.panels) === count
+      chip.classList.toggle('is-active', active)
+      chip.setAttribute('aria-pressed', String(active))
+    })
+  }
+
+  savingsForm.addEventListener('submit', (event) => {
+    event.preventDefault()
+
+    const count = Number(savingsInput.value)
+    const valid = isValidPanels(count)
+
+    savingsError.hidden = valid
+    savingsInput.setAttribute('aria-invalid', String(!valid))
+    if (!valid) return
+
+    renderSavings(count)
+  })
+
+  savingsInput.addEventListener('input', () => {
+    savingsError.hidden = true
+    savingsInput.removeAttribute('aria-invalid')
+  })
+
+  chips.forEach((chip) => {
+    chip.addEventListener('click', () => {
+      const count = Number(chip.dataset.panels)
+      if (!isValidPanels(count)) return
+      savingsInput.value = String(count)
+      savingsError.hidden = true
+      savingsInput.removeAttribute('aria-invalid')
+      renderSavings(count)
+    })
+  })
+
+  const initialPanels = Number(savingsInput.value)
+  if (isValidPanels(initialPanels)) renderSavings(initialPanels)
+}
+
+/* ---------- Opiniones de clientes desde config.js ---------- */
+
+const quotesWrap = document.querySelector('#quotes')
+const quotesSection = document.querySelector('#opiniones')
+
+if (quotesWrap && quotesSection) {
+  const quotes = Array.isArray(config.testimonials)
+    ? config.testimonials.filter((item) => item && String(item.text ?? '').trim())
+    : []
+
+  if (quotes.length) {
+    quotesWrap.replaceChildren(
+      ...quotes.map((item) => {
+        const card = document.createElement('figure')
+        card.className = 'quote-card'
+
+        const blockquote = document.createElement('blockquote')
+        blockquote.textContent = String(item.text ?? '').trim()
+
+        const caption = document.createElement('figcaption')
+        const name = document.createElement('strong')
+        name.textContent = String(item.name ?? '').trim()
+        const place = document.createElement('span')
+        place.textContent = String(item.place ?? '').trim()
+        caption.append(name)
+        if (place.textContent) caption.append(place)
+
+        card.append(blockquote, caption)
+        return card
+      })
+    )
+
+    quotesSection.hidden = false
+  }
 }
 
 /* ---------- Header y menú ---------- */
@@ -682,27 +825,34 @@ const applySiteConfig = () => {
     link.href = url
   })
 
-  // Nombre del negocio dentro del enlace de correo (asunto y cuerpo)
-  if (siteValues.fullName) {
-    document.querySelectorAll('a[href^="mailto:"]').forEach((link) => {
-      const href = link.getAttribute('href') || ''
-      if (/SolarTwin/i.test(href)) {
-        link.setAttribute(
-          'href',
-          href.replace(/SolarTwin/gi, encodeURIComponent(siteValues.fullName))
-        )
-      }
-    })
-  }
+  // Correo: dirección del enlace y texto visible salen de config.js
+  document.querySelectorAll('a[href^="mailto:"]').forEach((link) => {
+    const href = link.getAttribute('href') || ''
+    let next = href
+
+    if (siteValues.email) {
+      next = next.replace(/^mailto:[^?]*/i, `mailto:${siteValues.email}`)
+    }
+
+    // Nombre del negocio dentro del enlace de correo (asunto y cuerpo)
+    if (siteValues.fullName && /SolarTwin/i.test(next)) {
+      next = next.replace(/SolarTwin/gi, encodeURIComponent(siteValues.fullName))
+    }
+
+    if (next !== href) link.setAttribute('href', next)
+  })
+
+  const mailText = document.querySelector('small[data-text="contact.mailText"]')
+  if (mailText && siteValues.email) mailText.textContent = siteValues.email
 
   // Textos de las tarjetas de contacto (solo el subtítulo)
-  const contactWaText = document.querySelector('small[data-i18n="contact.waText"]')
+  const contactWaText = document.querySelector('small[data-text="contact.waText"]')
   if (contactWaText && waUser) contactWaText.textContent = waUser
 
-  const contactTgText = document.querySelector('small[data-i18n="contact.tgText"]')
+  const contactTgText = document.querySelector('small[data-text="contact.tgText"]')
   if (contactTgText && tgUser) contactTgText.textContent = tgUser
 
-  const callText = document.querySelector('small[data-i18n="contact.callText"]')
+  const callText = document.querySelector('small[data-text="contact.callText"]')
   if (callText && phone) callText.textContent = phone
 
   // Reemplazar el nombre anterior en los textos visibles por el configurado
@@ -737,6 +887,35 @@ const applySiteConfig = () => {
 }
 
 applySiteConfig()
+
+/* ---------- Sección activa en el menú principal ---------- */
+
+const navLinks = Array.from(document.querySelectorAll('.nav a[href^="#"]'))
+const navTargets = navLinks
+  .map((link) => ({ link, section: document.querySelector(link.getAttribute('href')) }))
+  .filter((item) => item.section)
+
+if (navTargets.length && 'IntersectionObserver' in window) {
+  const markCurrent = (current) => {
+    navTargets.forEach(({ link }) => {
+      if (link === current) link.setAttribute('aria-current', 'true')
+      else link.removeAttribute('aria-current')
+    })
+  }
+
+  const spy = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return
+        const hit = navTargets.find((item) => item.section === entry.target)
+        if (hit) markCurrent(hit.link)
+      })
+    },
+    { rootMargin: '-45% 0px -50% 0px', threshold: 0 }
+  )
+
+  navTargets.forEach(({ section }) => spy.observe(section))
+}
 
 /* ---------- Aparición suave de los bloques ---------- */
 

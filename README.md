@@ -8,10 +8,12 @@ Es un sitio **100 % estático**: HTML, CSS, JavaScript, imágenes y fuentes loca
 
 ```
 index.html
+404.html
 style.css
 config.js
 main.js
 favicon.svg
+robots.txt
 fonts/
 img/
 ```
@@ -23,7 +25,7 @@ El resto de archivos del repositorio (README, capturas, etc.) no hace falta subi
 1. Copia los archivos a la carpeta pública de tu Apache (por ejemplo `/var/www/html`):
 
    ```bash
-   sudo cp -r index.html style.css config.js main.js favicon.svg fonts img /var/www/html/
+   sudo cp -r index.html 404.html style.css config.js main.js favicon.svg robots.txt fonts img /var/www/html/
    ```
 
 2. Da permisos de lectura al servidor web:
@@ -44,14 +46,18 @@ El resto de archivos del repositorio (README, capturas, etc.) no hace falta subi
 
 Si lo pones en una subcarpeta (`/var/www/html/solartwin`), abre `http://tu-dominio/solartwin/`: todas las rutas son relativas y funcionan igual.
 
-No hace falta `.htaccess` ni activar módulos adicionales: Apache sirve `index.html` por defecto.
+No hace falta `.htaccess` para servir el sitio (Apache sirve `index.html` por defecto). Para que se use `404.html` cuando una dirección no exista, añade esta línea en un `.htaccess` dentro de la carpeta del sitio:
+
+```apache
+ErrorDocument 404 /404.html
+```
 
 ## Editar contenido
 
 - Textos: directamente en `index.html` y en el diccionario `es` de `main.js`.
 - El sitio tiene un solo idioma (español): no hay selector de idioma ni versiones traducidas.
 - Colores y estilos: `style.css`.
-- Precio de cada panel para la calculadora: `config.js` (ver más abajo).
+- Precio de cada panel y datos de la calculadora de ahorro: `config.js` (ver más abajo).
 - Fotos: reemplaza los archivos de `img/` manteniendo los nombres, o cambia la ruta en `index.html`.
 - El tema oscuro se aplica por defecto; el menú de tema de la cabecera permite pasar a claro o automático (según el sistema) y la preferencia se guarda en el navegador.
 
@@ -62,12 +68,35 @@ El menú principal enlaza a las secciones con estos nombres visibles:
 | --- | --- | --- |
 | Nosotros | Nosotros (mapa de cobertura) | `#nosotros` |
 | Proceso | Proceso (pasos y compromisos) | `#proceso` |
-| Pago | Formas de pago | `#pago` |
+| Pago | Formas de pago y calculadoras | `#pago` |
+| Contáctanos | Formas de contacto | `#contacto` |
 
+Mientras el visitante recorre la página, el enlace de la sección en la que está se marca solo (`aria-current`).
+
+## `config.js`
+
+Todo lo que cambia con el negocio vive aquí:
+
+| Campo | Qué hace |
+| --- | --- |
+| `businessName` | Nombre del sitio en dos partes (`['Solar', 'Twin']`). |
+| `slogan` | Frase que aparece bajo el nombre, también en móvil. |
+| `colors` | Color principal y de énfasis. |
+| `experienceYears` / `specialistsCount` | Años de experiencia y tamaño del equipo en los textos y las cifras. |
+| `phoneNumber` | Código y número: se usa en `tel:`, en los chats de WhatsApp y en los textos visibles. |
+| `email` | Correo de contacto: enlace `mailto:` y texto visible. |
+| `usernames` | Usuarios de WhatsApp y Telegram (los `@` visibles). |
+| `channelLink*` | Enlaces a los canales y redes; si están vacíos, esa tarjeta no se muestra. |
+| `paymentCurrencies` | Monedas aceptadas. |
+| `panelPriceUsd` | Precio base por panel para la calculadora de costo. |
+| `panelKwhPerMonth` | Energía que produce un panel al mes (kWh) para la calculadora de ahorro. |
+| `electricityRateCup` | Precio del kWh en CUP. Si es `0`, la calculadora de ahorro solo muestra energía. |
+| `testimonials` | Opiniones de clientes (ver abajo). |
+| `siteUrl` | Dominio público cuando exista, para completar los enlaces al compartir. |
 
 ## Canales y redes sociales
 
-Después de **Nosotros** (`#nosotros`) va la sección **Síguenos en nuestras redes sociales**, que no aparece en el menú principal. Muestra una tarjeta por cada canal configurado en `config.js`:
+Después de **Nosotros** (`#nosotros`) va la sección **Síguenos en nuestras redes sociales**, que no aparece en el menú principal. Muestra una tarjeta por cada canal configurado:
 
 ```js
 channelLinkWhatsApp: 'https://whatsapp.com/channel/...',
@@ -79,29 +108,66 @@ channelLinkTikTok: '',
 
 Si un enlace se deja vacío, su tarjeta no se muestra: solo aparecen los canales que tengan URL.
 
-La sección de equipo ya no existe: de ella solo queda, como nota dentro de la portada, la explicación de que el equipo lo forman especialistas en ingeniería eléctrica y metalurgia. La sección **Nosotros** (`#nosotros`) es la antigua área de operaciones: explica quiénes son y, con un mapa de Cuba, dónde trabajan y los 9 municipios que cubren. Sus cuatro compromisos (garantía, calidad, seguridad y optimización) se integraron al final de **Proceso** (`#proceso`), que es la única sección de proceso. La sección **Formas de pago** (`#pago`) va justo después de **Proceso**, y después de ella solo queda **Contacto** (`#contacto`): la antigua sección **Solar y planeta** (`#planeta`), con su tabla de tarifas y su calculadora de ahorro, se eliminó. **Formas de pago** indica que el pago es en efectivo y siempre después de completado el trabajo (sin pago por adelantado), que se aceptan dólar (USD), euro (EUR) y moneda nacional (CUP), que la tasa de referencia del CUP es elToque, y añade la calculadora de paneles. El botón flotante de volver arriba aparece al pasar unos 600 px de scroll y se oculta al llegar al pie de página.
+La sección de equipo ya no existe: de ella solo queda, como nota dentro de la portada, la explicación de que el equipo lo forman especialistas en ingeniería eléctrica y metalurgia. La sección **Nosotros** (`#nosotros`) es la antigua área de operaciones: explica quiénes son y, con un mapa de Cuba, dónde trabajan y los 9 municipios que cubren. Sus cuatro compromisos (garantía, calidad, seguridad y optimización) se integraron al final de **Proceso** (`#proceso`), que es la única sección de proceso. El botón flotante de volver arriba aparece al pasar unos 600 px de scroll y se oculta al llegar al pie de página.
+
+## Opiniones de clientes
+
+La sección **Opiniones** (`#opiniones`, después de las redes) se construye desde `config.js` y está oculta mientras la lista esté vacía:
+
+```js
+testimonials: [
+  { name: 'Ana', place: 'Palma Soriano', text: 'Montaron los paneles en dos días y todo quedó limpio.' },
+],
+```
+
+No publiques opiniones que no sean de clientes reales. Con una o dos basta para empezar; en cuanto haya contenido, la sección aparece sola.
 
 ## Aportes del cliente y de la empresa
 
 Dentro de **Proceso** (`#proceso`), el panel “Tú aportas / Nosotros aportamos” deja claro el reparto: el cliente provee los paneles y los cables solares, y SolarTwin aporta la mano de obra para el montaje de las bases. Si cambia el reparto, actualiza el HTML y las claves `process.splitYou*` y `process.splitWe*` del diccionario `es`.
 
-## Calculadora de paneles
+## Calculadoras
 
-El sitio es estático, así que no usa un archivo `.env`: el precio base por panel vive en `config.js`.
+Las dos están en **Formas de pago** (`#pago`).
+
+**Costo.** El precio base por panel vive en `config.js`:
 
 ```js
-window.SOLARTWIN_CONFIG = {
-  panelPriceUsd: 180,
-}
+panelPriceUsd: 180,
 ```
 
-Cambia `panelPriceUsd` cuando varíe el precio de los paneles. La calculadora de `#pago` lo lee al cargar la página, muestra el precio por panel en USD (la moneda base) y multiplica por la cantidad entera que escriba el cliente. Incluye el aviso de que el cálculo es aproximado y que el precio final depende del precio de los insumos en el mercado y de las condiciones del montaje.
+La calculadora lo muestra en USD (la moneda base), multiplica por la cantidad entera que escriba el cliente e incluye el aviso de que el cálculo es aproximado. El botón **Pedir este presupuesto por WhatsApp** abre el chat con la cantidad y el nombre del negocio ya escritos en el mensaje.
+
+**Ahorro.** Indica cuánta energía dan los paneles:
+
+```js
+panelKwhPerMonth: 70,
+electricityRateCup: 0,
+```
+
+La estimación parte de que un panel de 550 W rinde unos 70 kWh al mes en Cuba (unas 4,5 horas de sol al día al 80 % de rendimiento). Muestra kWh al mes y al año. Si pones en `electricityRateCup` el precio del kWh en CUP, añade además el ahorro mensual y anual en esa moneda; mientras esté en `0` no habla de dinero.
 
 El **pago** se realiza en efectivo y después de completado el trabajo; no se pide pago por adelantado. Para el CUP se toma como referencia la tasa de [elToque](https://eltoque.com/).
 
+## Preguntas frecuentes
+
+La sección `#faq` (antes de Contacto) usa `<details>` nativos: se abre y se cierra sin JavaScript. Si cambias una pregunta o una respuesta, actualiza también el bloque `FAQPage` del `<head>` de `index.html` para que Google siga mostrando la misma información.
+
+## Cómo se comparte el enlace
+
+El `<head>` incluye Open Graph y Twitter Card, con `img/og-image.jpg` (1200 × 630) como miniatura. Para que WhatsApp y Facebook la carguen bien, cuando el sitio tenga dominio propio cambia a absolutas estas etiquetas de `index.html`:
+
+- `og:url`, `og:image` y `twitter:image` → `https://tudominio/img/og-image.jpg`
+- `canonical` → `https://tudominio/`
+- el campo `siteUrl` de `config.js`
+
+El `<head>` incluye además datos estructurados de negocio local (`LocalBusiness`) con teléfono, correo, zona cubierta y enlaces a los canales. Si cambia el teléfono o el correo en `config.js`, actualízalos también ahí.
+
+Un `sitemap.xml` necesita URLs absolutas, así que conviene generarlo cuando exista el dominio; `robots.txt` ya permite la indexación completa.
+
 ## Fotos y licencias
 
-Las dos fotos muestran paneles montados sobre techos y azoteas de hormigón. Están recortadas en cuadrado y optimizadas en `img/`:
+Las dos fotos muestran paneles montados sobre techos y azoteas de hormigón. Están recortadas en cuadrado y optimizadas en `img/`, en JPEG y en WebP (el navegador elige el formato y el tamaño con `<picture>`):
 
 | Archivo | Autor | Licencia | Fuente |
 | --- | --- | --- | --- |

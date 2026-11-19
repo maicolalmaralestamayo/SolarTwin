@@ -23,6 +23,9 @@ window.SOLARTWIN_CONFIG = {
     code: '53',
     number: '50781823'
   },
+
+  // Correo de contacto
+  email: 'twin.technology.startup@gmail.com',
   
   // Nombres de usuario
   usernames: {
@@ -52,5 +55,23 @@ window.SOLARTWIN_CONFIG = {
       name: 'Moneda nacional',
       code: 'CUP'
     }
-  ]
+  ],
+
+  // Precio base por panel para la calculadora de costo (USD)
+  panelPriceUsd: 180,
+
+  // Energía que produce un panel al mes (kWh) para la calculadora de ahorro
+  panelKwhPerMonth: 70,
+
+  // Precio de la electricidad (CUP por kWh). Si lo dejas en 0, la calculadora
+  // de ahorro muestra solo la energía y no habla de dinero.
+  electricityRateCup: 0,
+
+  // Opiniones de clientes. Si la lista está vacía, la sección no se muestra.
+  // Ejemplo: { name: 'Ana', place: 'Palma Soriano', text: '...' }
+  testimonials: [],
+
+  // URL pública del sitio cuando tenga dominio propio (sin barra final).
+  // Se usa para completar los enlaces al compartir la página.
+  siteUrl: ''
 }
