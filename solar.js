@@ -301,7 +301,6 @@ window.SOLAR_CALC = (function () {
     inverterKw,
     batteryKwh,
     monthlyProduction,
-    billFor,
     computeSystem
   }
 })()
